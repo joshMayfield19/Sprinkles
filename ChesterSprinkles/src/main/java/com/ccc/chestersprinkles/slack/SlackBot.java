@@ -387,28 +387,6 @@ public class SlackBot extends Bot {
 		}
 	}
 
-	/*@Controller(events = EventType.MESSAGE, pattern = "(?i)^!party$")
-	public void party(WebSocketSession session, Event event) {
-		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
-			Random rand = new Random();
-			int rando = rand.nextInt(5) + 1;
-
-			if (rando == 1) {
-				reply(session, event, new Message(":balloon: Oh yeah! I already have the balloons! :balloon:\n"));
-			} else if (rando == 2) {
-				reply(session, event, new Message("Let's Boogie! :aw_yeah:\n"));
-			} else if (rando == 3) {
-				reply(session, event, new Message(":dancing_chicken: Already ahead of ye! :dancing_chicken:\n"));
-			} else if (rando == 4) {
-				reply(session, event,
-						new Message(":goomba: Try and stop me. Go ahead, try. Ye can't. Ye can't stop me.\n"));
-			} else {
-				reply(session, event,
-						new Message("Well I suppose. If ye have finished all of yer chores. :nerd_face:\n"));
-			}
-		}
-	}*/
-
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!arr$")
 	public void arr(WebSocketSession session, Event event) {
 		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
@@ -455,6 +433,58 @@ public class SlackBot extends Bot {
 	public void marooned(WebSocketSession session, Event event) {
 		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
 			reply(session, event, new Message("Don't ye fret. I would never maroon ye anywheres."));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!blaymon$")
+	public void blaymon(WebSocketSession session, Event event) {
+		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
+			Random rand = new Random();
+			int rando = rand.nextInt(4) + 1;
+
+			if (rando == 1) {
+				reply(session, event, new Message("Haymon did it. Not me!\n"));
+			} else if (rando == 2) {
+				reply(session, event, new Message("I saw Haymon walking away with an incriminating smile.\n"));
+			} else if (rando == 3) {
+				reply(session, event, new Message("We all know who is to blame.\n"));
+			} else {
+				reply(session, event,
+						new Message("I know right? Come on Haymon, get it right.\n"));
+			} 
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!howAreYourFuttocksOldMan$")
+	public void weirdFuttocks(WebSocketSession session, Event event) {
+		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
+			reply(session, event, new Message("At their furthest reach, dear boy."));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!shanty$")
+	public void shanty(WebSocketSession session, Event event) {
+		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
+			Random rand = new Random();
+			int rando = rand.nextInt(4) + 1;
+
+			if (rando == 1) {
+				reply(session, event, new Message("https://www.youtube.com/watch?v=0jGMgWUJcKc\n"));
+			} else if (rando == 2) {
+				reply(session, event, new Message("https://www.youtube.com/watch?v=d1DGNh9fOmw\n"));
+			} else if (rando == 3) {
+				reply(session, event, new Message("https://www.youtube.com/watch?v=20n3N1uhztc\n"));
+			} else {
+				reply(session, event,
+						new Message("https://www.youtube.com/watch?v=pSnZ-J3kMmI\n"));
+			} 
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!yarr$")
+	public void yarr(WebSocketSession session, Event event) {
+		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
+			reply(session, event, new Message("Yarr! Ye be right!"));
 		}
 	}
 	
