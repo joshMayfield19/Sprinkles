@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<chester_sprinkles>
+    <raffleDateTime>5/7/18</raffleDateTime>
+    <currentChallenge>Tortuga Trail</currentChallenge>
+    <currentChallengeDate>5/29/18</currentChallengeDate>
+    <currentChallengeLink>https://drive.google.com/drive/u/0/folders/14qQv_4IGt6RfqCgY3fOJ7xVqlCYCqEex</currentChallengeLink>
+    <raffleWinners>
+        <raffleWinner>KD W</raffleWinner>
+        <raffleWinner>Sean S</raffleWinner>
+        <raffleWinner>Laura F</raffleWinner>
+    </raffleWinners>
+    <presenters>
+        <presenter>Josh Mayfield</presenter>
+        <presenter>Caleb Hall</presenter>
+        <presenter>Christopher Nabors</presenter>
+    </presenters>
+    <allTimePresenters>
+        <allTimePresenter>
+            <name>Josh Mayfield</name>
+            <timesPresented>3</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Mike Dunn</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Dave Arlington</name>
+            <timesPresented>5</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Jessie Smith</name>
+            <timesPresented>3</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Jimmy Dotson</name>
+            <timesPresented>2</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>KD Wilson</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Michael Peacock</name>
+            <timesPresented>3</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Peter Xiao</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Caleb Hall</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Robert Cole</name>
+            <timesPresented>4</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Ariel Burke</name>
+            <timesPresented>2</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Dan Wilson</name>
+            <timesPresented>2</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Andrea Long</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Zak Long</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Tony Strickland</name>
+            <timesPresented>3</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Richard McIlwain</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Pat Morton</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Josh Wheeler</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Neil Orzechowski</name>
+            <timesPresented>2</timesPresented>
+        </allTimePresenter>
+        <allTimePresenter>
+            <name>Michael Morris</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
+    </allTimePresenters>
+    <challengeAwards>
+        <challengeAward>
+            <challengeName>Cravings Crazy Cafe</challengeName>
+            <mostCreative>Dave Arlington</mostCreative>
+            <mostInformative>Mike Dunn</mostInformative>
+            <prizeWinners>Keerti S, Dave A, Taylor M</prizeWinners>
+            <id>1</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>Mainframe Games</challengeName>
+            <mostCreative>KD Wilson</mostCreative>
+            <mostInformative>Michael Peacock</mostInformative>
+            <prizeWinners>Andrea L, Robert C, Annise B.</prizeWinners>
+            <id>2</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>House of Mirrors</challengeName>
+            <mostCreative>Dave Arlington</mostCreative>
+            <mostInformative>Caleb Hall</mostInformative>
+            <prizeWinners>Josh W, Richard M, Daniel H</prizeWinners>
+            <id>3</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>The Lion's Den</challengeName>
+            <mostCreative>Andrea/Zak Long</mostCreative>
+            <mostInformative>Pat Morton</mostInformative>
+            <prizeWinners>Daniel H, Sarah M, Pat M</prizeWinners>
+            <id>4</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>Spooky Manor</challengeName>
+            <mostCreative></mostCreative>
+            <mostInformative></mostInformative>
+            <prizeWinners>Taylor M, Caleb H, Josh W</prizeWinners>
+            <id>5</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>Coaster Trifecta</challengeName>
+            <mostCreative>Michael Peacock</mostCreative>
+            <mostInformative>Jessie Smith</mostInformative>
+            <prizeWinners>Laura F, Caleb H, Jessie S</prizeWinners>
+            <id>6</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>Carnival Tours (Text Adventure)</challengeName>
+            <mostCreative>Dave Arlington</mostCreative>
+            <mostInformative>Dave Arlington</mostInformative>
+            <prizeWinners>Daniel H, Michael P, Dan W</prizeWinners>
+            <id>7</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>Carney Union</challengeName>
+            <mostCreative>Dave Arlington</mostCreative>
+            <mostInformative>Neil Orzechowski</mostInformative>
+            <prizeWinners>Dave A, Neil O, Ariel B</prizeWinners>
+            <id>8</id>
+        </challengeAward>
+        <challengeAward>
+            <challengeName>Cruise Day</challengeName>
+            <mostCreative></mostCreative>
+            <mostInformative></mostInformative>
+            <prizeWinners>KD W, Sean S, Laura F</prizeWinners>
+            <id>9</id>
+        </challengeAward>
+    </challengeAwards>
+    <ideas>
+        <idea>*Submitted by:* Mike D. --- *Idea:* Something to do with Ferris Wheels. As in counting people as they go around, etc.</idea>
+    </ideas>
+    <commands>
+        <command>*Submitted by:* Robert Cole --- *Command:* dailyChallenge - Would provide a daily challange, something similar to code golf, daily UI challenges, etc.</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* techVocab - Provides a random technology term, framework, or tool and a short description of what it is.</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !parrotSpeak The parrot will squawk something it heard in the room at random (preferably something with a lot of reactions)</command>
+        <command>*Submitted by:* Brian Willkie --- *Command:* !howAreYourFuttocksOldMan - respond with At their furthest reach, dear boy.</command>
+        <command>*Submitted by:* Michael Peacock --- *Command:* blaymon - would provide a randomly-generated response indicating how/why it was blaming &lt;@U5THKHZ16&gt; for something.</command>
+        <command>*Submitted by:* Michael Morris --- *Command:* !whatDoWeDoWithADrunkenSailor respond with some sobering up method or punishment for drunken sailors, like "Strap him on the mast with the Captain's Daughter"</command>
+        <command>*Submitted by:* Michael Morris --- *Command:* !shanty respond with You Tube video of a sea shanty, or a sea themed song like this: &lt;https://www.youtube.com/watch?v=S9zcieO7Plw&gt;</command>
+        <command>*Submitted by:* Michael Peacock --- *Command:* !yarr - synonym for arr</command>
+        <command>*Submitted by:* David Mullen --- *Command:* !setSail = Sail in a random compass direction with a random destination or sights (e.g. Sailing west in search of Candy Island)</command>
+        <command>*Submitted by:* Michael Morris --- *Command:* !inPirate $var = Use a regex expression on provided string to translate it into pirate speak, savvy?</command>
+    </commands>
+</chester_sprinkles>
