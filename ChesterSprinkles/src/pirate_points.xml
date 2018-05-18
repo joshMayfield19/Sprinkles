@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pirate_points>
+	<pirateShips>
+		<pirateShip>
+			<shipId>1</shipId>
+			<shipName>The Pride of the Tide</shipName>
+			<shipCaptain>Vince "Silver Tooth" Fry</shipCaptain>
+			<shipPoints>100</shipPoints>
+			<shipCrew>1</shipCrew>
+		</pirateShip>
+		<pirateShip>
+			<shipId>2</shipId>
+			<shipName>The Scurvy Sun</shipName>
+			<shipCaptain>Mabel "Albatross's Curse" Welch</shipCaptain>
+			<shipPoints>100</shipPoints>
+			<shipCrew>1</shipCrew>
+		</pirateShip>
+		<pirateShip>
+			<shipId>3</shipId>
+			<shipName>The Cry of the Dagger</shipName>
+			<shipCaptain></shipCaptain>
+			<shipPoints></shipPoints>
+			<shipCrew></shipCrew>
+		</pirateShip>
+		<pirateShip>
+			<shipId>4</shipId>
+			<shipName>The Blue Insanity</shipName>
+			<shipCaptain></shipCaptain>
+			<shipPoints></shipPoints>
+			<shipCrew></shipCrew>
+		</pirateShip>
+		<pirateShip>
+			<shipId>5</shipId>
+			<shipName>The Corrupted Wolf</shipName>
+			<shipCaptain></shipCaptain>
+			<shipPoints></shipPoints>
+			<shipCrew></shipCrew>
+		</pirateShip>
+	</pirateShips>
+	<pirates>
+		<pirate>
+			<realName>Josh Mayfield</realName>
+			<pirateName>Vince "Silver Tooth" Fry</pirateName>
+			<pirateShipId>1</pirateShipId>
+			<piratePoints>100</piratePoints>
+		</pirate>
+		<pirate>
+			<realName>KD Wilson</realName>
+			<pirateName>Mabel "Albatross's Curse" Welch</pirateName>
+			<pirateShipId>2</pirateShipId>
+			<piratePoints>100</piratePoints>
+		</pirate>
+	</pirates>
+</pirate_points>

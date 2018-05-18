@@ -1,23 +1,18 @@
-package com.ccc.chestersprinkles.slack;
+package com.ccc.chestersprinkles.model;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import com.ccc.chestersprinkles.model.AllTimePresenter;
-import com.ccc.chestersprinkles.model.ChallengeAward;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement (name = "chester_sprinkles")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -35,13 +30,11 @@ public class ChesterSprinklesData {
 	@XmlElement (name = "currentChallengeLink")
 	private String currentChallengeLink;
 	
-    //@XmlJavaTypeAdapter(SprinklesAdapter.class)
 	@XmlElementWrapper(name="raffleWinners")
     @XmlElement(name="raffleWinner")
 	private List<String> raffleWinners;
     
-    //@XmlJavaTypeAdapter(SprinklesAdapter.class)
-	@XmlElementWrapper(name="presenters")
+    @XmlElementWrapper(name="presenters")
     @XmlElement(name="presenter")
 	private List<String> presenters;
 	
@@ -49,12 +42,7 @@ public class ChesterSprinklesData {
 	@XmlElement(name="allTimePresenter")
 	private List<AllTimePresenter> allTimePresenters;
     
-	@XmlElementWrapper(name="challengeAwards")
-	@XmlElement(name="challengeAward")
-	private List<ChallengeAward> challengeAwards;
-	
-    //@XmlJavaTypeAdapter(SprinklesAdapter.class)
-	@XmlElementWrapper(name="ideas")
+    @XmlElementWrapper(name="ideas")
     @XmlElement(name="idea")
 	private List<String> ideas;
     
@@ -95,7 +83,6 @@ public class ChesterSprinklesData {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ChesterSprinklesData.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-			// output pretty printed
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
 			jaxbMarshaller.marshal(bot, file);
@@ -136,14 +123,6 @@ public class ChesterSprinklesData {
 
 	public List<AllTimePresenter> getAllTimePresenters() {
 		return allTimePresenters;
-	}
-
-	public List<ChallengeAward> getChallengeAwards() {
-		return challengeAwards;
-	}
-
-	public void setChallengeAwards(List<ChallengeAward> challengeAwards) {
-		this.challengeAwards = challengeAwards;
 	}
 
 	public void setAllTimePresenters(List<AllTimePresenter> allTimePresenters) {
