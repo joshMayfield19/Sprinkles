@@ -31,20 +31,20 @@ public class PiratePointsCommand extends Command {
 		PiratePointsData piratePoints = PiratePointsData.getPiratePointsData();
 		List<Pirate> pirates = piratePoints.getPirates();
 		List<PirateShip> pirateShips = piratePoints.getPirateShips();
-		PirateShip myShip = null;
 		
 		for (Pirate pirate : pirates) {
 			if (pirate.getRealName().equals(realName)) {
 				for (PirateShip pirateShip : pirateShips) {
 					if (pirateShip.getShipId() == pirate.getPirateShipId()) {
-						myShip = pirateShip;
+						return "*Ship Name:* " + pirateShip.getShipName() +"\n"
+								+ "*Ship Captain:* " + pirateShip.getShipCaptain() + "\n"
+										+ "*Ship Crew:* " + pirateShip.getShipCrew() + "\n"
+												+ "*Ship Points:* " + pirateShip.getShipPoints() + "\n";
+					}
+					else {
+						return "I don't see you assigned to a ship! Captain Monty!!!! Fix this!";
 					}
 				}
-				
-				return "*Ship Name:* " + myShip.getShipName() +"\n"
-						+ "*Ship Captain:* " + myShip.getShipCaptain() + "\n"
-								+ "*Ship Crew:* " + myShip.getShipCrew() + "\n"
-										+ "*Ship Points:* " + myShip.getShipPoints() + "\n";
 			}
 		}
 		
