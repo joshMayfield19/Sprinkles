@@ -18,9 +18,9 @@
 		<pirateShip>
 			<shipId>3</shipId>
 			<shipName>The Cry of the Dagger</shipName>
-			<shipCaptain></shipCaptain>
-			<shipPoints></shipPoints>
-			<shipCrew></shipCrew>
+			<shipCaptain>Toby "Ghost White" Carabis</shipCaptain>
+			<shipPoints>100</shipPoints>
+			<shipCrew>1</shipCrew>
 		</pirateShip>
 		<pirateShip>
 			<shipId>4</shipId>
@@ -48,6 +48,12 @@
 			<realName>KD Wilson</realName>
 			<pirateName>Mabel "Albatross's Curse" Welch</pirateName>
 			<pirateShipId>2</pirateShipId>
+			<piratePoints>100</piratePoints>
+		</pirate>
+		<pirate>
+			<realName>Caleb Hall</realName>
+			<pirateName>Toby "Ghost White" Carabis</pirateName>
+			<pirateShipId>3</pirateShipId>
 			<piratePoints>100</piratePoints>
 		</pirate>
 	</pirates>
