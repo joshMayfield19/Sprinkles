@@ -12,6 +12,17 @@ public class Pirate {
 	private int pirateShipId;
 	private int piratePoints;
 	
+	public Pirate () {
+		
+	}
+	
+	public Pirate (String realName) {
+		this.pirateName = "Pending";
+		this.realName = realName;
+		this.pirateShipId = 0;
+		this.piratePoints = 0;
+	}
+	
 	public String getPirateName() {
 		return pirateName;
 	}
