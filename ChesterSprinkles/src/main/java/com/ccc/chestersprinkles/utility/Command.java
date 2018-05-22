@@ -7,7 +7,7 @@ import org.springframework.util.StringUtils;
 import me.ramswaroop.jbot.core.slack.models.Event;
 
 public class Command {
-	private static boolean validateInput(Event event) {
+	protected static boolean validateInput(Event event) {
 		return (event.getUserId() != null && !StringUtils.isEmpty(event.getText())); 
 	}
 	

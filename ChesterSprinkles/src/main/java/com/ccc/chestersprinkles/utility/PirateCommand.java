@@ -8,119 +8,73 @@ import com.ccc.chestersprinkles.service.SlackUserService;
 import me.ramswaroop.jbot.core.slack.models.Event;
 
 public class PirateCommand extends Command {
-	private static String ARR_COMMAND = "!arr";
-	private static String AVAST_COMMAND = "!avast";
-	private static String MATEY_COMMAND = "!matey";
-	private static String AHOY_COMMAND = "!ahoy";
-	private static String AYE_COMMAND = "!aye";
-	private static String BLIMEY_COMMAND = "!blimey";
-	private static String MAROONED_COMMAND = "!marooned";
-	private static String KEELHAULED_COMMAND = "!keelhauled";
-	private static String YARR_COMMAND = "!yarr";
-	private static String SHANTY_COMMAND = "!shanty";
-	private static String FUTTOCKS_COMMAND = "!howareyourfuttocksoldman";
-	private static String WALKTHEPLANK_COMMAND = "!walktheplank";
-	
-	public static String getCommandResponse(Event event, SlackUserService slackUserService) {
-		if (commandStartsWith(event, ARR_COMMAND)) {
-			return getArrCommandResponse();
-		}
-		else if (commandStartsWith(event, AVAST_COMMAND)) {
-			return getAvastCommandResponse();
-		}
-		else if (commandStartsWith(event, MATEY_COMMAND)) {
-			return getMateyCommandResponse();
-		}
-		else if (commandStartsWith(event, AHOY_COMMAND)) {
-			return getAhoyCommandResponse();
-		}
-		else if (commandStartsWith(event, AYE_COMMAND)) {
-			return getAyeCommandResponse();
-		}
-		else if (commandStartsWith(event, BLIMEY_COMMAND)) {
-			return getBlimeyCommandResponse();
-		}
-		else if (commandStartsWith(event, MAROONED_COMMAND)) {
-			return getMaroonedCommandResponse();
-		}
-		else if (commandStartsWith(event, KEELHAULED_COMMAND)) {
-			return getKeelhauledCommandResponse();
-		}
-		else if (commandStartsWith(event, YARR_COMMAND)) {
-			return getYarrCommandResponse();
-		}
-		else if (commandStartsWith(event, SHANTY_COMMAND)) {
-			return getShantyCommandResponse();
-		}
-		else if (commandStartsWith(event, FUTTOCKS_COMMAND)) {
-			return getFuttocksCommandResponse();
-		}
-		else if (commandStartsWith(event, WALKTHEPLANK_COMMAND)) {
-			return getWalkThePlankCommandResponse(slackUserService);
+	public static String getWalkThePlankCommandResponse(Event event, SlackUserService slackUserService) {
+		if (validateInput(event)) {
+			List<SlackUser> allUsers = slackUserService.getSlackUsers();
+			
+			SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size()));
+			
+			return "Ahoy! It's time for " + randomSlackUser.getFirstName()  + " " + randomSlackUser.getLastName() + " to walk the plank! Get moving!";
 		}
 		
 		return null;
 	}
 	
-	private static String getWalkThePlankCommandResponse(SlackUserService slackUserService) {
-		List<SlackUser> allUsers = slackUserService.getSlackUsers();
-		
-		SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size()));
-		
-		return "Ahoy! It's time for " + randomSlackUser.getFirstName()  + " " + randomSlackUser.getLastName() + " to walk the plank! Get moving!";
-	}
+	public static String getShantyCommandResponse(Event event) {
+		if (validateInput(event)) {
+			int rando = getRandomNumber(4);
 	
-	private static String getShantyCommandResponse() {
-		int rando = getRandomNumber(4);
-
-		if (rando == 1) {
-			return "https://www.youtube.com/watch?v=0jGMgWUJcKc\n";
-		} else if (rando == 2) {
-			return "https://www.youtube.com/watch?v=d1DGNh9fOmw\n";
-		} else if (rando == 3) {
-			return "https://www.youtube.com/watch?v=20n3N1uhztc\n";
-		} else {
-			return "https://www.youtube.com/watch?v=pSnZ-J3kMmI\n";
+			if (rando == 1) {
+				return "https://www.youtube.com/watch?v=0jGMgWUJcKc\n";
+			} else if (rando == 2) {
+				return "https://www.youtube.com/watch?v=d1DGNh9fOmw\n";
+			} else if (rando == 3) {
+				return "https://www.youtube.com/watch?v=20n3N1uhztc\n";
+			} else {
+				return "https://www.youtube.com/watch?v=pSnZ-J3kMmI\n";
+			}
 		}
+		
+		return null;
 	}
 	
-	private static String getFuttocksCommandResponse() {
-		return "At their furthest reach, my dear boy.\n";
+	public static String getFuttocksCommandResponse(Event event) {
+		return validateInput(event) ? "At their furthest reach, my dear boy.\n" : null;
 	}
 
-	private static String getYarrCommandResponse() {
-		return "Yarr! Ye be right!\n";
+	public static String getYarrCommandResponse(Event event) {
+		return validateInput(event) ? "Yarr! Ye be right!\n" : null;
 	}
 
-	private static String getKeelhauledCommandResponse() {
-		return "There be no keelhauling on our ship.\n";
+	public static String getKeelhauledCommandResponse(Event event) {
+		return validateInput(event) ? "There be no keelhauling on our ship.\n" : null;
 	}
 
-	private static String getMaroonedCommandResponse() {
-		return "Don't ye fret. I would never maroon ye anywheres.\n";
+	public static String getMaroonedCommandResponse(Event event) {
+		return validateInput(event) ? "Don't ye fret. I would never maroon ye anywheres.\n" : null;
 	}
 
-	private static String getBlimeyCommandResponse() {
-		return "Blimey! What ye be so excited fer?\n";
+	public static String getBlimeyCommandResponse(Event event) {
+		return validateInput(event) ? "Blimey! What ye be so excited fer?\n" : null;
 	}
 
-	private static String getAyeCommandResponse() {
-		return "Aye! Ye be right!\n";
+	public static String getAyeCommandResponse(Event event) {
+		return validateInput(event) ? "Aye! Ye be right!\n" : null;
 	}
 
-	private static String getAhoyCommandResponse() {
-		return "And a hearty Ahoy to you!\n";
+	public static String getAhoyCommandResponse(Event event) {
+		return validateInput(event) ? "And a hearty Ahoy to you!\n" : null;
 	}
 
-	private static String getMateyCommandResponse() {
-		return "Are ye me matey?\n";
+	public static String getMateyCommandResponse(Event event) {
+		return validateInput(event) ? "Are ye me matey?\n" : null;
 	}
 
-	private static String getArrCommandResponse() {
-		return "Arr! Ye be right!\n";
+	public static String getArrCommandResponse(Event event) {
+		return validateInput(event) ? "Arr! Ye be right!\n" : null;
 	}
 	
-	private static String getAvastCommandResponse() {
-		return "Avast! Look here matey.\n";
+	public static String getAvastCommandResponse(Event event) {
+		return validateInput(event) ? "Avast! Look here matey.\n" : null;
 	}
 }

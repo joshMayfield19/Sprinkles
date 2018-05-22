@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "pirateShip")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class PirateShip {
+public class PirateShip implements Comparable<PirateShip> {
 	private int shipId;
 	private String shipName;
 	private String shipCaptain;
@@ -42,5 +42,18 @@ public class PirateShip {
 	}
 	public void setShipCrew(int shipCrew) {
 		this.shipCrew = shipCrew;
+	}
+
+	@Override
+	public int compareTo(PirateShip pirateShip) {
+		if (this.shipPoints == pirateShip.shipPoints) {
+			return 0;
+		}
+		else if (this.shipPoints < pirateShip.shipPoints) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
 	}
 }

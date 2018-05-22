@@ -6,11 +6,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "pirate")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class Pirate {
+public class Pirate implements Comparable<Pirate> {
 	private String pirateName;
 	private String realName;
 	private int pirateShipId;
 	private int piratePoints;
+	private int doubloons;
 	
 	public Pirate () {
 		
@@ -21,6 +22,7 @@ public class Pirate {
 		this.realName = realName;
 		this.pirateShipId = 0;
 		this.piratePoints = 0;
+		this.doubloons = 0;
 	}
 	
 	public String getPirateName() {
@@ -46,5 +48,26 @@ public class Pirate {
 	}
 	public void setPiratePoints(int piratePoints) {
 		this.piratePoints = piratePoints;
+	}
+
+	public int getDoubloons() {
+		return doubloons;
+	}
+
+	public void setDoubloons(int doubloons) {
+		this.doubloons = doubloons;
+	}
+
+	@Override
+	public int compareTo(Pirate pirate) {
+		if (this.piratePoints == pirate.piratePoints) {
+			return 0;
+		}
+		else if (this.piratePoints < pirate.piratePoints) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
 	}
 }

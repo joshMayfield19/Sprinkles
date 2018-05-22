@@ -100,71 +100,416 @@ public class SlackBot extends Bot {
 		logger.info("File shared: {}", event);
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!addPresenter|!addMe|!removePresenter|!removeMe|!presenters|!presentationTotal)$")
-	public void presenterCommand(WebSocketSession session, Event event) {
-		String commandResponse = PresenterCommand.getCommandResponse(event, slackUserService);
+	/**************************************
+	 * 
+	 * 		PRESENTER COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!addPresenter|!addMe)$")
+	public void addPresenter(WebSocketSession session, Event event) {
+		String commandResponse = PresenterCommand.getAddPresenterCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!removePresenter|!removeMe)$")
+	public void removePresenter(WebSocketSession session, Event event) {
+		String commandResponse = PresenterCommand.getRemovePresenterCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!presenters)$")
+	public void presenters(WebSocketSession session, Event event) {
+		String commandResponse = PresenterCommand.getPresentersCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!presentationTotal)$")
+	public void presentationTotal(WebSocketSession session, Event event) {
+		String commandResponse = PresenterCommand.getPresentationTotalCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	/**************************************
+	 * 
+	 * 		MISCELLANEOUS COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!blaymon)$")
+	public void blaymon(WebSocketSession session, Event event) {
+		String commandResponse = MiscCommand.getBlaymonCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!proposedCommands)$")
+	public void proposedCommands(WebSocketSession session, Event event) {
+		String commandResponse = MiscCommand.getProposedCommandsCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!help)$")
+	public void help(WebSocketSession session, Event event) {
+		String commandResponse = MiscCommand.getHelpCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	/**************************************
+	 * 
+	 * 		PIRATE COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!arr)$")
+	public void arr(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getArrCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!avast)$")
+	public void avast(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getAvastCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!matey)$")
+	public void matey(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getMateyCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!ahoy)$")
+	public void ahoy(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getAhoyCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!aye)$")
+	public void aye(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getAyeCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!blimey)$")
+	public void blimey(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getBlimeyCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!marooned)$")
+	public void marooned(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getMaroonedCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!keelhauled)$")
+	public void keelhauled(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getKeelhauledCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!howAreYourFuttocksOldMan)$")
+	public void howAreYourFuttocksOldMan(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getFuttocksCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!yarr)$")
+	public void yarr(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getYarrCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!shanty)$")
+	public void shanty(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getShantyCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!walkThePlank)$")
+	public void walkThePlank(WebSocketSession session, Event event) {
+		String commandResponse = PirateCommand.getWalkThePlankCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	/**************************************
+	 * 
+	 * 		PIRATE POINTS COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myPirateInfo)$")
+	public void myPirateInfo(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getMyPirateInfoCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myShipInfo)$")
+	public void myShipInfo(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getMyShipInfoCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
+	public void myCrewInfo(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getMyCrewInfoCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pointsHelp)$")
+	public void pointsHelp(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getPointsHelpCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pointsRewards)$")
+	public void pointsRewards(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getPointsRewardsCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!parrotSpeak(.*))$")
+	public void parrotSpeak(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getParrotSpeakCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pollyWantACracker)$")
+	public void pollyWantACracker(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getPollyWantACrackerCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!setSail)$")
+	public void setSail(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getSetSailCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!battle)$")
+	public void battle(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getBattleCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!explore)$")
+	public void explore(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getExploreCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!shoreleave)$")
+	public void shoreleave(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getShoreleaveCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!doubloonsHelp)$")
+	public void doubloonsHelp(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getDoubloonsHelpCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!doubloonsRewards)$")
+	public void doubloonsRewards(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getDoubloonsRewardsCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
 
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!blaymon|!proposedCommands|!help)$")
-	public void miscCommand(WebSocketSession session, Event event) {
-		String commandResponse = MiscCommand.getCommandResponse(event);
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!cheer)$")
+	public void cheer(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getCheerCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!arr|!avast|!matey|!ahoy|!aye|!matey|!ahoy|!aye|!blimey|!marooned|!keelhauled|!howAreYourFuttocksOldMan|!yarr|!shanty|!walkThePlank)$")
-	public void pirateCommand(WebSocketSession session, Event event) {
-		String commandResponse = PirateCommand.getCommandResponse(event, slackUserService);
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pirateLeaderboard)$")
+	public void pirateLeaderboard(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getPirateLeaderboardCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myPirateInfo|!myShipInfo|!myCrewInfo|!pointsHelp|!pointsRewards|!parrotSpeak|!pollyWantACracker)$")
-	public void piratePointsCommand(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getCommandResponse(event, slackUserService);
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!shipLeaderboard)$")
+	public void shipLeaderboard(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getShipLeaderboardCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	/**************************************
+	 * 
+	 * 		RAFFLE COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
 	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!raffle)$")
 	public void raffleCommand(WebSocketSession session, Event event) {
-		String commandResponse = RaffleCommand.getCommandResponse(event);
+		String commandResponse = RaffleCommand.getRaffleCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!currentChallenge|!allChallenges|!challengeIdeas)$")
-	public void challengeCommand(WebSocketSession session, Event event) {
-		String commandResponse = ChallengeCommand.getCommandResponse(event);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-	
-	/*
+	/**************************************
 	 * 
-	 *    Conversation Commands
+	 * 		CHALLENGE COMMANDS
 	 * 
 	 * 
+	 **************************************
 	 */
-
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!currentChallenge)$")
+	public void currentChallenge(WebSocketSession session, Event event) {
+		String commandResponse = ChallengeCommand.getCurrentChallengeCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!allChallenges)$")
+	public void allChallenges(WebSocketSession session, Event event) {
+		String commandResponse = ChallengeCommand.getAllChallengesCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!challengeIdeas)$")
+	public void challengeIdeas(WebSocketSession session, Event event) {
+		String commandResponse = ChallengeCommand.getChallengeIdeasCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	/**************************************
+	 * 
+	 * 		CONVERSATION COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
 
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!sortingEyepatch)$", next = "confirmPirateSort")
 	public void sortPirate(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getCommandResponse(event, slackUserService);
+		String commandResponse = PiratePointsCommand.getSortingEyepatchCommandResponse(event);
 		
 		if (commandResponse != null && commandResponse.contains("matey")) {
 			startConversation(event, "confirmPirateSort");
