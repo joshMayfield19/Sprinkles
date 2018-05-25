@@ -179,6 +179,15 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!hackThePlanet)$")
+	public void hackThePlanet(WebSocketSession session, Event event) {
+		String commandResponse = MiscCommand.getHackThePlanetCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	/**************************************
 	 * 
 	 * 		PIRATE COMMANDS
@@ -303,7 +312,25 @@ public class SlackBot extends Bot {
 	 **************************************
 	 */
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myPirateInfo)$")
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!sortingEyepatch(.*))$")
+	public void sortPirate(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getSortingEyepatchCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!addPoints(.*))$")
+	public void addPoints(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getAddPointsCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myPirateInfo)$")
 	public void myPirateInfo(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getMyPirateInfoCommandResponse(event, slackUserService);
 		
@@ -312,7 +339,7 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myShipInfo)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myShipInfo)$")
 	public void myShipInfo(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getMyShipInfoCommandResponse(event, slackUserService);
 		
@@ -321,7 +348,7 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
 	public void myCrewInfo(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getMyCrewInfoCommandResponse(event, slackUserService);
 		
@@ -330,24 +357,16 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pointsHelp)$")
-	public void pointsHelp(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getPointsHelpCommandResponse(event, slackUserService);
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!piratePointsHelp)$")
+	public void piratePointsHelp(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getPiratePointsHelpCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pointsRewards)$")
-	public void pointsRewards(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getPointsRewardsCommandResponse(event, slackUserService);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-	
+	//	@Controller(events = EventType.DIRECT_MENTION, pattern = "(?i)^(<@U7Q2LFQ9F> parrotSpeak(.*))$")
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!parrotSpeak(.*))$")
 	public void parrotSpeak(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getParrotSpeakCommandResponse(event, slackUserService);
@@ -366,7 +385,7 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!setSail)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!setSail)$")
 	public void setSail(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getSetSailCommandResponse(event, slackUserService);
 		
@@ -375,7 +394,7 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!battle)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!battle)$")
 	public void battle(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getBattleCommandResponse(event, slackUserService);
 		
@@ -384,7 +403,7 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!explore)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!explore)$")
 	public void explore(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getExploreCommandResponse(event, slackUserService);
 		
@@ -393,7 +412,7 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!shoreleave)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!shoreleave)$")
 	public void shoreleave(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getShoreleaveCommandResponse(event, slackUserService);
 		
@@ -402,27 +421,18 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!doubloonsHelp)$")
-	public void doubloonsHelp(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getDoubloonsHelpCommandResponse(event, slackUserService);
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatAreDoubloons)$")
+	public void whatAreDoubloons(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getWhatAreDoubloonsHelpCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!doubloonsRewards)$")
-	public void doubloonsRewards(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getDoubloonsRewardsCommandResponse(event, slackUserService);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!cheer)$")
-	public void cheer(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getCheerCommandResponse(event, slackUserService);
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatArePiratePoints)$")
+	public void whatArePiratePoints(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getWhatArePiratePointsHelpCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
@@ -506,26 +516,6 @@ public class SlackBot extends Bot {
 	 * 
 	 **************************************
 	 */
-
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!sortingEyepatch)$", next = "confirmPirateSort")
-	public void sortPirate(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getSortingEyepatchCommandResponse(event);
-		
-		if (commandResponse != null && commandResponse.contains("matey")) {
-			startConversation(event, "confirmPirateSort");
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!confirmPirateSort)$")
-	public void confirmPirateSort(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getCommandConversationResponse(event, slackUserService);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-			stopConversation(event);
-		}
-	}
 	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!addChallengeIdea$", next = "confirmIdeaAdd")
 	public void addChallengeIdea(WebSocketSession session, Event event) {

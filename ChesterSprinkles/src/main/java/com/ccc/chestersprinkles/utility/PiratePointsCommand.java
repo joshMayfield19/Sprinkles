@@ -49,19 +49,11 @@ public class PiratePointsCommand extends Command {
 		
 		return null;
 	}
-
-	public static String getPointsRewardsCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event)) {
-			
-		}
-		
-		return null;	
-	}
 	
 	//Captain Command
 	public static String getSetSailCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "Only the captain of the ship can set sail.";
 		}
 		
 		return null;	
@@ -70,7 +62,7 @@ public class PiratePointsCommand extends Command {
 	//Captain Command
 	public static String getBattleCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "Only the captain of the ship can start a battle.";
 		}
 		
 		return null;	
@@ -78,7 +70,7 @@ public class PiratePointsCommand extends Command {
 	
 	public static String getExploreCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "You need to be either on the Winning Ship or in the Top 5 at the end of the previous Pirate Adventure.";
 		}
 		
 		return null;	
@@ -86,23 +78,23 @@ public class PiratePointsCommand extends Command {
 	
 	public static String getShoreleaveCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "You need to be either on the Winning Ship or in the Top 5 at the end of the previous Pirate Adventure.";
 		}
 		
 		return null;	
 	}
 	
-	public static String getDoubloonsHelpCommandResponse(Event event, SlackUserService slackUserService) {
+	public static String getWhatAreDoubloonsHelpCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "You can find out more about doubloons here: https://drive.google.com/open?id=1vd4OvcnbLPEd0awWc-EnRgiWb8eZ_y2V";
 		}
 		
 		return null;	
 	}
 	
-	public static String getDoubloonsRewardsCommandResponse(Event event, SlackUserService slackUserService) {
+	public static String getWhatArePiratePointsHelpCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "You can find out more about Pirate Points here: https://drive.google.com/open?id=1zNiQnfTHsaXadI617uJGcEKWYUc7i9iq";
 		}
 		
 		return null;	
@@ -142,20 +134,50 @@ public class PiratePointsCommand extends Command {
 		return null;	
 	}
 	
-	public static String getCheerCommandResponse(Event event, SlackUserService slackUserService) {
+	public static String getPiratePointsHelpCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			
+			return "You find all of the new commands here: https://drive.google.com/open?id=170xe_lczX3flsbmMsEUxKm-o09c7vWWp";
 		}
 		
 		return null;	
 	}
 	
-	public static String getPointsHelpCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event)) {
+	public static String getAddPointsCommandResponse(Event event) {
+		if (validateInput(event) && isAllowedUser(event)) {
+			String inputString = event.getText();
+			String[] inputStringSplit = inputString.split(" ");
+			String user = inputStringSplit[1] + " " + inputStringSplit[2];
+			int pointsToAdd = Integer.valueOf(inputStringSplit[3]);
 			
+			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
+			
+			List<Pirate> pirates = piratePointsData.getPirates();
+			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
+			String shipName = "";
+			
+			for (Pirate pirate : pirates) {
+				if (pirate.getRealName().equals(user)) {
+					int currentPoints = pirate.getPiratePoints();
+					pirate.setPiratePoints(currentPoints + pointsToAdd);
+					
+					for (PirateShip pirateShip : pirateShips) {
+						if (pirateShip.getShipId() == pirate.getPirateShipId()) {
+							int currentShipPoints = pirateShip.getShipPoints();
+							pirateShip.setShipPoints(currentShipPoints + pointsToAdd);
+							shipName = pirateShip.getShipName();
+						}
+					}
+				}
+			}
+			
+			piratePointsData.setPirates(pirates);
+			piratePointsData.setPirateShips(pirateShips);
+			PiratePointsData.writePiratePointsData(piratePointsData);
+			
+			return "You have added " + pointsToAdd + " points to " + user + "'s and " + shipName + "'s total.";
 		}
 		
-		return null;	
+		return null;
 	}
 	
 	public static String getMyCrewInfoCommandResponse(Event event, SlackUserService slackUserService) {
@@ -171,19 +193,19 @@ public class PiratePointsCommand extends Command {
 			}
 			
 			if (userShipId == PRIDE_OF_TIDE) {
-				return "Your fellow crew members of *The Pride of the Tide* are located on this manifest. https://drive.google.com/open?id=16pyNf8xIs7dX6hKdZ2_nerCL2hAXtrZ2";
+				return "Your fellow crew members of *The Pride of the Tide* are located on this manifest. https://drive.google.com/open?id=1ud0NDMQnZMRXlLsk1_Kj2MEolfSuwtil";
 			}
 			else if (userShipId == SCURVY_SUN) {
-				return "Your fellow crew members of *The Scurvy Sun* are located on this manifest. https://drive.google.com/open?id=18YqqpbGzflTenyS0zZuVvpEqsJmNt_qi";
+				return "Your fellow crew members of *The Scurvy Sun* are located on this manifest. https://drive.google.com/open?id=15_oIDVjnumVR83Q7MdnFz_94N8qxaeYa";
 			}
 			else if (userShipId == CRY_OF_DAGGER) {
-				return "Your fellow crew members of *The Cry of the Dagger* are located on this manifest. https://drive.google.com/open?id=1_VCFR8drU9jtx9I5esIIZftvrC5WDyor";
+				return "Your fellow crew members of *The Cry of the Dagger* are located on this manifest. https://drive.google.com/open?id=1QESOlugIXJdI1fMUI82Q4sUyFrLTOBW_";
 			}
 			else if (userShipId == BLUE_INSANITY) {
-				return "Your fellow crew members of *The Blue Insanity* are located on this manifest. https://drive.google.com/open?id=1LoudGGrfA2K0Bp_WgZpLdoNuXdB8O6tp";
+				return "Your fellow crew members of *The Blue Insanity* are located on this manifest. https://drive.google.com/open?id=1FGqcgpEjHE_9j9YGf_wtN6Ns75iQBYN6";
 			}
 			else if (userShipId == CORRUPT_WOLF) {
-				return "Your fellow crew members of *The Corrupted Wolf* are located on this manifest. https://drive.google.com/open?id=1o4Z5nSdM8jbmh0YnPd6eojG9asWloDf2";
+				return "Your fellow crew members of *The Corrupted Wolf* are located on this manifest. https://drive.google.com/open?id=1uhOtP-JG1BaPAFX0Ju5nnChK2XQtCPsc";
 			}
 			else {
 				return "You are not assigned to a ship yet!";
@@ -193,18 +215,22 @@ public class PiratePointsCommand extends Command {
 		return null;
 	}
 
-	public static String getCommandConversationResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event)) {
+	public static String getSortingEyepatchCommandResponse(Event event, SlackUserService slackUserService) {
+		if (validateInput(event) && event.getUserId().equals(JOSH_ID)) {
+			String inputString = event.getText();
+			String[] inputStringSplit = inputString.split(" ");
+			String user = inputStringSplit[1] + " " + inputStringSplit[2];
+			
 			PiratePointsData piratePoints = PiratePointsData.getPiratePointsData();
 			List<Pirate> pirates = piratePoints.getPirates();
 			
 			for (Pirate pirate : pirates) {
-				if (pirate.getRealName().equals(event.getText())) {
+				if (pirate.getRealName().equals(user)) {
 					return event.getText() + " is already assigned to a ship.";
 				}
 			}
 			
-			Pirate newPirate = new Pirate(event.getText());
+			Pirate newPirate = new Pirate(user);
 			PirateShip assignedShip = findShip();
 			int shipCrew = assignedShip.getShipCrew();
 			
@@ -222,17 +248,8 @@ public class PiratePointsCommand extends Command {
 			piratePoints.setPirateShips(pirateShips);
 			piratePoints.writePiratePointsData(piratePoints);
 			
-			return "Aye, *" + event.getText() + "* has been added to the crew of *" + assignedShip.getShipName() + 
+			return "Aye, *" + user + "* has been added to the crew of *" + assignedShip.getShipName() + 
 					"*. I will assign an appropriate Pirate Name soon. Type *!myPirateInfo* to see your info and *!myShipInfo* for your ship info.";
-		}
-		else {
-			return null;
-		}
-	}
-
-	public static String getSortingEyepatchCommandResponse(Event event) {
-		if (validateInput(event) && event.getUserId().equals(JOSH_ID)) {
-			return "Who are we sorting this time, matey?";
 		}
 		
 		return null;

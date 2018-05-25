@@ -52,4 +52,34 @@ public class MiscCommand extends Command {
 		
 		return null;
 	}
+	
+	public static String getHackThePlanetCommandResponse(Event event) {
+		if (validateInput(event)) {
+			int rando = getRandomNumber(10);
+	
+			if (rando == 1) {
+				return "Snoop onto them, as they snoop onto us.\n";
+			} else if (rando == 2) {
+				return "A worm and a virus? The plot thickens.\n";
+			} else if (rando == 3) {
+				return "Mess with the best. Die like the rest.\n";
+			} else if (rando == 4) {
+				return "Whoa. This isn't wood shop class?\n";
+			} else if (rando == 5) {
+				return "We are Samurai. The keyboard cowboy.\n";
+			} else if (rando == 6) {
+				return "Of all the things I've lost, I miss my mind the most.\n";
+			} else if (rando == 7) {
+				return "Hackers of the world, unite!\n";
+			} else if (rando == 8) {
+				return "Rabbit, Flu-shot, someone talk to me!\n";
+			} else if (rando == 9) {
+				return "Super hero-like, even...\n";
+			} else {
+				return "Hack the Planet!\n";
+			} 
+		}
+		
+		return null;
+	}
 }
