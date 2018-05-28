@@ -1,12 +1,13 @@
 package com.ccc.chestersprinkles.utility;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.util.StringUtils;
-
 import com.ccc.chestersprinkles.model.Pirate;
+import com.ccc.chestersprinkles.model.PirateHistory;
 import com.ccc.chestersprinkles.model.PiratePointsData;
+import com.ccc.chestersprinkles.model.PiratePointsDataHistory;
 import com.ccc.chestersprinkles.model.PirateShip;
 import com.ccc.chestersprinkles.model.SlackUser;
 import com.ccc.chestersprinkles.service.SlackUserService;
@@ -142,14 +143,126 @@ public class PiratePointsCommand extends Command {
 		return null;	
 	}
 	
+	public static String getStartNewAdventureCommandResponse(Event event) {
+		if (validateInput(event) && isAllowedUser(event)) {
+			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
+			
+			List<Pirate> pirates = piratePointsData.getPirates();
+			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
+			
+			for (Pirate pirate : pirates) {
+				pirate.setPiratePoints(0);
+			}
+			
+			for (PirateShip pirateShip : pirateShips) {
+				pirateShip.setShipPoints(0);
+			}
+			
+			piratePointsData.setPirates(pirates);
+			piratePointsData.setPirateShips(pirateShips);
+			PiratePointsData.writePiratePointsData(piratePointsData);
+			
+			return "You have reset all of the adventure points.";
+		}
+		
+		return null;
+	}
+	
+	public static String getCalculateLeadersCommandResponse(Event event) {
+		if (validateInput(event) && isAllowedUser(event)) {
+			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
+			List<Pirate> pirates = piratePointsData.getPirates();
+			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
+			
+			List<Pirate> blueInsanityPirates = new ArrayList<Pirate>();
+			List<Pirate> prideOfTidePirates = new ArrayList<Pirate>();
+			List<Pirate> corruptedWolfPirates = new ArrayList<Pirate>();
+			List<Pirate> scurvySunPirates = new ArrayList<Pirate>();
+			List<Pirate> cryOfDaggerPirates = new ArrayList<Pirate>();
+			
+			for (Pirate pirate : pirates) {
+				pirate.setOnWinningShip(false);
+				pirate.setTopFivePirate(false);
+				pirate.setCaptain(false);
+				
+				if (pirate.getPirateShipId() == PRIDE_OF_TIDE) {
+					prideOfTidePirates.add(pirate);
+				}
+				else if (pirate.getPirateShipId() == SCURVY_SUN) {
+					scurvySunPirates.add(pirate);
+				}
+				else if (pirate.getPirateShipId() == CRY_OF_DAGGER) {
+					cryOfDaggerPirates.add(pirate);
+				}
+				else if (pirate.getPirateShipId() == BLUE_INSANITY) {
+					blueInsanityPirates.add(pirate);
+				}
+				else if (pirate.getPirateShipId() == CORRUPT_WOLF) {
+					corruptedWolfPirates.add(pirate);
+				}
+			}
+			
+			Collections.sort(prideOfTidePirates);
+			Collections.sort(scurvySunPirates);
+			Collections.sort(cryOfDaggerPirates);
+			Collections.sort(blueInsanityPirates);
+			Collections.sort(corruptedWolfPirates);
+			Collections.sort(pirates);
+			Collections.sort(pirateShips);
+			
+			pirates.get(0).setTopFivePirate(true);
+			pirates.get(1).setTopFivePirate(true);
+			pirates.get(2).setTopFivePirate(true);
+			pirates.get(3).setTopFivePirate(true);
+			pirates.get(4).setTopFivePirate(true);
+			
+			for (Pirate pirate : pirates) {
+				if (pirate.getPirateShipId() == pirateShips.get(0).getShipId()) {
+					pirate.setOnWinningShip(true);
+				}
+				
+				if (pirate.getRealName().equals(cryOfDaggerPirates.get(0).getRealName()) ||
+						pirate.getRealName().equals(prideOfTidePirates.get(0).getRealName()) ||
+						pirate.getRealName().equals(blueInsanityPirates.get(0).getRealName()) ||
+						pirate.getRealName().equals(scurvySunPirates.get(0).getRealName()) ||
+						pirate.getRealName().equals(corruptedWolfPirates.get(0).getRealName())) {
+					pirate.setCaptain(true);
+					
+					for (PirateShip pirateShip : pirateShips) {
+						if (pirate.getPirateShipId() == pirateShip.getShipId()) {
+							pirateShip.setShipCaptain(pirate.getPirateName() + " (" + pirate.getRealName() + ")");
+						}
+					}
+				}
+			}
+			
+			piratePointsData.setPirates(pirates);
+			piratePointsData.setPirateShips(pirateShips);
+			PiratePointsData.writePiratePointsData(piratePointsData);
+			
+			return "*The winning ship is* " + pirateShips.get(0).getShipName() + "!\n"
+					+ "*The Top Five Pirates are:*\n " + pirates.get(0).getPirateName() + " (" + pirates.get(0).getRealName() + ")\n"
+							+ pirates.get(1).getPirateName() + " (" + pirates.get(1).getRealName() + ")\n" 
+							+ pirates.get(2).getPirateName() + " (" + pirates.get(2).getRealName() + ")\n"
+							+ pirates.get(3).getPirateName() + " (" + pirates.get(3).getRealName() + ")\n"
+							+ pirates.get(4).getPirateName() + " (" + pirates.get(4).getRealName() + ")\n"
+									+ "*The captains have also been assigned for each ship!*";
+		}
+		
+		return null;
+	}
+	
 	public static String getAddPointsCommandResponse(Event event) {
 		if (validateInput(event) && isAllowedUser(event)) {
 			String inputString = event.getText();
 			String[] inputStringSplit = inputString.split(" ");
 			String user = inputStringSplit[1] + " " + inputStringSplit[2];
 			int pointsToAdd = Integer.valueOf(inputStringSplit[3]);
+			String dateOfEvent = inputStringSplit[4];
+			String typeOfEvent = inputStringSplit[5];
 			
 			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
+			PiratePointsDataHistory piratePointsDataHistory = PiratePointsDataHistory.getPiratePointsDataHistory();
 			
 			List<Pirate> pirates = piratePointsData.getPirates();
 			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
@@ -158,17 +271,46 @@ public class PiratePointsCommand extends Command {
 			for (Pirate pirate : pirates) {
 				if (pirate.getRealName().equals(user)) {
 					int currentPoints = pirate.getPiratePoints();
+					int currentOverall = pirate.getOverallPiratePoints();
 					pirate.setPiratePoints(currentPoints + pointsToAdd);
+					pirate.setOverallPiratePoints(currentOverall + pointsToAdd);
 					
 					for (PirateShip pirateShip : pirateShips) {
 						if (pirateShip.getShipId() == pirate.getPirateShipId()) {
 							int currentShipPoints = pirateShip.getShipPoints();
+							int currentOverallShip = pirateShip.getOverallShipPoints();
 							pirateShip.setShipPoints(currentShipPoints + pointsToAdd);
+							pirateShip.setOverallShipPoints(currentOverallShip + pointsToAdd);
 							shipName = pirateShip.getShipName();
 						}
 					}
 				}
 			}
+			
+			List<PirateHistory> pirateHistories = piratePointsDataHistory.getPirates();
+			boolean pirateHistoryFound = false;
+			
+			for (PirateHistory pirateHistory : pirateHistories) {
+				if (pirateHistory.getRealName().equals(user)) {
+					pirateHistoryFound = true;
+					List<String> events = pirateHistory.getPointEvents();
+					events.add(pointsToAdd + " points -- Event: " + typeOfEvent + " -- Date: " + dateOfEvent);
+				}
+			}
+			
+			if (!pirateHistoryFound) {
+				PirateHistory newHistory = new PirateHistory();
+				newHistory.setRealName(user);
+			
+				List<String> newEvents = new ArrayList<String>();
+				newEvents.add(pointsToAdd + " points -- Event: " + typeOfEvent + " -- Date: " + dateOfEvent);
+				newHistory.setPointEvents(newEvents);
+			
+				pirateHistories.add(newHistory);
+			}
+			
+			piratePointsDataHistory.setPirates(pirateHistories);
+			piratePointsDataHistory.writePiratePointsDataHistory(piratePointsDataHistory);
 			
 			piratePointsData.setPirates(pirates);
 			piratePointsData.setPirateShips(pirateShips);

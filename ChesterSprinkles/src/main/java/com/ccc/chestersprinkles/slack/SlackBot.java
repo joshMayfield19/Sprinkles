@@ -321,6 +321,24 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!startNewAdventure)$")
+	public void startNewAdventure(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getStartNewAdventureCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!calculateLeaders)$")
+	public void calculateLeaders(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getCalculateLeadersCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!addPoints(.*))$")
 	public void addPoints(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getAddPointsCommandResponse(event);

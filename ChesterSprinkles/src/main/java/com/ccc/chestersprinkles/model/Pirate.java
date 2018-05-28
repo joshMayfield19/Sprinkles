@@ -12,6 +12,10 @@ public class Pirate implements Comparable<Pirate> {
 	private int pirateShipId;
 	private int piratePoints;
 	private int doubloons;
+	private int overallPiratePoints;
+	private boolean isTopFivePirate;
+	private boolean isOnWinningShip;
+	private boolean isCaptain;
 	
 	public Pirate () {
 		
@@ -23,6 +27,10 @@ public class Pirate implements Comparable<Pirate> {
 		this.pirateShipId = 0;
 		this.piratePoints = 0;
 		this.doubloons = 0;
+		this.overallPiratePoints = 0;
+		this.isTopFivePirate = false;
+		this.isOnWinningShip = false;
+		this.isCaptain = false;
 	}
 	
 	public String getPirateName() {
@@ -48,6 +56,38 @@ public class Pirate implements Comparable<Pirate> {
 	}
 	public void setPiratePoints(int piratePoints) {
 		this.piratePoints = piratePoints;
+	}
+
+	public int getOverallPiratePoints() {
+		return overallPiratePoints;
+	}
+
+	public boolean isTopFivePirate() {
+		return isTopFivePirate;
+	}
+
+	public boolean isOnWinningShip() {
+		return isOnWinningShip;
+	}
+
+	public boolean isCaptain() {
+		return isCaptain;
+	}
+
+	public void setOverallPiratePoints(int overallPiratePoints) {
+		this.overallPiratePoints = overallPiratePoints;
+	}
+
+	public void setTopFivePirate(boolean isTopFivePirate) {
+		this.isTopFivePirate = isTopFivePirate;
+	}
+
+	public void setOnWinningShip(boolean isOnWinningShip) {
+		this.isOnWinningShip = isOnWinningShip;
+	}
+
+	public void setCaptain(boolean isCaptain) {
+		this.isCaptain = isCaptain;
 	}
 
 	public int getDoubloons() {

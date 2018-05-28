@@ -6,6 +6,7 @@
             <shipName>The Pride of the Tide</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
+            <overallShipPoints>0</overallShipPoints>
             <shipCrew>14</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -13,6 +14,7 @@
             <shipName>The Scurvy Sun</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
+            <overallShipPoints>0</overallShipPoints>
             <shipCrew>14</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -20,6 +22,7 @@
             <shipName>The Cry of the Dagger</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
+            <overallShipPoints>0</overallShipPoints>
             <shipCrew>14</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -27,6 +30,7 @@
             <shipName>The Blue Insanity</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
+            <overallShipPoints>0</overallShipPoints>
             <shipCrew>14</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -34,7 +38,8 @@
             <shipName>The Corrupted Wolf</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
-            <shipCrew>13</shipCrew>
+            <overallShipPoints>0</overallShipPoints>
+            <shipCrew>14</shipCrew>
         </pirateShip>
     </pirateShips>
     <pirates>
@@ -44,6 +49,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Mabel "Albatross's Curse" Welch</pirateName>
@@ -51,6 +60,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Toby "Ghost White" Carabis</pirateName>
@@ -58,27 +71,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Eva "Saucy Devil" Prisk</pirateName>
-            <realName>Annise Bruley</realName>
-            <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Dan "Devil's Grin" Dunkin</pirateName>
-            <realName>Brandon Black</realName>
-            <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Patrick "Both Barrels" Yelland</pirateName>
-            <realName>Charlie Garriz</realName>
-            <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Paddy "One-Eyed" Raw</pirateName>
@@ -86,41 +82,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Dick "Captain Of Rats" Scott</pirateName>
-            <realName>Dan Wilson</realName>
-            <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Toby "Pretty One" Moore</pirateName>
-            <realName>Daniel Hodge</realName>
-            <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Roger "Cutthroat" Curnow</pirateName>
-            <realName>Chris Haveard</realName>
-            <pirateShipId>5</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Garrick "Timbers" Sellick</pirateName>
-            <realName>Jim Fletcher</realName>
-            <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
-        </pirate>
-        <pirate>
-            <pirateName>Peggy "Port Privateer" Ninnies</pirateName>
-            <realName>Ariel Burke</realName>
-            <pirateShipId>3</pirateShipId>
-            <piratePoints>0</piratePoints>
-            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Helen "Lazyjacks" Quick</pirateName>
@@ -128,6 +93,98 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Eva "Saucy Devil" Prisk</pirateName>
+            <realName>Annise Bruley</realName>
+            <pirateShipId>2</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Dan "Devil's Grin" Dunkin</pirateName>
+            <realName>Brandon Black</realName>
+            <pirateShipId>2</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Patrick "Both Barrels" Yelland</pirateName>
+            <realName>Charlie Garriz</realName>
+            <pirateShipId>1</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Dick "Captain Of Rats" Scott</pirateName>
+            <realName>Dan Wilson</realName>
+            <pirateShipId>2</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Toby "Pretty One" Moore</pirateName>
+            <realName>Daniel Hodge</realName>
+            <pirateShipId>2</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Roger "Cutthroat" Curnow</pirateName>
+            <realName>Chris Haveard</realName>
+            <pirateShipId>5</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Garrick "Timbers" Sellick</pirateName>
+            <realName>Jim Fletcher</realName>
+            <pirateShipId>1</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Peggy "Port Privateer" Ninnies</pirateName>
+            <realName>Ariel Burke</realName>
+            <pirateShipId>3</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Eli "Mango Mad" Sweet</pirateName>
@@ -135,6 +192,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Vick "Tall Story" Blamey</pirateName>
@@ -142,6 +203,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Dan "Cutlass Rattler" Raw</pirateName>
@@ -149,6 +214,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Paddy "Dubloon Devil" Hightower</pirateName>
@@ -156,6 +225,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Wylie "Jolly Brute" Prisk</pirateName>
@@ -163,6 +236,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Moll "Sly Dog" Gummo</pirateName>
@@ -170,6 +247,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Samson "Long-Legged" Gilly</pirateName>
@@ -177,6 +258,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Mack "The Blue Fox" Pepper</pirateName>
@@ -184,6 +269,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Samson "Shivers" Zelley</pirateName>
@@ -191,6 +280,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Owen "Toothy Grin" Inch</pirateName>
@@ -198,6 +291,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Theo "Treasure Chest" Pigg</pirateName>
@@ -205,6 +302,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Errol "Scurvy Sailor" Oates</pirateName>
@@ -212,6 +313,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Tobias "Scallywag" Prout</pirateName>
@@ -219,6 +324,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Finn "Fierce And Foul" Lugg</pirateName>
@@ -226,6 +335,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Gail "Fair Wind" Trebilock</pirateName>
@@ -233,6 +346,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Harriet "Thieving Magpie" Knuckles</pirateName>
@@ -240,6 +357,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Johnny "Pieces Of Eight" Locke</pirateName>
@@ -247,6 +368,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Roger "Black Eyepatch" Mainsail</pirateName>
@@ -254,6 +379,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Tobias "Commodore Chops" Knuckles</pirateName>
@@ -261,6 +390,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Ruth "Bonny Baby" Sweet</pirateName>
@@ -268,6 +401,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Theo "One-Tooth" Dagger</pirateName>
@@ -275,6 +412,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Tobias "Tall Tide" Consumptive</pirateName>
@@ -282,6 +423,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Errol "Timbers" Goldsworthy</pirateName>
@@ -289,6 +434,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Dan "Voodoo" Ninnies</pirateName>
@@ -296,6 +445,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Vince "Dog Rough" Bones</pirateName>
@@ -303,6 +456,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Jacob "One-Eyed" Goff</pirateName>
@@ -310,6 +467,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Johnny "Handsome Sailor" Grills</pirateName>
@@ -317,6 +478,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Oscar "Both Barrels" Friggens</pirateName>
@@ -324,6 +489,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Thad "Pretty One" Horn</pirateName>
@@ -331,6 +500,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Olly "Treasure" Dunkin</pirateName>
@@ -338,6 +511,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Carrie "Coconut Crazy" Drake</pirateName>
@@ -345,6 +522,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Nelson "Sly Dog" Cocker</pirateName>
@@ -352,6 +533,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Errol "Midshipman Mackerel" Keys</pirateName>
@@ -359,6 +544,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Edwin "Black Beard" Fry</pirateName>
@@ -366,6 +555,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Nelson "Loud Limey" Gummo</pirateName>
@@ -373,6 +566,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Annie "Scallywag" Welch</pirateName>
@@ -380,6 +577,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Mack "Eyepatch" Scar</pirateName>
@@ -387,6 +588,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Samuel "Drunken Bilge" Goodwin</pirateName>
@@ -394,6 +599,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Sammy "Black Eyepatch" Clegg</pirateName>
@@ -401,6 +610,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Samuel "The Red Fox" Curses</pirateName>
@@ -408,6 +621,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Elias "Red Locks" Locke</pirateName>
@@ -415,6 +632,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Olly "One-Eyed" Blamey</pirateName>
@@ -422,6 +643,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Samuel "Scurvy Sailor" Cocker</pirateName>
@@ -429,6 +654,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Paddy "Gold Fiend" Noon</pirateName>
@@ -436,6 +665,10 @@
             <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Sammy "Port Privateer" Goldsworthy</pirateName>
@@ -443,6 +676,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Johnny "Jolly Brute" Keel</pirateName>
@@ -450,6 +687,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Wyatt "Dead Man" Perrow</pirateName>
@@ -457,6 +698,10 @@
             <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Jacob "Bawdy Boatswain" Carabis</pirateName>
@@ -464,6 +709,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Roger "Salty Dog" Skewers</pirateName>
@@ -471,6 +720,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Daisy "Griffin Beak" Jewell</pirateName>
@@ -478,6 +731,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Jonas "Barnacle" Plank</pirateName>
@@ -485,6 +742,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Samuel "Tall Story" Zelley</pirateName>
@@ -492,6 +753,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Errol "Saucy Devil" Docherty</pirateName>
@@ -499,6 +764,10 @@
             <pirateShipId>4</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Theo "Ivory Bones" Jones</pirateName>
@@ -506,6 +775,10 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Dan "Loud Limey" Scoby</pirateName>
@@ -513,6 +786,10 @@
             <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
         <pirate>
             <pirateName>Thad "Big And Brazen" Prisk</pirateName>
@@ -520,6 +797,21 @@
             <pirateShipId>3</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Jack "Rum Drunk" Gribble</pirateName>
+            <realName>Brian Willkie</realName>
+            <pirateShipId>5</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
         </pirate>
     </pirates>
 </pirate_points>

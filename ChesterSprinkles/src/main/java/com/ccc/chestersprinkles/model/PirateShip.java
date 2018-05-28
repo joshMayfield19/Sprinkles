@@ -11,6 +11,7 @@ public class PirateShip implements Comparable<PirateShip> {
 	private String shipName;
 	private String shipCaptain;
 	private int shipPoints;
+	private int overallShipPoints;
 	private int shipCrew;
 	
 	public String getShipName() {
@@ -44,6 +45,12 @@ public class PirateShip implements Comparable<PirateShip> {
 		this.shipCrew = shipCrew;
 	}
 
+	public int getOverallShipPoints() {
+		return overallShipPoints;
+	}
+	public void setOverallShipPoints(int overallShipPoints) {
+		this.overallShipPoints = overallShipPoints;
+	}
 	@Override
 	public int compareTo(PirateShip pirateShip) {
 		if (this.shipPoints == pirateShip.shipPoints) {
