@@ -21,6 +21,15 @@ public class ChesterSprinklesData {
 	@XmlElement (name = "raffleDateTime")
 	private String raffleDateTime;
 	
+	@XmlElement (name = "raffleStartingTicket")
+	private String raffleStartingTicket;
+	
+	@XmlElement (name = "raffleEndingTicket")
+	private String raffleEndingTicket;
+	
+	@XmlElement (name = "raffleExcludedTickets")
+	private String raffleExcludedTickets;
+	
 	@XmlElement (name = "currentChallenge")
 	private String currentChallenge;
     
@@ -157,6 +166,30 @@ public class ChesterSprinklesData {
 		this.commands = commands;
 	}
 	
+	public String getRaffleStartingTicket() {
+		return raffleStartingTicket;
+	}
+
+	public String getRaffleEndingTicket() {
+		return raffleEndingTicket;
+	}
+
+	public String getRaffleExcludedTickets() {
+		return raffleExcludedTickets;
+	}
+
+	public void setRaffleStartingTicket(String raffleStartingTicket) {
+		this.raffleStartingTicket = raffleStartingTicket;
+	}
+
+	public void setRaffleEndingTicket(String raffleEndingTicket) {
+		this.raffleEndingTicket = raffleEndingTicket;
+	}
+
+	public void setRaffleExcludedTickets(String raffleExcludedTickets) {
+		this.raffleExcludedTickets = raffleExcludedTickets;
+	}
+
 	public String getCurrentChallengeDate() {
 		return currentChallengeDate;
 	}

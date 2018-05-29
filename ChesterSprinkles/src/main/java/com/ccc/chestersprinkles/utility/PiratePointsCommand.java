@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.ccc.chestersprinkles.model.ParrotLanguageStorage;
 import com.ccc.chestersprinkles.model.Pirate;
 import com.ccc.chestersprinkles.model.PirateHistory;
 import com.ccc.chestersprinkles.model.PiratePointsData;
@@ -30,25 +31,60 @@ public class PiratePointsCommand extends Command {
 	private static final String JOSH_ID = "U2AR5EH8U";
 	private static final String KD_ID = "U56V0HYTX";
 	private static final String CALEB_ID = "U52NQPT7X";
+
+	private static final String KD_SPRINKLES_CHANNEL = "G7S3DCZAB";
+	private static final String CODING_CHALLENGE_CHANNEL = "C5VRF4892";
 	
 	private static boolean isAllowedUser(Event event) {
 		return JOSH_ID.equals(event.getUserId()) || KD_ID.equals(event.getUserId()) || CALEB_ID.equals(event.getUserId());
 	}
 	
-	public static String getPollyWantACrackerCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event)) {
+	public static String getPollyWantACrackerCommandResponse(Event event) {
+		if (validateInput(event) && isAllowedUser(event)) {
+			ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
+			List<String> phrases = parrotLanguage.getPhrases();
 			
+			int randomNum = getRandomNumber(phrases.size());
+			String parrotSpeak = phrases.get(randomNum-1);
+			StringBuilder parrotSpeakOutput = new StringBuilder();
+			String[] parrotSpeakSplit = parrotSpeak.split(" ");
+			parrotSpeakOutput.append("Squawk...");
+			
+			for (int i = 0; i < parrotSpeakSplit.length; i++) {
+				int rando = getRandomNumber(2);
+				
+				if (rando == 1) {
+					parrotSpeakOutput.append(parrotSpeakSplit[i].toUpperCase());
+				}
+				else {
+					parrotSpeakOutput.append(parrotSpeakSplit[i]);
+				}
+				
+				if (i != parrotSpeakSplit.length-1) {
+					parrotSpeakOutput.append(" ");
+				}
+			}
+			
+			parrotSpeakOutput.append("...Squawk!!!");
+			
+			return parrotSpeakOutput.toString();
 		}
 		
 		return null;
 	}
-
-	public static String getParrotSpeakCommandResponse(Event event, SlackUserService slackUserService) {
+	
+	public static void getGatherParrotLanguageCommandResponse(Event event) {
 		if (validateInput(event)) {
-			String text = event.getText();
-		}
+			int randomNum = getRandomNumber(4);
 		
-		return null;
+			if (randomNum == 1 && event.getChannelId().equals(CODING_CHALLENGE_CHANNEL)) {
+				ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
+				List<String> phrases = parrotLanguage.getPhrases();
+				phrases.add(event.getText());
+				parrotLanguage.setPhrases(phrases);
+				ParrotLanguageStorage.writeParrotLanguageStorage(parrotLanguage);
+			}
+		}
 	}
 	
 	//Captain Command

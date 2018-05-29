@@ -47,6 +47,8 @@ public class SlackBot extends Bot {
 	private String currentUser = "";
 	private boolean addBotCommandReturn = false;
 	private boolean addChallengeIdeaReturn = false;
+	private static final String KD_SPRINKLES_CHANNEL = "G7S3DCZAB";
+	private static final String CODING_CHALLENGE_CHANNEL = "C5VRF4892";
 	
 	//@Autowired
 	//private TextAdventure textAdventure;
@@ -384,19 +386,15 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	//	@Controller(events = EventType.DIRECT_MENTION, pattern = "(?i)^(<@U7Q2LFQ9F> parrotSpeak(.*))$")
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!parrotSpeak(.*))$")
-	public void parrotSpeak(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getParrotSpeakCommandResponse(event, slackUserService);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^([^!].*)$")
+	public void gatherParrotLanguage(WebSocketSession session, Event event) {
+		PiratePointsCommand.getGatherParrotLanguageCommandResponse(event);
 	}
 	
+	//	@Controller(events = EventType.DIRECT_MENTION, pattern = "(?i)^(<@U7Q2LFQ9F> parrotSpeak(.*))$")
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pollyWantACracker)$")
 	public void pollyWantACracker(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getPollyWantACrackerCommandResponse(event, slackUserService);
+		String commandResponse = PiratePointsCommand.getPollyWantACrackerCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
@@ -488,6 +486,56 @@ public class SlackBot extends Bot {
 		String commandResponse = RaffleCommand.getRaffleCommandResponse(event);
 		
 		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!startRaffle)$")
+	public void startRaffle(WebSocketSession session, Event event) {
+		String commandResponse = RaffleCommand.getStartRaffleCommandResponse(event);
+		
+		if (commandResponse != null) {
+			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!redrawTicket)$")
+	public void redrawTicket(WebSocketSession session, Event event) {
+		String commandResponse = RaffleCommand.getRedrawTicketCommandResponse(event);
+		
+		if (commandResponse != null) {
+			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!nextTicket(.*))$")
+	public void nextTicket(WebSocketSession session, Event event) {
+		String commandResponse = RaffleCommand.getNextTicketCommandResponse(event);
+		
+		if (commandResponse != null) {
+			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!endRaffle)$")
+	public void endRaffle(WebSocketSession session, Event event) {
+		String commandResponse = RaffleCommand.getEndRaffleCommandResponse(event);
+		
+		if (commandResponse != null) {
+			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!startCountdown)$")
+	public void startCountdown(WebSocketSession session, Event event) {
+		String commandResponse = RaffleCommand.getStartCountdownCommandResponse(event);
+		
+		if (commandResponse != null) {
+			event.setChannelId(KD_SPRINKLES_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}
