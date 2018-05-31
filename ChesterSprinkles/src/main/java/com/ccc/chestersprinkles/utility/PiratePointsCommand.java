@@ -363,6 +363,7 @@ public class PiratePointsCommand extends Command {
 	}
 	
 	public static String getMyCrewInfoCommandResponse(Event event, SlackUserService slackUserService) {
+		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
 		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			
@@ -438,6 +439,7 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getMyShipInfoCommandResponse(Event event, SlackUserService slackUserService) {
+		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
 		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			
@@ -463,6 +465,7 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getMyPirateInfoCommandResponse(Event event, SlackUserService slackUserService) {
+		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
 		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			String myShip = "";

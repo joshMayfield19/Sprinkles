@@ -16,6 +16,7 @@ local.properties
 .settings/
 .loadpath
 Servers/
+*data.sql
 
 # External tool builders
 .externalToolBuilders/

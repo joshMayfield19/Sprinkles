@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
     <raffleDateTime>6/4/18</raffleDateTime>
-    <raffleStartingTicket></raffleStartingTicket>
-    <raffleEndingTicket></raffleEndingTicket>
+    <raffleStartingTicket>078115</raffleStartingTicket>
+    <raffleEndingTicket>078153</raffleEndingTicket>
     <raffleExcludedTickets></raffleExcludedTickets>
     <currentChallenge>Tortuga Trail</currentChallenge>
     <currentChallengeDate>5/31/18</currentChallengeDate>

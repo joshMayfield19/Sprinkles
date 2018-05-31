@@ -352,6 +352,7 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myPirateInfo)$")
 	public void myPirateInfo(WebSocketSession session, Event event) {
+		System.out.println("Reached SlackBot myPirateInfo method");
 		String commandResponse = PiratePointsCommand.getMyPirateInfoCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
@@ -361,6 +362,7 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myShipInfo)$")
 	public void myShipInfo(WebSocketSession session, Event event) {
+		System.out.println("Reached SlackBot myShipInfo method");
 		String commandResponse = PiratePointsCommand.getMyShipInfoCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
@@ -370,6 +372,7 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
 	public void myCrewInfo(WebSocketSession session, Event event) {
+		System.out.println("Reached SlackBot myCrewInfo method");
 		String commandResponse = PiratePointsCommand.getMyCrewInfoCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
@@ -652,48 +655,4 @@ public class SlackBot extends Bot {
 			}
 		}
 	}
-	
-	/*
-	 * 
-	 *    Text Adventure Game
-	 * 
-	 * 
-	 */
-
-	/*@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^!carnivalTours$", next = "nextAction")
-	public void carnivalTours(WebSocketSession session, Event event) {
-		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText()) && JOSH_ID.equals(event.getUserId())) {
-			if (!textAdventure.getCriteriaIsContinue() || textAdventure.isReadyForNewGame()) {
-				startConversation(event, "nextAction");
-				reply(session, event, new Message(textAdventure.startTextAdventure(event)));
-			}
-			else {
-				startConversation(event, "nextAction");
-				String reply = textAdventure.continueTextAdventure();
-				if (textAdventure.isGameOver()) {
-					textAdventure.setReadyForNewGame(true);
-					reply(session, event, new Message(reply));
-					stopConversation(event);
-				}
-				else {
-					reply(session, event, new Message(reply));
-				}
-			}
-		}
-	}
-	
-	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^!nextAction")
-	public void nextAction(WebSocketSession session, Event event) {
-		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
-			if ("quit".equalsIgnoreCase(event.getText())) {
-				textAdventure.setReadyForNewGame(true);
-				stopConversation(event);
-			}
-			else {
-				reply(session, event, new Message(textAdventure.checkCommand(event.getText())));
-				textAdventure.setCriteriaIsContinue(true);
-				carnivalTours(session, event);
-			}
-		}
-	}*/
 }
