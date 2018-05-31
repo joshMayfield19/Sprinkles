@@ -7,7 +7,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
             <overallShipPoints>0</overallShipPoints>
-            <shipCrew>14</shipCrew>
+            <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>2</shipId>
@@ -31,7 +31,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
             <overallShipPoints>0</overallShipPoints>
-            <shipCrew>14</shipCrew>
+            <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>5</shipId>
@@ -39,7 +39,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>0</shipPoints>
             <overallShipPoints>0</overallShipPoints>
-            <shipCrew>14</shipCrew>
+            <shipCrew>15</shipCrew>
         </pirateShip>
     </pirateShips>
     <pirates>
@@ -806,6 +806,39 @@
             <pirateName>Jack "Rum Drunk" Gribble</pirateName>
             <realName>Brian Willkie</realName>
             <pirateShipId>5</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Gordon "Cutlass Rattler" Blamey</pirateName>
+            <realName>Justin Eberlein</realName>
+            <pirateShipId>5</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Harriet "Black Eyepatch" Mackie</pirateName>
+            <realName>Maegan Reynolds</realName>
+            <pirateShipId>4</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Theo "Jolly Roger" Rye</pirateName>
+            <realName>Jonathan Thompson</realName>
+            <pirateShipId>1</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
             <overallPiratePoints>0</overallPiratePoints>

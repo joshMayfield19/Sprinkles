@@ -495,7 +495,7 @@ public class SlackBot extends Bot {
 		String commandResponse = RaffleCommand.getStartRaffleCommandResponse(event);
 		
 		if (commandResponse != null) {
-			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			event.setChannelId(CODING_CHALLENGE_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}
@@ -505,7 +505,7 @@ public class SlackBot extends Bot {
 		String commandResponse = RaffleCommand.getRedrawTicketCommandResponse(event);
 		
 		if (commandResponse != null) {
-			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			event.setChannelId(CODING_CHALLENGE_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}
@@ -515,7 +515,7 @@ public class SlackBot extends Bot {
 		String commandResponse = RaffleCommand.getNextTicketCommandResponse(event);
 		
 		if (commandResponse != null) {
-			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			event.setChannelId(CODING_CHALLENGE_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}
@@ -525,7 +525,7 @@ public class SlackBot extends Bot {
 		String commandResponse = RaffleCommand.getEndRaffleCommandResponse(event);
 		
 		if (commandResponse != null) {
-			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			event.setChannelId(CODING_CHALLENGE_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}
@@ -535,7 +535,7 @@ public class SlackBot extends Bot {
 		String commandResponse = RaffleCommand.getStartCountdownCommandResponse(event);
 		
 		if (commandResponse != null) {
-			event.setChannelId(KD_SPRINKLES_CHANNEL);
+			event.setChannelId(CODING_CHALLENGE_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}

@@ -39,8 +39,12 @@ public class PiratePointsCommand extends Command {
 		return JOSH_ID.equals(event.getUserId()) || KD_ID.equals(event.getUserId()) || CALEB_ID.equals(event.getUserId());
 	}
 	
+	private static boolean isJoshUser(Event event) {
+		return JOSH_ID.equals(event.getUserId());
+	}
+	
 	public static String getPollyWantACrackerCommandResponse(Event event) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
 			List<String> phrases = parrotLanguage.getPhrases();
 			
@@ -107,7 +111,7 @@ public class PiratePointsCommand extends Command {
 	
 	public static String getExploreCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			return "You need to be either on the Winning Ship or in the Top 5 at the end of the previous Pirate Adventure.";
+			return "You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.";
 		}
 		
 		return null;	
@@ -115,7 +119,7 @@ public class PiratePointsCommand extends Command {
 	
 	public static String getShoreleaveCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			return "You need to be either on the Winning Ship or in the Top 5 at the end of the previous Pirate Adventure.";
+			return "You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.";
 		}
 		
 		return null;	
@@ -180,7 +184,7 @@ public class PiratePointsCommand extends Command {
 	}
 	
 	public static String getStartNewAdventureCommandResponse(Event event) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
 			
 			List<Pirate> pirates = piratePointsData.getPirates();
@@ -205,7 +209,7 @@ public class PiratePointsCommand extends Command {
 	}
 	
 	public static String getCalculateLeadersCommandResponse(Event event) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
 			List<Pirate> pirates = piratePointsData.getPirates();
 			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
@@ -289,7 +293,7 @@ public class PiratePointsCommand extends Command {
 	}
 	
 	public static String getAddPointsCommandResponse(Event event) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			String inputString = event.getText();
 			String[] inputStringSplit = inputString.split(" ");
 			String user = inputStringSplit[1] + " " + inputStringSplit[2];
@@ -359,7 +363,7 @@ public class PiratePointsCommand extends Command {
 	}
 	
 	public static String getMyCrewInfoCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			
 			int userShipId = 0;
@@ -371,19 +375,19 @@ public class PiratePointsCommand extends Command {
 			}
 			
 			if (userShipId == PRIDE_OF_TIDE) {
-				return "Your fellow crew members of *The Pride of the Tide* are located on this manifest. https://drive.google.com/open?id=1ud0NDMQnZMRXlLsk1_Kj2MEolfSuwtil";
+				return "Your fellow crew members of *The Pride of the Tide* are located on this manifest. https://drive.google.com/open?id=1w-bLGbdrjg1aEj-IJ1Ue_rz_tsoG1u9U";
 			}
 			else if (userShipId == SCURVY_SUN) {
-				return "Your fellow crew members of *The Scurvy Sun* are located on this manifest. https://drive.google.com/open?id=15_oIDVjnumVR83Q7MdnFz_94N8qxaeYa";
+				return "Your fellow crew members of *The Scurvy Sun* are located on this manifest. https://drive.google.com/open?id=1KsUnp3Ple22u3Us9P4NdPVJsJ7VOIuoj";
 			}
 			else if (userShipId == CRY_OF_DAGGER) {
-				return "Your fellow crew members of *The Cry of the Dagger* are located on this manifest. https://drive.google.com/open?id=1QESOlugIXJdI1fMUI82Q4sUyFrLTOBW_";
+				return "Your fellow crew members of *The Cry of the Dagger* are located on this manifest. https://drive.google.com/open?id=1YOHC-oeMR1hGIGbsen90c0CXkJrdXIXm";
 			}
 			else if (userShipId == BLUE_INSANITY) {
-				return "Your fellow crew members of *The Blue Insanity* are located on this manifest. https://drive.google.com/open?id=1FGqcgpEjHE_9j9YGf_wtN6Ns75iQBYN6";
+				return "Your fellow crew members of *The Blue Insanity* are located on this manifest. https://drive.google.com/open?id=1s5HIAIjhbCeSLxv_V9dCCYSU60mUeF1U";
 			}
 			else if (userShipId == CORRUPT_WOLF) {
-				return "Your fellow crew members of *The Corrupted Wolf* are located on this manifest. https://drive.google.com/open?id=1uhOtP-JG1BaPAFX0Ju5nnChK2XQtCPsc";
+				return "Your fellow crew members of *The Corrupted Wolf* are located on this manifest. https://drive.google.com/open?id=1wPPq-KsXH_ar1fCvJKMh52sfWMEezcIC";
 			}
 			else {
 				return "You are not assigned to a ship yet!";
@@ -394,7 +398,7 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getSortingEyepatchCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event) && event.getUserId().equals(JOSH_ID)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			String inputString = event.getText();
 			String[] inputStringSplit = inputString.split(" ");
 			String user = inputStringSplit[1] + " " + inputStringSplit[2];
@@ -434,7 +438,7 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getMyShipInfoCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			
 			for (Pirate pirate : pirates) {
@@ -459,7 +463,7 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getMyPirateInfoCommandResponse(Event event, SlackUserService slackUserService) {
-		if (validateInput(event) && isAllowedUser(event)) {
+		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			String myShip = "";
 			

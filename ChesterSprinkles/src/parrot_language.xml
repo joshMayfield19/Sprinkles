@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <parrot_language>
     <phrases>
+        <phrase>Isn't that right, Sprinkles?</phrase>
+        <phrase>Sprinkles knows.</phrase>
+        <phrase>Can you here us Sprinkles?</phrase>
+        <phrase>haha</phrase>
+        <phrase>Ah funny you should mention that. Pat Morton was just talking to me about this on Friday.</phrase>
+        <phrase>Aye! Ye be right!</phrase>
+        <phrase>Always. It's job security.</phrase>
+        <phrase>Oh yeah, we did sit near each other for a bit.</phrase>
+        <phrase>That was a terrible time on that project. There were some major barriers to _not_ breaking builds.</phrase>
+        <phrase>Get to walking</phrase>
+        <phrase>Awwww</phrase>
+        <phrase>Thank you for t hat</phrase>
+        <phrase>…How does my underpowered laptop manage to run the coding challenge 33% faster than my monster desktop at home? What witchcraft is this, Jimmy Dotson?</phrase>
+        <phrase>I just google "Panera Pantera" and it's a thing ... "Vulgar Display of Flour"</phrase>
+        <phrase>Laptop is on a desk too...</phrase>
+        <phrase>&lt;@UAV3VEB0R&gt; has joined the channel</phrase>
     </phrases>
 </parrot_language>

@@ -14,8 +14,6 @@
     </raffleWinners>
     <presenters>
         <presenter>Caleb Hall</presenter>
-        <presenter>Christopher Nabors</presenter>
-        <presenter>Josh Mayfield</presenter>
         <presenter>Brian Willkie</presenter>
     </presenters>
     <allTimePresenters>
@@ -113,5 +111,6 @@
         <command>*Submitted by:* David Mullen --- *Command:* !setSail = Sail in a random compass direction with a random destination or sights (e.g. Sailing west in search of Candy Island)</command>
         <command>*Submitted by:* Michael Morris --- *Command:* !inPirate $var = Use a regex expression on provided string to translate it into pirate speak, savvy?</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !manOverboard - Rescues the last person to have walked the plank</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* Natural language parsing for commands :stuck_out_tongue:</command>
     </commands>
 </chester_sprinkles>
