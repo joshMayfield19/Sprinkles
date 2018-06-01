@@ -360,6 +360,15 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myPirateInfo)$")
+	public void myPirateInfoChannel(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getDirectMessageChannelCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myShipInfo)$")
 	public void myShipInfo(WebSocketSession session, Event event) {
 		System.out.println("Reached SlackBot myShipInfo method");
@@ -370,10 +379,28 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myShipInfo)$")
+	public void myShipInfoChannel(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getDirectMessageChannelCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
 	public void myCrewInfo(WebSocketSession session, Event event) {
 		System.out.println("Reached SlackBot myCrewInfo method");
 		String commandResponse = PiratePointsCommand.getMyCrewInfoCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
+	public void myCrewInfoChannel(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getDirectMessageChannelCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));

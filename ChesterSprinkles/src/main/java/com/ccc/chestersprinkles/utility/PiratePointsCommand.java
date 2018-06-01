@@ -463,6 +463,14 @@ public class PiratePointsCommand extends Command {
 		
 		return null;
 	}
+	
+	public static String getDirectMessageChannelCommandResponse(Event event) {
+		if (validateInput(event)) {
+			return "This command is a *Direct Message* command only. You can open up a new *Direct Message* with me (left nav bar, + sign) and I can help you out there. :smile:";
+		}
+		
+		return null;
+	}
 
 	public static String getMyPirateInfoCommandResponse(Event event, SlackUserService slackUserService) {
 		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
