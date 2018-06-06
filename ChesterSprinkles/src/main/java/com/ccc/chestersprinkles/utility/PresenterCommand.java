@@ -64,16 +64,16 @@ public class PresenterCommand extends Command {
 			
 			List<String> presenters = chesterSprinkles.getPresenters();
 			int counter = 1;
-			boolean standbyPresenterTextAdded = false;
+			//boolean standbyPresenterTextAdded = false;
 			
 			StringBuilder presentersOutput = new StringBuilder();
 			presentersOutput.append("The current presenters for " + chesterSprinkles.getCurrentChallenge() + " on "
 					+ chesterSprinkles.getCurrentChallengeDate() + " are:\n");
 			for (int i = 0; i < presenters.size(); i++) {
-				if (counter > 6 && !standbyPresenterTextAdded) {
+				/*if (counter > 6 && !standbyPresenterTextAdded) {
 					presentersOutput.append("*Standby:*\n");
 					standbyPresenterTextAdded = true;
-				}
+				}*/
 				
 				presentersOutput.append(counter++).append(". ").append(presenters.get(i)).append("\n");
 				
@@ -125,17 +125,17 @@ public class PresenterCommand extends Command {
 				return "Ye are already signed up to present, " + currentUser.getFirstName() + ". But I like the enthusiasm!";
 			}
 			
-			String confirmationReply = "";
+			//String confirmationReply = "";
 			
-			if (presenters.size() >= 6) {
+			/*if (presenters.size() >= 6) {
 				confirmationReply = "Awesome! " + currentUser.getFirstName() 
 				+ ". Due to time constraints, we have to put a soft cap on the amount of presenters we have. "
 				+ "I will place ye on standby for now in case anyone cannot present.";
 			}
-			else {
-				confirmationReply = "Thanks! " + currentUser.getFirstName()
+			else {*/
+			String confirmationReply = "Thanks! " + currentUser.getFirstName()
 				+ ". Ye have been added to present on " + chesterSprinkles.getCurrentChallengeDate() + "!";
-			}
+			//}
 			
 			presenters.add(currentUser.getFirstName() + " " + currentUser.getLastName());
 			chesterSprinkles.setPresenters(presenters);

@@ -5,32 +5,32 @@
             <shipId>1</shipId>
             <shipName>The Pride of the Tide</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>0</shipPoints>
-            <overallShipPoints>0</overallShipPoints>
+            <shipPoints>430</shipPoints>
+            <overallShipPoints>430</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>2</shipId>
             <shipName>The Scurvy Sun</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>0</shipPoints>
-            <overallShipPoints>0</overallShipPoints>
-            <shipCrew>14</shipCrew>
+            <shipPoints>390</shipPoints>
+            <overallShipPoints>390</overallShipPoints>
+            <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>3</shipId>
             <shipName>The Cry of the Dagger</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>0</shipPoints>
-            <overallShipPoints>0</overallShipPoints>
+            <shipPoints>50</shipPoints>
+            <overallShipPoints>50</overallShipPoints>
             <shipCrew>14</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>4</shipId>
             <shipName>The Blue Insanity</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>0</shipPoints>
-            <overallShipPoints>0</overallShipPoints>
+            <shipPoints>420</shipPoints>
+            <overallShipPoints>420</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -113,9 +113,9 @@
             <pirateName>Dan "Devil's Grin" Dunkin</pirateName>
             <realName>Brandon Black</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -168,9 +168,9 @@
             <pirateName>Garrick "Timbers" Sellick</pirateName>
             <realName>Jim Fletcher</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -179,9 +179,9 @@
             <pirateName>Peggy "Port Privateer" Ninnies</pirateName>
             <realName>Ariel Burke</realName>
             <pirateShipId>3</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>50</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>50</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -245,9 +245,9 @@
             <pirateName>Moll "Sly Dog" Gummo</pirateName>
             <realName>Bethany Straughan</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>140</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>140</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -300,9 +300,9 @@
             <pirateName>Theo "Treasure Chest" Pigg</pirateName>
             <realName>James Fulford</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>30</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>30</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -366,9 +366,9 @@
             <pirateName>Johnny "Pieces Of Eight" Locke</pirateName>
             <realName>Marc Mouner</realName>
             <pirateShipId>4</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -421,9 +421,9 @@
             <pirateName>Tobias "Tall Tide" Consumptive</pirateName>
             <realName>Richard McIlwain</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -476,9 +476,9 @@
             <pirateName>Johnny "Handsome Sailor" Grills</pirateName>
             <realName>Jimmy Dotson</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>130</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>130</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -509,9 +509,9 @@
             <pirateName>Olly "Treasure" Dunkin</pirateName>
             <realName>Travis Svendsen</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -685,9 +685,9 @@
             <pirateName>Johnny "Jolly Brute" Keel</pirateName>
             <realName>Gary Gealy</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -707,9 +707,9 @@
             <pirateName>Jacob "Bawdy Boatswain" Carabis</pirateName>
             <realName>Jerry Reeves</realName>
             <pirateShipId>4</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -751,9 +751,9 @@
             <pirateName>Samuel "Tall Story" Zelley</pirateName>
             <realName>Sam Stanley</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -762,9 +762,9 @@
             <pirateName>Errol "Saucy Devil" Docherty</pirateName>
             <realName>Steven Frost</realName>
             <pirateShipId>4</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>120</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>120</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -828,9 +828,9 @@
             <pirateName>Mazie "Barnacle" Tripps</pirateName>
             <realName>Maegan Reynolds</realName>
             <pirateShipId>4</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>100</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>100</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -839,6 +839,17 @@
             <pirateName>Theo "Jolly Roger" Rye</pirateName>
             <realName>Jonathan Thompson</realName>
             <pirateShipId>1</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Gail "Devil's Grin" Kneebone</pirateName>
+            <realName>Hannah Chappelle</realName>
+            <pirateShipId>2</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
             <overallPiratePoints>0</overallPiratePoints>

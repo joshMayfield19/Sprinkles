@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
-    <raffleDateTime>6/4/18</raffleDateTime>
-    <raffleStartingTicket>078115</raffleStartingTicket>
-    <raffleEndingTicket>078153</raffleEndingTicket>
-    <raffleExcludedTickets>078151;078144;078128;078150;078119</raffleExcludedTickets>
-    <currentChallenge>Tortuga Trail</currentChallenge>
-    <currentChallengeDate>5/31/18</currentChallengeDate>
-    <currentChallengeLink>https://drive.google.com/drive/u/0/folders/14qQv_4IGt6RfqCgY3fOJ7xVqlCYCqEex</currentChallengeLink>
+    <raffleDateTime>6/28/18</raffleDateTime>
+    <raffleStartingTicket></raffleStartingTicket>
+    <raffleEndingTicket></raffleEndingTicket>
+    <raffleExcludedTickets></raffleExcludedTickets>
+    <currentChallenge>S.O.S.</currentChallenge>
+    <currentChallengeDate>6/25/18</currentChallengeDate>
+    <currentChallengeLink>https://drive.google.com/open?id=1Bw9b9QOHfV1EWAwt9fkjB-351m2ua5r3</currentChallengeLink>
     <raffleWinners>
         <raffleWinner>Pat M</raffleWinner>
         <raffleWinner>David H</raffleWinner>
         <raffleWinner>KD W</raffleWinner>
     </raffleWinners>
-    <presenters/>
+    <presenters>
+        <presenter>Josh Mayfield</presenter>
+        <presenter>Dave Arlington</presenter>
+        <presenter>James Fulford</presenter>
+        <presenter>Christopher Nabors</presenter>
+        <presenter>Caleb Hall</presenter>
+        <presenter>Michael Peacock</presenter>
+    </presenters>
     <allTimePresenters>
         <allTimePresenter>
             <name>Josh Mayfield</name>
@@ -48,7 +55,7 @@
         </allTimePresenter>
         <allTimePresenter>
             <name>Caleb Hall</name>
-            <timesPresented>1</timesPresented>
+            <timesPresented>2</timesPresented>
         </allTimePresenter>
         <allTimePresenter>
             <name>Robert Cole</name>
@@ -94,18 +101,19 @@
             <name>Michael Morris</name>
             <timesPresented>1</timesPresented>
         </allTimePresenter>
+        <allTimePresenter>
+            <name>Brian Willkie</name>
+            <timesPresented>1</timesPresented>
+        </allTimePresenter>
     </allTimePresenters>
     <ideas>
-        <idea>*Submitted by:* Mike D. --- *Idea:* Something to do with Ferris Wheels. As in counting people as they go around, etc.</idea>
         <idea>*Submitted by:* Robert Cole --- *Idea:* Pirate Battle. Would be cool to have a simple shooter where your pirate ship has to fight off other pirate ships.</idea>
         <idea>*Submitted by:* Robert Cole --- *Idea:* Treasure Hunt. Maybe with traps. So something similar to minesweeper but you have to find the hidden treasure too.</idea>
     </ideas>
     <commands>
         <command>*Submitted by:* Robert Cole --- *Command:* dailyChallenge - Would provide a daily challange, something similar to code golf, daily UI challenges, etc.</command>
         <command>*Submitted by:* Robert Cole --- *Command:* techVocab - Provides a random technology term, framework, or tool and a short description of what it is.</command>
-        <command>*Submitted by:* Robert Cole --- *Command:* !parrotSpeak The parrot will squawk something it heard in the room at random (preferably something with a lot of reactions)</command>
         <command>*Submitted by:* Michael Morris --- *Command:* !whatDoWeDoWithADrunkenSailor respond with some sobering up method or punishment for drunken sailors, like "Strap him on the mast with the Captain's Daughter"</command>
-        <command>*Submitted by:* David Mullen --- *Command:* !setSail = Sail in a random compass direction with a random destination or sights (e.g. Sailing west in search of Candy Island)</command>
         <command>*Submitted by:* Michael Morris --- *Command:* !inPirate $var = Use a regex expression on provided string to translate it into pirate speak, savvy?</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !manOverboard - Rescues the last person to have walked the plank</command>
         <command>*Submitted by:* Robert Cole --- *Command:* Natural language parsing for commands :stuck_out_tongue:</command>

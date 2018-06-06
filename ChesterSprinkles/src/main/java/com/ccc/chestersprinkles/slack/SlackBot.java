@@ -25,8 +25,10 @@ import com.ccc.chestersprinkles.utility.RaffleCommand;
 import me.ramswaroop.jbot.core.slack.Bot;
 import me.ramswaroop.jbot.core.slack.Controller;
 import me.ramswaroop.jbot.core.slack.EventType;
+import me.ramswaroop.jbot.core.slack.models.Channel;
 import me.ramswaroop.jbot.core.slack.models.Event;
 import me.ramswaroop.jbot.core.slack.models.Message;
+import me.ramswaroop.jbot.core.slack.models.RichMessage;
 
 /**
  * A Slack Bot sample. Ye can create multiple bots by just extending
@@ -352,7 +354,6 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myPirateInfo)$")
 	public void myPirateInfo(WebSocketSession session, Event event) {
-		System.out.println("Reached SlackBot myPirateInfo method");
 		String commandResponse = PiratePointsCommand.getMyPirateInfoCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
@@ -371,7 +372,6 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myShipInfo)$")
 	public void myShipInfo(WebSocketSession session, Event event) {
-		System.out.println("Reached SlackBot myShipInfo method");
 		String commandResponse = PiratePointsCommand.getMyShipInfoCommandResponse(event, slackUserService);
 		
 		if (commandResponse != null) {
@@ -390,8 +390,16 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
 	public void myCrewInfo(WebSocketSession session, Event event) {
-		System.out.println("Reached SlackBot myCrewInfo method");
 		String commandResponse = PiratePointsCommand.getMyCrewInfoCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!sample(.*))$")
+	public void sample(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getSample(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));

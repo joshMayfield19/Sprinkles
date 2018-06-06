@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.ccc.chestersprinkles.model.ParrotLanguageStorage;
 import com.ccc.chestersprinkles.model.Pirate;
 import com.ccc.chestersprinkles.model.PirateHistory;
@@ -47,7 +49,7 @@ public class PiratePointsCommand extends Command {
 		if (validateInput(event) && isJoshUser(event)) {
 			ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
 			List<String> phrases = parrotLanguage.getPhrases();
-			
+
 			int randomNum = getRandomNumber(phrases.size());
 			String parrotSpeak = phrases.get(randomNum-1);
 			StringBuilder parrotSpeakOutput = new StringBuilder();
@@ -362,8 +364,14 @@ public class PiratePointsCommand extends Command {
 		return null;
 	}
 	
+	public static String getSample(Event event) {
+		if (validateInput(event)) {
+			return "<@U2AR5EH8U>";
+		}
+		return null;
+	}
+	
 	public static String getMyCrewInfoCommandResponse(Event event, SlackUserService slackUserService) {
-		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
 		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			
@@ -439,7 +447,6 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getMyShipInfoCommandResponse(Event event, SlackUserService slackUserService) {
-		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
 		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			
@@ -473,7 +480,6 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public static String getMyPirateInfoCommandResponse(Event event, SlackUserService slackUserService) {
-		System.out.println("User Id: " + event.getUserId() + " Input: " + event.getText());
 		if (validateInput(event)) {
 			populateSessionPirateInfo(event, slackUserService);
 			String myShip = "";

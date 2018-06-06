@@ -9,6 +9,12 @@ import com.ccc.chestersprinkles.model.ChesterSprinklesData;
 import me.ramswaroop.jbot.core.slack.models.Event;
 
 public class RaffleCommand extends Command {
+	private static final String JOSH_ID = "U2AR5EH8U";
+	
+	private static boolean isJoshUser(Event event) {
+		return JOSH_ID.equals(event.getUserId());
+	}
+	
 	public static String getRaffleCommandResponse(Event event) {
 		if (validateInput(event)) {
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
@@ -32,7 +38,7 @@ public class RaffleCommand extends Command {
 	}
 	
 	public static String getStartRaffleCommandResponse(Event event) {
-		if (validateInput(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
 			int startingNumber = Integer.valueOf(chesterSprinkles.getRaffleStartingTicket());
 			int endingNumber = Integer.valueOf(chesterSprinkles.getRaffleEndingTicket());
@@ -47,7 +53,7 @@ public class RaffleCommand extends Command {
 	}
 	
 	public static String getNextTicketCommandResponse(Event event) {
-		if (validateInput(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			String[] inputArray = event.getText().split(" ");
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
 			int startingNumber = Integer.valueOf(chesterSprinkles.getRaffleStartingTicket());
@@ -81,7 +87,7 @@ public class RaffleCommand extends Command {
 	}
 	
 	public static String getStartCountdownCommandResponse(Event event) {
-		if (validateInput(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			return "The countdown clock has started. I will redraw a new ticket in 5 minutes if the previous one has not been claimed by then.";
 		}
 		
@@ -89,7 +95,7 @@ public class RaffleCommand extends Command {
 	}
 	
 	public static String getEndRaffleCommandResponse(Event event) {
-		if (validateInput(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			return "All of the prizes have been claimed. Thanks for playing and see you at the next one!";
 		}
 		
@@ -97,7 +103,7 @@ public class RaffleCommand extends Command {
 	}
 	
 	public static String getRedrawTicketCommandResponse(Event event) {
-		if (validateInput(event)) {
+		if (validateInput(event) && isJoshUser(event)) {
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
 			int startingNumber = Integer.valueOf(chesterSprinkles.getRaffleStartingTicket());
 			int endingNumber = Integer.valueOf(chesterSprinkles.getRaffleEndingTicket());
