@@ -5,16 +5,16 @@
             <shipId>1</shipId>
             <shipName>The Pride of the Tide</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>430</shipPoints>
-            <overallShipPoints>430</overallShipPoints>
+            <shipPoints>470</shipPoints>
+            <overallShipPoints>470</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>2</shipId>
             <shipName>The Scurvy Sun</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>390</shipPoints>
-            <overallShipPoints>390</overallShipPoints>
+            <shipPoints>430</shipPoints>
+            <overallShipPoints>430</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -37,8 +37,8 @@
             <shipId>5</shipId>
             <shipName>The Corrupted Wolf</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>0</shipPoints>
-            <overallShipPoints>0</overallShipPoints>
+            <shipPoints>40</shipPoints>
+            <overallShipPoints>40</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
     </pirateShips>
@@ -256,9 +256,9 @@
             <pirateName>Samson "Long-Legged" Gilly</pirateName>
             <realName>Dave Arlington</realName>
             <pirateShipId>5</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -663,9 +663,9 @@
             <pirateName>Paddy "Gold Fiend" Noon</pirateName>
             <realName>David Mullen</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -685,9 +685,9 @@
             <pirateName>Johnny "Jolly Brute" Keel</pirateName>
             <realName>Gary Gealy</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>100</piratePoints>
+            <piratePoints>120</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>100</overallPiratePoints>
+            <overallPiratePoints>120</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -696,9 +696,9 @@
             <pirateName>Wyatt "Dead Man" Perrow</pirateName>
             <realName>James Windle</realName>
             <pirateShipId>5</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -740,9 +740,9 @@
             <pirateName>Jonas "Barnacle" Plank</pirateName>
             <realName>Nathan Ryan</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -850,9 +850,9 @@
             <pirateName>Gail "Devil's Grin" Kneebone</pirateName>
             <realName>Hannah Chappelle</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>

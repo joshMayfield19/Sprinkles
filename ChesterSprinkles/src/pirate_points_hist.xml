@@ -19,6 +19,7 @@
         <pirateHistory>
             <realName>Gary Gealy</realName>
             <pointEvents>100 points -- Event: Mac_n_Cheese_Cookoff_cook -- Date: 6/6/18</pointEvents>
+            <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Sam Stanley</realName>
@@ -60,6 +61,26 @@
         <pirateHistory>
             <realName>James Fulford</realName>
             <pointEvents>30 points -- Event: IOT_Meeting -- Date: 6/6/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Dave Arlington</realName>
+            <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>David Mullen</realName>
+            <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Hannah Chappelle</realName>
+            <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>James Windle</realName>
+            <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Nathan Ryan</realName>
+            <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
         </pirateHistory>
     </pirateHistories>
 </pirate_points_hist>
