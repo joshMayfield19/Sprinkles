@@ -39,7 +39,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>40</shipPoints>
             <overallShipPoints>40</overallShipPoints>
-            <shipCrew>15</shipCrew>
+            <shipCrew>16</shipCrew>
         </pirateShip>
     </pirateShips>
     <pirates>
@@ -861,6 +861,17 @@
             <pirateName>Oscar "Midshipman Mackerel" Dunkin</pirateName>
             <realName>Arlando Boykin</realName>
             <pirateShipId>3</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Oscar "Slasher" Rattle</pirateName>
+            <realName>Emmanuel Garcia</realName>
+            <pirateShipId>5</pirateShipId>
             <piratePoints>0</piratePoints>
             <doubloons>0</doubloons>
             <overallPiratePoints>0</overallPiratePoints>

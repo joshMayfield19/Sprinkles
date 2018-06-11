@@ -440,7 +440,7 @@ public class PiratePointsCommand extends Command {
 			piratePoints.writePiratePointsData(piratePoints);
 			
 			return "Aye, *" + user + "* has been added to the crew of *" + assignedShip.getShipName() + 
-					"*. I will assign an appropriate Pirate Name soon. Type *!myPirateInfo* to see your info and *!myShipInfo* for your ship info.";
+					"*. I will assign an appropriate Pirate Name soon. Start a new Direct Message with me and type *!myPirateInfo* to see your info and *!myShipInfo* for your ship info.";
 		}
 		
 		return null;
