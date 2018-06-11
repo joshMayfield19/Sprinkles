@@ -23,7 +23,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>50</shipPoints>
             <overallShipPoints>50</overallShipPoints>
-            <shipCrew>14</shipCrew>
+            <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>4</shipId>
@@ -853,6 +853,17 @@
             <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
             <overallPiratePoints>20</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Oscar "Midshipman Mackerel" Dunkin</pirateName>
+            <realName>Arlando Boykin</realName>
+            <pirateShipId>3</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
