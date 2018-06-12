@@ -25,10 +25,8 @@ import com.ccc.chestersprinkles.utility.RaffleCommand;
 import me.ramswaroop.jbot.core.slack.Bot;
 import me.ramswaroop.jbot.core.slack.Controller;
 import me.ramswaroop.jbot.core.slack.EventType;
-import me.ramswaroop.jbot.core.slack.models.Channel;
 import me.ramswaroop.jbot.core.slack.models.Event;
 import me.ramswaroop.jbot.core.slack.models.Message;
-import me.ramswaroop.jbot.core.slack.models.RichMessage;
 
 /**
  * A Slack Bot sample. Ye can create multiple bots by just extending
@@ -315,6 +313,15 @@ public class SlackBot extends Bot {
 	 * 
 	 **************************************
 	 */
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!upcomingEvents)$")
+	public void upcomingEvents(WebSocketSession session, Event event) {
+		String commandResponse = PiratePointsCommand.getUpcomingEventsCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
 	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!sortingEyepatch(.*))$")
 	public void sortPirate(WebSocketSession session, Event event) {

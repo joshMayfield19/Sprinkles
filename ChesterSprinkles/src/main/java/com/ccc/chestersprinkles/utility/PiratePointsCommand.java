@@ -13,6 +13,7 @@ import com.ccc.chestersprinkles.model.PiratePointsData;
 import com.ccc.chestersprinkles.model.PiratePointsDataHistory;
 import com.ccc.chestersprinkles.model.PirateShip;
 import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.model.UpcomingEvent;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
@@ -141,6 +142,26 @@ public class PiratePointsCommand extends Command {
 		}
 		
 		return null;	
+	}
+	
+	public static String getUpcomingEventsCommandResponse(Event event) {
+		if (validateInput(event)) {
+			piratePoints = PiratePointsData.getPiratePointsData();
+			List<UpcomingEvent> upcomingEvents = piratePoints.getUpcomingEvents();
+			
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("*Here is a list of the upcoming events:*\n");
+			
+			for (UpcomingEvent upcomingEvent : upcomingEvents) {
+				stringBuilder.append("*(").append(upcomingEvent.getDate()).append(" | ").append(upcomingEvent.getLocation()).append(")*  _")
+							.append(upcomingEvent.getEvent()).append("_ -- Rewards: *").append(upcomingEvent.getPoints()).append(" points* -- ")
+							.append(" Contact: *").append(upcomingEvent.getContact()).append("* for more info.\n");
+			}
+			
+			return stringBuilder.toString();
+		}
+		
+		return null;
 	}
 	
 	public static String getPirateLeaderboardCommandResponse(Event event, SlackUserService slackUserService) {
