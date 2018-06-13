@@ -150,7 +150,7 @@ public class PiratePointsCommand extends Command {
 			List<UpcomingEvent> upcomingEvents = piratePoints.getUpcomingEvents();
 			
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append("*Here is a list of the upcoming events:*\n");
+			stringBuilder.append("*Here is a list of the upcoming events that award Pirate Points:*\n");
 			
 			for (UpcomingEvent upcomingEvent : upcomingEvents) {
 				stringBuilder.append("*(").append(upcomingEvent.getDate()).append(" | ").append(upcomingEvent.getLocation()).append(")*  _")
@@ -171,11 +171,11 @@ public class PiratePointsCommand extends Command {
 			Collections.sort(pirates);
 			
 			return "*Here are the top 5 pirates!*\n" +
-					pirates.get(0).getPirateName() + " (" + pirates.get(0).getRealName() + "): " + pirates.get(0).getPiratePoints() + " points\n" +
-					pirates.get(1).getPirateName() + " (" + pirates.get(1).getRealName() + "): " + pirates.get(1).getPiratePoints() + " points\n" +
-					pirates.get(2).getPirateName() + " (" + pirates.get(2).getRealName() + "): " + pirates.get(2).getPiratePoints() + " points\n" +
-					pirates.get(3).getPirateName() + " (" + pirates.get(3).getRealName() + "): " + pirates.get(3).getPiratePoints() + " points\n" +
-					pirates.get(4).getPirateName() + " (" + pirates.get(4).getRealName() + "): " + pirates.get(4).getPiratePoints() + " points\n";
+					pirates.get(0).getPirateName() + " (" + pirates.get(0).getRealName() + "): *" + pirates.get(0).getPiratePoints() + " points*\n" +
+					pirates.get(1).getPirateName() + " (" + pirates.get(1).getRealName() + "): *" + pirates.get(1).getPiratePoints() + " points*\n" +
+					pirates.get(2).getPirateName() + " (" + pirates.get(2).getRealName() + "): *" + pirates.get(2).getPiratePoints() + " points*\n" +
+					pirates.get(3).getPirateName() + " (" + pirates.get(3).getRealName() + "): *" + pirates.get(3).getPiratePoints() + " points*\n" +
+					pirates.get(4).getPirateName() + " (" + pirates.get(4).getRealName() + "): *" + pirates.get(4).getPiratePoints() + " points*\n";
 		}
 		
 		return null;	
@@ -188,11 +188,11 @@ public class PiratePointsCommand extends Command {
 			Collections.sort(pirateShips);
 			
 			return "*Here is the points standings for the Ships!*\n" +
-					pirateShips.get(0).getShipName() + ": " + pirateShips.get(0).getShipPoints() + " points\n" +
-					pirateShips.get(1).getShipName() + ": " + pirateShips.get(1).getShipPoints() + " points\n" +
-					pirateShips.get(2).getShipName() + ": " + pirateShips.get(2).getShipPoints() + " points\n" +
-					pirateShips.get(3).getShipName() + ": " + pirateShips.get(3).getShipPoints() + " points\n" +
-					pirateShips.get(4).getShipName() + ": " + pirateShips.get(4).getShipPoints() + " points\n";
+					pirateShips.get(0).getShipName() + ": *" + pirateShips.get(0).getShipPoints() + " points*\n" +
+					pirateShips.get(1).getShipName() + ": *" + pirateShips.get(1).getShipPoints() + " points*\n" +
+					pirateShips.get(2).getShipName() + ": *" + pirateShips.get(2).getShipPoints() + " points*\n" +
+					pirateShips.get(3).getShipName() + ": *" + pirateShips.get(3).getShipPoints() + " points*\n" +
+					pirateShips.get(4).getShipName() + ": *" + pirateShips.get(4).getShipPoints() + " points*\n";
 		}
 		
 		return null;	
