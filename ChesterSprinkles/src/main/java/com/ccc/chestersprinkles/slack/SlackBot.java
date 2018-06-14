@@ -448,37 +448,57 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!setSail)$")
 	public void setSail(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getSetSailCommandResponse(event, slackUserService);
+		List<String> commandResponses = PiratePointsCommand.getSetSailCommandResponse(event, slackUserService);
 		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
+		if (commandResponses != null) {
+			reply(session, event, new Message(commandResponses.get(0)));
+			
+			if (commandResponses.size() == 2) {
+				event.setChannelId(KD_SPRINKLES_CHANNEL);
+				reply(session, event, new Message(commandResponses.get(1)));
+			}
 		}
 	}
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!battle)$")
 	public void battle(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getBattleCommandResponse(event, slackUserService);
+		List<String> commandResponses = PiratePointsCommand.getBattleCommandResponse(event, slackUserService);
 		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
+		if (commandResponses != null) {
+			reply(session, event, new Message(commandResponses.get(0)));
+			
+			if (commandResponses.size() == 2) {
+				event.setChannelId(KD_SPRINKLES_CHANNEL);
+				reply(session, event, new Message(commandResponses.get(1)));
+			}
 		}
 	}
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!explore)$")
 	public void explore(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getExploreCommandResponse(event, slackUserService);
+		List<String> commandResponses = PiratePointsCommand.getExploreCommandResponse(event, slackUserService);
 		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
+		if (commandResponses != null) {
+			reply(session, event, new Message(commandResponses.get(0)));
+			
+			if (commandResponses.size() == 2) {
+				event.setChannelId(KD_SPRINKLES_CHANNEL);
+				reply(session, event, new Message(commandResponses.get(1)));
+			}
 		}
 	}
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!shoreleave)$")
 	public void shoreleave(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getShoreleaveCommandResponse(event, slackUserService);
+		List<String> commandResponses = PiratePointsCommand.getShoreleaveCommandResponse(event, slackUserService);
 		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
+		if (commandResponses != null) {
+			reply(session, event, new Message(commandResponses.get(0)));
+			
+			if (commandResponses.size() == 2) {
+				event.setChannelId(KD_SPRINKLES_CHANNEL);
+				reply(session, event, new Message(commandResponses.get(1)));
+			}
 		}
 	}
 	

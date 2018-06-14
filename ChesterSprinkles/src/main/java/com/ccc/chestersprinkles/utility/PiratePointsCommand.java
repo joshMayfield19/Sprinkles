@@ -3,8 +3,10 @@ package com.ccc.chestersprinkles.utility;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.ccc.chestersprinkles.model.ParrotLanguageStorage;
 import com.ccc.chestersprinkles.model.Pirate;
@@ -95,37 +97,161 @@ public class PiratePointsCommand extends Command {
 	}
 	
 	//Captain Command
-	public static String getSetSailCommandResponse(Event event, SlackUserService slackUserService) {
+	public static List<String> getSetSailCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			return "Only the captain of the ship can set sail.";
+			populateSessionPirateInfo(event, slackUserService);
+			List<String> responses = new ArrayList<String>();
+			String response = "I don't see you on my pirate registry";
+			int doubloonsFound = 0;
+			
+			for (Pirate pirate : pirates) {
+				if (pirate.getRealName().equals(realName)) {
+					if (pirate.isCaptain()) {
+						doubloonsFound = getDoubloons();
+						int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
+						pirate.setDoubloons(doubloonsTotal);
+						response = "You set sail and find " + doubloonsFound + " doubloons!";
+					}
+					else {
+						response = "You need to be the Captain of your ship at the end of the previous Pirate Adventure.";
+					}
+				}
+			}
+			
+			responses.add(response);
+			
+			if (doubloonsFound != 0) {
+				piratePoints.setPirates(pirates);
+				PiratePointsData.writePiratePointsData(piratePoints);
+				
+				if (doubloonsFound == 5) {
+					responses.add(realName + " just found a whopping 5 doubloons while battling!!!");
+				}
+			}
+					
+			return responses;
 		}
 		
 		return null;	
 	}
 	
 	//Captain Command
-	public static String getBattleCommandResponse(Event event, SlackUserService slackUserService) {
+	public static List<String> getBattleCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			return "Only the captain of the ship can start a battle.";
+			populateSessionPirateInfo(event, slackUserService);
+			List<String> responses = new ArrayList<String>();
+			String response = "I don't see you on my pirate registry";
+			int doubloonsFound = 0;
+			
+			for (Pirate pirate : pirates) {
+				if (pirate.getRealName().equals(realName)) {
+					if (pirate.isCaptain()) {
+						doubloonsFound = getDoubloons();
+						int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
+						pirate.setDoubloons(doubloonsTotal);
+						response = "You initiate a battle and find " + doubloonsFound + " doubloons!";
+					}
+					else {
+						response = "You need to be the Captain of your ship at the end of the previous Pirate Adventure.";
+					}
+				}
+			}
+			
+			responses.add(response);
+			
+			if (doubloonsFound != 0) {
+				piratePoints.setPirates(pirates);
+				PiratePointsData.writePiratePointsData(piratePoints);
+				
+				if (doubloonsFound == 5) {
+					responses.add(realName + " just found a whopping 5 doubloons while battling!!!");
+				}
+			}
+				
+			return responses;
 		}
 		
 		return null;	
 	}
 	
-	public static String getExploreCommandResponse(Event event, SlackUserService slackUserService) {
+	public static List<String> getExploreCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			return "You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.";
+			populateSessionPirateInfo(event, slackUserService);
+			List<String> responses = new ArrayList<String>();
+			String response = "I don't see you on my pirate registry";
+			int doubloonsFound = 0;
+			
+			for (Pirate pirate : pirates) {
+				if (pirate.getRealName().equals(realName)) {
+					if (pirate.isOnWinningShip() || pirate.isTopFivePirate()) {
+						doubloonsFound = getDoubloons();
+						int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
+						pirate.setDoubloons(doubloonsTotal);
+						response = "You explore a nearby island and find " + doubloonsFound + " doubloons!";
+					}
+					else {
+						response = "You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.";
+					}
+				}
+			}
+			
+			responses.add(response);
+			
+			if (doubloonsFound != 0) {
+				piratePoints.setPirates(pirates);
+				PiratePointsData.writePiratePointsData(piratePoints);
+				
+				if (doubloonsFound == 5) {
+					responses.add(realName + " just found a whopping 5 doubloons while battling!!!");
+				}
+			}
+					
+			return responses;
 		}
 		
 		return null;	
 	}
 	
-	public static String getShoreleaveCommandResponse(Event event, SlackUserService slackUserService) {
+	private static int getDoubloons() {
+		return new Random().nextInt(10)==0 ? 5 : (new Random().nextInt(3)==0 ? 2 : 1);
+	}
+	
+	public static List<String> getShoreleaveCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
-			return "You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.";
+			populateSessionPirateInfo(event, slackUserService);
+			List<String> responses = new ArrayList<String>();
+			String response = "I don't see you on my pirate registry";
+			int doubloonsFound = 0;
+			
+			for (Pirate pirate : pirates) {
+				if (pirate.getRealName().equals(realName)) {
+					if (pirate.isOnWinningShip() || pirate.isTopFivePirate()) {
+						doubloonsFound = getDoubloons();
+						int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
+						pirate.setDoubloons(doubloonsTotal);
+						response = "While on shoreleave you find " + doubloonsFound + " doubloons!";
+					}
+					else {
+						response = "You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.";
+					}
+				}
+			}
+			
+			responses.add(response);
+			
+			if (doubloonsFound != 0) {
+				piratePoints.setPirates(pirates);
+				PiratePointsData.writePiratePointsData(piratePoints);
+				
+				if (doubloonsFound == 5) {
+					responses.add(realName + " just found a whopping 5 doubloons while battling!!!");
+				}
+			}
+					
+			return responses;
 		}
 		
-		return null;	
+		return null;
 	}
 	
 	public static String getWhatAreDoubloonsHelpCommandResponse(Event event, SlackUserService slackUserService) {
@@ -155,7 +281,7 @@ public class PiratePointsCommand extends Command {
 			for (UpcomingEvent upcomingEvent : upcomingEvents) {
 				stringBuilder.append("*(").append(upcomingEvent.getDate()).append(" | ").append(upcomingEvent.getLocation()).append(")*  _")
 							.append(upcomingEvent.getEvent()).append("_ -- Rewards: *").append(upcomingEvent.getPoints()).append(" points* -- ")
-							.append(" Contact: *").append(upcomingEvent.getContact()).append("* for more info.\n");
+							.append("Contact: *").append(upcomingEvent.getContact()).append("* for more info.\n");
 			}
 			
 			return stringBuilder.toString();
