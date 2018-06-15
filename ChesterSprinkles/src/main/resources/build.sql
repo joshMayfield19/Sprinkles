@@ -6,7 +6,7 @@ CREATE TABLE `presentations` (`presentation_id` INTEGER PRIMARY KEY AUTOINCREMEN
 
 CREATE TABLE `pirate_ships` (`ship_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `captain_user_id` INTEGER NOT NULL); --No clue what the difference is between ship points and overall ship points 
 
-CREATE TABLE `pirates` (`pirate_id` INTEGER PRIMARY KEY AUTOINCREMENT, `user_id` INTEGER NOT NULL, `ship_id` INTEGER NOT NULL, `points` INTEGER, `doubloons` INTEGER, FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`), FOREIGN KEY(`ship_id`) REFERENCES `pirate_ships`(`ship_id`));
+CREATE TABLE `pirates` (`pirate_id` INTEGER PRIMARY KEY AUTOINCREMENT, `user_id` INTEGER NOT NULL, `ship_id` INTEGER NOT NULL, `current_points` INTEGER, `total_points` INTEGER, `doubloons` INTEGER, FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`), FOREIGN KEY(`ship_id`) REFERENCES `pirate_ships`(`ship_id`));
 
 CREATE TABLE `challenge_ideas` (`ch_idea_id` INTEGER PRIMARY KEY AUTOINCREMENT, `user_id` TEXT NOT NULL, `description` TEXT NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`));
 
