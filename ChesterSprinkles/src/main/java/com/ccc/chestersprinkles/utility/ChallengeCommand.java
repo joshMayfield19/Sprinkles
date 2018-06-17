@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
+import com.ccc.chestersprinkles.model.Challenge;
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
+import com.ccc.chestersprinkles.service.ChallengeService;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
 
@@ -38,18 +40,19 @@ public class ChallengeCommand extends Command {
 		return null;
 	}
 
-	public static String getCurrentChallengeCommandResponse(Event event) {
+	public static String getCurrentChallengeCommandResponse(Event event, ChallengeService challengeService) {
 		if (validateInput(event)) {
-			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
+			//ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
+			Challenge challenge = challengeService.getCurrentChallenge();
 			
-			if (StringUtils.isEmpty(chesterSprinkles.getCurrentChallenge())) {
+			if (challenge == null) {
 				return "There is no challenge currently going on.";
 			}
 			else {
-				return "We are currenly working on a problem at the " + chesterSprinkles.getCurrentChallenge()
-								+ "\nWe will be presenting our solutions on " + chesterSprinkles.getCurrentChallengeDate()
+				return "We are currenly working on a problem at the " + challenge.getChallengeName()
+								+ "\nWe will be presenting our solutions on " + challenge.getChallengeDate()
 								+ "\nYe can find the information on this challenge here: "
-								+ chesterSprinkles.getCurrentChallengeLink();
+								+ challenge.getChallengeLink();
 			}
 		}
 		

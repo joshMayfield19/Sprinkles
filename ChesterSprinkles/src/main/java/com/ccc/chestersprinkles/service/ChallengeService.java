@@ -8,18 +8,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ccc.chestersprinkles.dao.SlackUserDao;
-import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.dao.ChallengeDao;
+import com.ccc.chestersprinkles.model.Challenge;
 
 @Transactional
 @Service
-public class SlackUserService {
+public class ChallengeService {
 	@Autowired
-	private SlackUserDao slackUserDao;
+	private ChallengeDao challengeDao;
 	
-	public SlackUser getSlackUser(String slackId){
+	public Challenge getCurrentChallenge(){
 		try {
-			return slackUserDao.getSlackUser(slackId);
+			return challengeDao.getCurrentChallenge();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -28,9 +28,9 @@ public class SlackUserService {
 		return null;
 	}
 	
-	public List<SlackUser> getSlackUsers(){
+	public List<Challenge> getChallenges(){
 		try {
-			return slackUserDao.getSlackUsers();
+			return challengeDao.getChallenges();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,6 +14,9 @@ import org.springframework.web.socket.WebSocketSession;
 
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
 import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.service.ChallengeService;
+import com.ccc.chestersprinkles.service.PirateService;
+import com.ccc.chestersprinkles.service.PresentationService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 import com.ccc.chestersprinkles.utility.ChallengeCommand;
 import com.ccc.chestersprinkles.utility.MiscCommand;
@@ -58,6 +61,15 @@ public class SlackBot extends Bot {
 	@Autowired
 	private SlackUserService slackUserService;
 
+	@Autowired
+	private ChallengeService challengeService;
+	
+	@Autowired
+	private PresentationService presentationService;
+	
+	@Autowired
+	private PirateService pirateService;
+	
 	//private static final String JOSH_ID = "U2AR5EH8U";
 
 	/**
@@ -588,7 +600,7 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!currentChallenge)$")
 	public void currentChallenge(WebSocketSession session, Event event) {
-		String commandResponse = ChallengeCommand.getCurrentChallengeCommandResponse(event);
+		String commandResponse = ChallengeCommand.getCurrentChallengeCommandResponse(event, challengeService);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));

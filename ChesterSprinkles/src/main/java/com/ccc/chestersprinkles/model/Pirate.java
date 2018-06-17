@@ -1,12 +1,8 @@
 package com.ccc.chestersprinkles.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "pirate")
-@XmlAccessorType (XmlAccessType.FIELD)
 public class Pirate implements Comparable<Pirate> {
+	private int pirateId;
+	private int userId;
 	private String pirateName;
 	private String realName;
 	private int pirateShipId;
@@ -72,6 +68,22 @@ public class Pirate implements Comparable<Pirate> {
 
 	public boolean isCaptain() {
 		return isCaptain;
+	}
+
+	public int getPirateId() {
+		return pirateId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public void setPirateId(int pirateId) {
+		this.pirateId = pirateId;
 	}
 
 	public void setOverallPiratePoints(int overallPiratePoints) {

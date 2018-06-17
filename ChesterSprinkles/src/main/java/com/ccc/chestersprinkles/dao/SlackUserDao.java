@@ -1,36 +1,77 @@
 package com.ccc.chestersprinkles.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-
-import com.ccc.chestersprinkles.carnivaltours.model.CTLookAroundItem;
 import com.ccc.chestersprinkles.model.SlackUser;
 
-@Repository
 public class SlackUserDao {
-	@PersistenceContext
-	private EntityManager entityManager;
+	private static final String GET_SLACK_USERS = "select slack_user_id, first_name, last_name, slack_id from slack_user";
+	private static final String GET_SLACK_USER_BY_ID = "select slack_user_id, first_name, last_name, slack_id from slack_user where slack_id = ?";
 	
-	public void create(SlackUser slackUser) {
-		entityManager.persist(slackUser);
-	}
-	
-	public void update(SlackUser slackUser) {
-		entityManager.merge(slackUser);
-	}
-	
-	public SlackUser getSlackUser(String slackId) {
-		return entityManager.find(SlackUser.class, slackId);
-	}
-	
-	public List<SlackUser> getSlackUsers() {
-		List<SlackUser> users = entityManager.createQuery(
-				"select e from SlackUser e", SlackUser.class).getResultList(); 
+	public List<SlackUser> getSlackUsers() throws SQLException {
+		List<SlackUser> slackUsers = new ArrayList<SlackUser>(); 
 		
-		return users;
+		Connection con = null;
+		Statement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.createStatement();
+	        ResultSet rs = stmt.executeQuery(GET_SLACK_USERS);
+	        while (rs.next()) {
+	            SlackUser slackUser = new SlackUser();
+	            slackUser.setSlackUserId(rs.getInt("slack_user_id"));
+	            slackUser.setFirstName(rs.getString("first_name"));
+	            slackUser.setLastName(rs.getString("last_name"));
+	            slackUser.setSlackId(rs.getString("slack_id"));
+	            slackUsers.add(slackUser);
+	        }
+	        
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	stmt.close(); 
+	    		SqliteDao.closeDb(con);
+	        }
+	    }
+	    
+	    return slackUsers;
+	}
+	
+	public SlackUser getSlackUser(String slackId) throws SQLException {
+		SlackUser slackUser = new SlackUser();
+		
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(GET_SLACK_USER_BY_ID);
+	    	stmt.setString(1, slackId);
+	    	
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            slackUser.setSlackUserId(rs.getInt("slack_user_id"));
+	        	slackUser.setFirstName(rs.getString("first_name"));
+	            slackUser.setLastName(rs.getString("last_name"));
+	            slackUser.setSlackId(rs.getString("slack_id"));
+	        }
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	stmt.close(); 
+	    		SqliteDao.closeDb(con);
+	        }
+	    }
+	    
+	    return slackUser;
 	}
 }

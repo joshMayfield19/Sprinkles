@@ -1,28 +1,11 @@
 package com.ccc.chestersprinkles.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="slack_user")
 public class SlackUser {
-	
-	@Id
+	private int slackUserId;
 	private String slackId;
-	
-	@Column(name="first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
 	private String lastName;
-	
-	@Column(name="times_presented")
-	private int timesPresented;
-	
+
 	public SlackUser() {
 		
 	}
@@ -39,8 +22,12 @@ public class SlackUser {
 		return slackId;
 	}
 
-	public int getTimesPresented() {
-		return timesPresented;
+	public int getSlackUserId() {
+		return slackUserId;
+	}
+
+	public void setSlackUserId(int slackUserId) {
+		this.slackUserId = slackUserId;
 	}
 
 	public void setLastName(String lastName) {
@@ -49,10 +36,6 @@ public class SlackUser {
 
 	public void setSlackId(String slackId) {
 		this.slackId = slackId;
-	}
-
-	public void setTimesPresented(int timesPresented) {
-		this.timesPresented = timesPresented;
 	}
 
 	public void setFirstName(String firstName) {

@@ -8,18 +8,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ccc.chestersprinkles.dao.SlackUserDao;
-import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.dao.PirateDao;
+import com.ccc.chestersprinkles.model.Pirate;
 
 @Transactional
 @Service
-public class SlackUserService {
+public class PirateService {
 	@Autowired
-	private SlackUserDao slackUserDao;
+	private PirateDao pirateDao;
 	
-	public SlackUser getSlackUser(String slackId){
+	public List<Pirate> getTopFivePirates(){
 		try {
-			return slackUserDao.getSlackUser(slackId);
+			return pirateDao.getTopFivePirates();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -28,9 +28,9 @@ public class SlackUserService {
 		return null;
 	}
 	
-	public List<SlackUser> getSlackUsers(){
+	public Pirate getPirateByUser(int userId){
 		try {
-			return slackUserDao.getSlackUsers();
+			return pirateDao.getPirateByUser(userId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
