@@ -8,18 +8,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ccc.chestersprinkles.dao.PresentationDao;
-import com.ccc.chestersprinkles.model.Presentation;
+import com.ccc.chestersprinkles.dao.PirateShipDao;
+import com.ccc.chestersprinkles.model.PirateShip;
 
 @Transactional
 @Service
-public class PresentationService {
+public class PirateShipService {
 	@Autowired
-	private PresentationDao presentationDao;
+	private PirateShipDao pirateShipDao;
 	
-	public Presentation getPresentationByChallenge(int challengeId){
+	public List<PirateShip> getTopShips(){
 		try {
-			return presentationDao.getPresentationByChallengeId(challengeId);
+			return pirateShipDao.getTopShips();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -28,14 +28,14 @@ public class PresentationService {
 		return null;
 	}
 	
-	public List<Presentation> getCurrentPresentation(){
+	public PirateShip getShipById(int shipId){
 		try {
-			return presentationDao.getCurrentPresenetrs();
+			return pirateShipDao.getShipById(shipId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 }

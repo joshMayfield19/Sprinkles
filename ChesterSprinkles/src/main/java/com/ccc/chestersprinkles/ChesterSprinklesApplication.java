@@ -9,12 +9,20 @@ import org.sqlite.JDBC;
 import org.sqlite.SQLiteJDBCLoader;
 
 import com.ccc.chestersprinkles.dao.ChallengeDao;
+import com.ccc.chestersprinkles.dao.ChallengeIdeaDao;
+import com.ccc.chestersprinkles.dao.CommandIdeaDao;
+import com.ccc.chestersprinkles.dao.ParrotPhraseDao;
 import com.ccc.chestersprinkles.dao.PirateDao;
+import com.ccc.chestersprinkles.dao.PirateShipDao;
 import com.ccc.chestersprinkles.dao.PresentationDao;
 import com.ccc.chestersprinkles.dao.SlackUserDao;
 import com.ccc.chestersprinkles.dao.SqliteDao;
 import com.ccc.chestersprinkles.service.PirateService;
+import com.ccc.chestersprinkles.service.PirateShipService;
+import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
+import com.ccc.chestersprinkles.service.CommandIdeaService;
+import com.ccc.chestersprinkles.service.ParrotPhraseService;
 import com.ccc.chestersprinkles.service.PresentationService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
@@ -71,5 +79,45 @@ public class ChesterSprinklesApplication {
 	@Bean
 	public PirateDao pirateDao() {
 		return new PirateDao();
+	}
+	
+	@Bean
+	public PirateShipService pirateShipService() {
+		return new PirateShipService();
+	}
+	
+	@Bean
+	public PirateShipDao pirateShipDao() {
+		return new PirateShipDao();
+	}
+	
+	@Bean
+	public ParrotPhraseService parrotPhraseService() {
+		return new ParrotPhraseService();
+	}
+	
+	@Bean
+	public ParrotPhraseDao parrotPhraseDao() {
+		return new ParrotPhraseDao();
+	}
+	
+	@Bean
+	public CommandIdeaService commandIdeaService() {
+		return new CommandIdeaService();
+	}
+	
+	@Bean
+	public CommandIdeaDao commandIdeaDao() {
+		return new CommandIdeaDao();
+	}
+	
+	@Bean
+	public ChallengeIdeaService challengeIdeaService() {
+		return new ChallengeIdeaService();
+	}
+	
+	@Bean
+	public ChallengeIdeaDao challengeIdeaDao() {
+		return new ChallengeIdeaDao();
 	}
 }

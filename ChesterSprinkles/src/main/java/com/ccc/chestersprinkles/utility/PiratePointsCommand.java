@@ -272,7 +272,7 @@ public class PiratePointsCommand extends Command {
 					
 					for (PirateShip pirateShip : pirateShips) {
 						if (pirate.getPirateShipId() == pirateShip.getShipId()) {
-							pirateShip.setShipCaptain(pirate.getPirateName() + " (" + pirate.getRealName() + ")");
+							//pirateShip.setShipCaptain(pirate.getPirateName() + " (" + pirate.getRealName() + ")");
 						}
 					}
 				}

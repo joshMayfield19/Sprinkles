@@ -14,8 +14,12 @@ import org.springframework.web.socket.WebSocketSession;
 
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
 import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
+import com.ccc.chestersprinkles.service.CommandIdeaService;
+import com.ccc.chestersprinkles.service.ParrotPhraseService;
 import com.ccc.chestersprinkles.service.PirateService;
+import com.ccc.chestersprinkles.service.PirateShipService;
 import com.ccc.chestersprinkles.service.PresentationService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 import com.ccc.chestersprinkles.utility.ChallengeCommand;
@@ -69,6 +73,18 @@ public class SlackBot extends Bot {
 	
 	@Autowired
 	private PirateService pirateService;
+	
+	@Autowired
+	private PirateShipService pirateShipService;
+	
+	@Autowired
+	private ParrotPhraseService parrotPhraseService;
+	
+	@Autowired
+	private CommandIdeaService commandIdeaService;
+	
+	@Autowired
+	private ChallengeIdeaService challengeIdeaService;
 	
 	//private static final String JOSH_ID = "U2AR5EH8U";
 

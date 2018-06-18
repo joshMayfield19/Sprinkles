@@ -6,16 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import com.ccc.chestersprinkles.model.AllTimePresenter;
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
+import com.ccc.chestersprinkles.model.Presentation;
 import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.service.PresentationService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
 
 public class PresenterCommand extends Command {
+	@Autowired
+	private static SlackUserService slackUserService;
+	
+	@Autowired
+	private static PresentationService presentationService;
+	
 	public static String getPresentationTotalCommandResponse(Event event) {
 		if (validateInput(event)) {
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
@@ -56,6 +65,7 @@ public class PresenterCommand extends Command {
 
 	public static String getPresentersCommandResponse(Event event) {
 		if (validateInput(event)) {
+			List<Presentation> currentPresenters = presentationService.getCurrentPresentation();
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
 			
 			if (StringUtils.isEmpty(chesterSprinkles.getCurrentChallenge())) {
