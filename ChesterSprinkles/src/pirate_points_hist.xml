@@ -22,6 +22,7 @@
             <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
             <pointEvents>20 points -- Event: IOS_Dev_club -- Date: 6/14/18</pointEvents>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Sam Stanley</realName>
@@ -56,6 +57,7 @@
         <pirateHistory>
             <realName>Maegan Reynolds</realName>
             <pointEvents>100 points -- Event: Mac_n_Cheese_Cookoff_cook -- Date: 6/6/18</pointEvents>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Ariel Burke</realName>
@@ -71,6 +73,7 @@
             <realName>Dave Arlington</realName>
             <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>David Mullen</realName>
@@ -118,6 +121,26 @@
         <pirateHistory>
             <realName>Dale Herring</realName>
             <pointEvents>20 points -- Event: IOS_Dev_club -- Date: 6/14/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Josh Waldrup</realName>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Nina Ladner</realName>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Justin Eberlein</realName>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Joey Monachino</realName>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Annise Bruley</realName>
+            <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
         </pirateHistory>
     </pirateHistories>
 </pirate_points_hist>

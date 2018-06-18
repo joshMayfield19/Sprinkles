@@ -5,16 +5,16 @@
             <shipId>1</shipId>
             <shipName>The Pride of the Tide</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>580</shipPoints>
-            <overallShipPoints>580</overallShipPoints>
+            <shipPoints>600</shipPoints>
+            <overallShipPoints>600</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>2</shipId>
             <shipName>The Scurvy Sun</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>500</shipPoints>
-            <overallShipPoints>500</overallShipPoints>
+            <shipPoints>520</shipPoints>
+            <overallShipPoints>520</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
@@ -29,16 +29,16 @@
             <shipId>4</shipId>
             <shipName>The Blue Insanity</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>530</shipPoints>
-            <overallShipPoints>530</overallShipPoints>
+            <shipPoints>570</shipPoints>
+            <overallShipPoints>570</overallShipPoints>
             <shipCrew>15</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>5</shipId>
             <shipName>The Corrupted Wolf</shipName>
             <shipCaptain>No Captain Yet</shipCaptain>
-            <shipPoints>70</shipPoints>
-            <overallShipPoints>70</overallShipPoints>
+            <shipPoints>150</shipPoints>
+            <overallShipPoints>150</overallShipPoints>
             <shipCrew>16</shipCrew>
         </pirateShip>
     </pirateShips>
@@ -102,9 +102,9 @@
             <pirateName>Eva "Saucy Devil" Prisk</pirateName>
             <realName>Annise Bruley</realName>
             <pirateShipId>2</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -256,9 +256,9 @@
             <pirateName>Samson "Long-Legged" Gilly</pirateName>
             <realName>Dave Arlington</realName>
             <pirateShipId>5</pirateShipId>
-            <piratePoints>50</piratePoints>
+            <piratePoints>70</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>50</overallPiratePoints>
+            <overallPiratePoints>70</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -267,9 +267,9 @@
             <pirateName>Mack "The Blue Fox" Pepper</pirateName>
             <realName>Josh Waldrup</realName>
             <pirateShipId>4</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -311,9 +311,9 @@
             <pirateName>Errol "Scurvy Sailor" Oates</pirateName>
             <realName>Joey Monachino</realName>
             <pirateShipId>5</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -399,9 +399,9 @@
             <pirateName>Ruth "Bonny Baby" Sweet</pirateName>
             <realName>Nina Ladner</realName>
             <pirateShipId>5</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -685,9 +685,9 @@
             <pirateName>Johnny "Jolly Brute" Keel</pirateName>
             <realName>Gary Gealy</realName>
             <pirateShipId>1</pirateShipId>
-            <piratePoints>170</piratePoints>
+            <piratePoints>190</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>170</overallPiratePoints>
+            <overallPiratePoints>190</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -817,9 +817,9 @@
             <pirateName>Gordon "Blunderbuss" Blamey</pirateName>
             <realName>Justin Eberlein</realName>
             <pirateShipId>5</pirateShipId>
-            <piratePoints>0</piratePoints>
+            <piratePoints>20</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>0</overallPiratePoints>
+            <overallPiratePoints>20</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -828,9 +828,9 @@
             <pirateName>Mazie "Barnacle" Tripps</pirateName>
             <realName>Maegan Reynolds</realName>
             <pirateShipId>4</pirateShipId>
-            <piratePoints>100</piratePoints>
+            <piratePoints>120</piratePoints>
             <doubloons>0</doubloons>
-            <overallPiratePoints>100</overallPiratePoints>
+            <overallPiratePoints>120</overallPiratePoints>
             <isTopFivePirate>false</isTopFivePirate>
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
@@ -893,13 +893,6 @@
     </pirates>
     <upcomingEvents>
         <upcomingEvent>
-            <event>LOGO Training (Functional Programming)</event>
-            <contact>Dave Arlington</contact>
-            <date>6/18/18  3:00pm</date>
-            <location>Electra</location>
-            <points>20</points>
-        </upcomingEvent>
-        <upcomingEvent>
             <event>Book Club - Clean Code (Ch. 16)</event>
             <contact>Robert Cole</contact>
             <date>6/20/18  12:00pm</date>
@@ -910,7 +903,7 @@
             <event>IOT Club</event>
             <contact>Jimmy Dotson</contact>
             <date>6/20/18  3:00pm</date>
-            <location>Empire</location>
+            <location>Wildcat</location>
             <points>20</points>
         </upcomingEvent>
         <upcomingEvent>
@@ -924,6 +917,48 @@
             <event>RSI Innovation Brainstorming</event>
             <contact>Dave Arlington</contact>
             <date>6/21/18  2:00pm</date>
+            <location>Wildcat</location>
+            <points>30</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>Coding Challenge Pirates: S.O.S. (Attending)</event>
+            <contact>Josh Mayfield</contact>
+            <date>6/25/18  12:00pm</date>
+            <location>LeSabre</location>
+            <points>50</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>Coding Challenge Pirates: S.O.S. (Presenting)</event>
+            <contact>Josh Mayfield</contact>
+            <date>6/25/18  12:00pm</date>
+            <location>LeSabre</location>
+            <points>150</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>LOGO Training (Functional Programming)</event>
+            <contact>Dave Arlington</contact>
+            <date>6/25/18  3:00pm</date>
+            <location>Electra</location>
+            <points>20</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>IOT Club</event>
+            <contact>Jimmy Dotson</contact>
+            <date>6/27/18  3:00pm</date>
+            <location>Wildcat</location>
+            <points>20</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>IOS Dev Club</event>
+            <contact>Robert Cole</contact>
+            <date>6/28/18  11:30am</date>
+            <location>Wildcat</location>
+            <points>20</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>RSI Innovation Brainstorming</event>
+            <contact>Dave Arlington</contact>
+            <date>6/28/18  2:00pm</date>
             <location>Wildcat</location>
             <points>30</points>
         </upcomingEvent>
