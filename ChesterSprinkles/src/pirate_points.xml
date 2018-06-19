@@ -15,7 +15,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>520</shipPoints>
             <overallShipPoints>520</overallShipPoints>
-            <shipCrew>15</shipCrew>
+            <shipCrew>16</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>3</shipId>
@@ -31,7 +31,7 @@
             <shipCaptain>No Captain Yet</shipCaptain>
             <shipPoints>570</shipPoints>
             <overallShipPoints>570</overallShipPoints>
-            <shipCrew>15</shipCrew>
+            <shipCrew>16</shipCrew>
         </pirateShip>
         <pirateShip>
             <shipId>5</shipId>
@@ -890,15 +890,30 @@
             <isOnWinningShip>false</isOnWinningShip>
             <isCaptain>false</isCaptain>
         </pirate>
+        <pirate>
+            <pirateName>Sidney "Red Locks" Macgregor</pirateName>
+            <realName>Evan Bernard</realName>
+            <pirateShipId>2</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
+        <pirate>
+            <pirateName>Tobias "Bearded Beast" Ripper</pirateName>
+            <realName>Andre Gueret</realName>
+            <pirateShipId>4</pirateShipId>
+            <piratePoints>0</piratePoints>
+            <doubloons>0</doubloons>
+            <overallPiratePoints>0</overallPiratePoints>
+            <isTopFivePirate>false</isTopFivePirate>
+            <isOnWinningShip>false</isOnWinningShip>
+            <isCaptain>false</isCaptain>
+        </pirate>
     </pirates>
     <upcomingEvents>
-        <upcomingEvent>
-            <event>Book Club - Clean Code (Ch. 16)</event>
-            <contact>Robert Cole</contact>
-            <date>6/20/18  12:00pm</date>
-            <location>LeSabre</location>
-            <points>30</points>
-        </upcomingEvent>
         <upcomingEvent>
             <event>IOT Club</event>
             <contact>Jimmy Dotson</contact>
@@ -940,6 +955,13 @@
             <date>6/25/18  3:00pm</date>
             <location>Electra</location>
             <points>20</points>
+        </upcomingEvent>
+		<upcomingEvent>
+            <event>Book Club - Clean Code (Ch. 16)</event>
+            <contact>Robert Cole</contact>
+            <date>6/26/18  12:00pm</date>
+            <location>LeSabre</location>
+            <points>30</points>
         </upcomingEvent>
         <upcomingEvent>
             <event>IOT Club</event>
