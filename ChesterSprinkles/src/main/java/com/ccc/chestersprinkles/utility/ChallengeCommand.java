@@ -46,9 +46,9 @@ public class ChallengeCommand extends Command {
 				return "There is no challenge currently going on.";
 			}
 			else {
-				return "We are currenly working on a problem titled " + chesterSprinkles.getCurrentChallenge()
-								+ "\nWe will be presenting our solutions on " + chesterSprinkles.getCurrentChallengeDate()
-								+ "\nYe can find the information on this challenge here: "
+				return "We are currenly working on a problem titled *" + chesterSprinkles.getCurrentChallenge()
+								+ "*\nWe will be presenting our solutions on *" + chesterSprinkles.getCurrentChallengeDate()
+								+ "*\nYe can find the information on this challenge here: "
 								+ chesterSprinkles.getCurrentChallengeLink();
 			}
 		}

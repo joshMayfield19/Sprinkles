@@ -15,6 +15,7 @@
             <realName>Jimmy Dotson</realName>
             <pointEvents>100 points -- Event: Mac_n_Cheese_Cookoff_cook -- Date: 6/6/18</pointEvents>
             <pointEvents>30 points -- Event: IOT_Meeting -- Date: 6/6/18</pointEvents>
+            <pointEvents>20 points -- Event: IOT_Club -- Date: 6/20/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Gary Gealy</realName>
@@ -23,6 +24,7 @@
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
             <pointEvents>20 points -- Event: IOS_Dev_club -- Date: 6/14/18</pointEvents>
             <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+            <pointEvents>20 points -- Event: IOS_Dev_Club -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Sam Stanley</realName>
@@ -49,6 +51,7 @@
         <pirateHistory>
             <realName>Richard McIlwain</realName>
             <pointEvents>100 points -- Event: Mac_n_Cheese_Cookoff_cook -- Date: 6/6/18</pointEvents>
+            <pointEvents>20 points -- Event: IOT_Club -- Date: 6/20/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Marc Mouner</realName>
@@ -58,12 +61,14 @@
             <realName>Maegan Reynolds</realName>
             <pointEvents>100 points -- Event: Mac_n_Cheese_Cookoff_cook -- Date: 6/6/18</pointEvents>
             <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+            <pointEvents>30 points -- Event: AWS_Technical_Professional_Acc -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Ariel Burke</realName>
             <pointEvents>50 points -- Event: Mac_n_Cheese_Cookoff_admin -- Date: 6/6/18</pointEvents>
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
             <pointEvents>20 points -- Event: IOS_Dev_club -- Date: 6/14/18</pointEvents>
+            <pointEvents>20 points -- Event: IOS_Dev_Club -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>James Fulford</realName>
@@ -74,12 +79,15 @@
             <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
             <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>David Mullen</realName>
             <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
             <pointEvents>20 points -- Event: IOS_Dev_club -- Date: 6/14/18</pointEvents>
+            <pointEvents>20 points -- Event: IOS_Dev_Club -- Date: 6/21/18</pointEvents>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Hannah Chappelle</realName>
@@ -88,15 +96,19 @@
         <pirateHistory>
             <realName>James Windle</realName>
             <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Nathan Ryan</realName>
             <pointEvents>20 points -- Event: RSI_Innovation_meeting -- Date: 6/7/18</pointEvents>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Robert Cole</realName>
             <pointEvents>30 points -- Event: Book_Club_Chapter_15 -- Date: 6/13/18</pointEvents>
             <pointEvents>20 points -- Event: IOS_Dev_club -- Date: 6/14/18</pointEvents>
+            <pointEvents>20 points -- Event: IOS_Dev_Club -- Date: 6/21/18</pointEvents>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Neil Orzechowski</realName>
@@ -129,6 +141,8 @@
         <pirateHistory>
             <realName>Nina Ladner</realName>
             <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+            <pointEvents>30 points -- Event: AWS_Technical_Professional_Acc -- Date: 6/21/18</pointEvents>
+            <pointEvents>30 points -- Event: AWS_Business_Professional_Acc -- Date: 6/21/18</pointEvents>
         </pirateHistory>
         <pirateHistory>
             <realName>Justin Eberlein</realName>
@@ -141,6 +155,14 @@
         <pirateHistory>
             <realName>Annise Bruley</realName>
             <pointEvents>20 points -- Event: LOGO_Club -- Date: 6/18/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Laura Fain</realName>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
+        </pirateHistory>
+        <pirateHistory>
+            <realName>Michael Morris</realName>
+            <pointEvents>30 points -- Event: RSI_Innovation -- Date: 6/21/18</pointEvents>
         </pirateHistory>
     </pirateHistories>
 </pirate_points_hist>
