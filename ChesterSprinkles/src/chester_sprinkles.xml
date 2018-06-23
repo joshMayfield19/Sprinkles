@@ -119,5 +119,6 @@
         <command>*Submitted by:* Robert Cole --- *Command:* !manOverboard - Rescues the last person to have walked the plank</command>
         <command>*Submitted by:* Robert Cole --- *Command:* Natural language parsing for commands :stuck_out_tongue:</command>
         <command>*Submitted by:* Josh Mayfield --- *Command:* !whosThePlankiest - Top five plank walkers</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !unicornOfTheSea - Displays a random Narwhal picture</command>
     </commands>
 </chester_sprinkles>
