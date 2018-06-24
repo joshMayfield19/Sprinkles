@@ -8,12 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ccc.chestersprinkles.model.Pirate;
 import com.ccc.chestersprinkles.model.PirateShip;
 
 public class PirateShipDao {
 	private static final String GET_TOP_SHIPS = "select ship_id, name, captain_user_id, ship_points, total_points, crew from pirate_ship order by ship_points desc";
-	private static final String GET_SHIP_BY_ID = "select ship_id, name, captain_user_id, ship_points, total_points, crew from pirate_ship"
+	private static final String GET_SHIP_BY_ID = "select ship_id, name, captain_user_id, ship_points, total_points, crew"
 			+ " from pirate_ship where ship_id =?";
+	private static final String UPDATE_SHIP_POINTS = "update pirate_ship set ship_points = ?, total_points = ? where ship_id = ?";
 	
 	public List<PirateShip> getTopShips() throws SQLException {
 		List<PirateShip> pirateShips = new ArrayList<PirateShip>(); 
@@ -78,5 +80,35 @@ public class PirateShipDao {
 	    }
 	    
 	    return pirateShip;
+	}
+	
+	public void updatePoints(int points, int shipId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_SHIP_POINTS);
+	    	
+	    	stmt.setInt(1, points);
+	    	stmt.setInt(2,  points);
+	    	stmt.setInt(3, shipId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
 	}
 }

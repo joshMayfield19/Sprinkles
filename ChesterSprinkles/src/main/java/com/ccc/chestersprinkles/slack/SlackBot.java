@@ -72,12 +72,6 @@ public class SlackBot extends Bot {
 	private PresentationService presentationService;
 	
 	@Autowired
-	private PirateService pirateService;
-	
-	@Autowired
-	private PirateShipService pirateShipService;
-	
-	@Autowired
 	private ParrotPhraseService parrotPhraseService;
 	
 	@Autowired
@@ -85,6 +79,9 @@ public class SlackBot extends Bot {
 	
 	@Autowired
 	private ChallengeIdeaService challengeIdeaService;
+	
+	@Autowired
+	private PiratePointsCommand piratePointsCommand;
 	
 	//private static final String JOSH_ID = "U2AR5EH8U";
 
@@ -373,7 +370,7 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!addPoints(.*))$")
 	public void addPoints(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getAddPointsCommandResponse(event);
+		String commandResponse = piratePointsCommand.getAddPointsCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));

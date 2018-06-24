@@ -38,4 +38,12 @@ public class PirateService {
 
 		return null;
 	}
+	
+	public Pirate getPirateByName(String firstName, String lastName) {
+		return pirateDao.getPirateByName(firstName, lastName);
+	}
+	
+	public void updatePoints(int points, int pirateId) {
+		pirateDao.updatePoints(points, pirateId);
+	}
 }

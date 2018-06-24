@@ -5,18 +5,26 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Component;
 
 import com.ccc.chestersprinkles.model.ParrotLanguageStorage;
 import com.ccc.chestersprinkles.model.Pirate;
 import com.ccc.chestersprinkles.model.PirateHistory;
 import com.ccc.chestersprinkles.model.PiratePointsData;
 import com.ccc.chestersprinkles.model.PiratePointsDataHistory;
+import com.ccc.chestersprinkles.model.PiratePointsHistory;
 import com.ccc.chestersprinkles.model.PirateShip;
 import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.service.PiratePointsHistoryService;
+import com.ccc.chestersprinkles.service.PirateService;
+import com.ccc.chestersprinkles.service.PirateShipService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
 
+@Component
 public class PiratePointsCommand extends Command {
 	private static int PRIDE_OF_TIDE = 1;
 	private static int SCURVY_SUN = 2;
@@ -36,6 +44,18 @@ public class PiratePointsCommand extends Command {
 
 	private static final String KD_SPRINKLES_CHANNEL = "G7S3DCZAB";
 	private static final String CODING_CHALLENGE_CHANNEL = "C5VRF4892";
+	
+	@Autowired
+	private static SlackUserService slackUserService;
+	
+	@Autowired
+	private PirateService pirateService;
+	
+	@Autowired
+	private PirateShipService pirateShipService;
+	
+	@Autowired
+	private PiratePointsHistoryService piratePointsHistoryService;
 	
 	private static boolean isAllowedUser(Event event) {
 		return JOSH_ID.equals(event.getUserId()) || KD_ID.equals(event.getUserId()) || CALEB_ID.equals(event.getUserId());
@@ -294,71 +314,29 @@ public class PiratePointsCommand extends Command {
 		return null;
 	}
 	
-	public static String getAddPointsCommandResponse(Event event) {
+	public String getAddPointsCommandResponse(Event event) {
 		if (validateInput(event) && isJoshUser(event)) {
-			String inputString = event.getText();
-			String[] inputStringSplit = inputString.split(" ");
-			String user = inputStringSplit[1] + " " + inputStringSplit[2];
-			int pointsToAdd = Integer.valueOf(inputStringSplit[3]);
-			String dateOfEvent = inputStringSplit[4];
-			String typeOfEvent = inputStringSplit[5];
+			String[] inputString = event.getText().split(" ");
+			String user = inputString[1] + " " + inputString[2];
+			int pointsToAdd = Integer.valueOf(inputString[3]);
+			String dateOfEvent = inputString[4];
+			String typeOfEvent = inputString[5];
 			
-			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
-			PiratePointsDataHistory piratePointsDataHistory = PiratePointsDataHistory.getPiratePointsDataHistory();
+			Pirate pirate = pirateService.getPirateByName(inputString[1], inputString[2]);
+			pirateService.updatePoints((pirate.getPiratePoints() + pointsToAdd), pirate.getPirateId());
 			
-			List<Pirate> pirates = piratePointsData.getPirates();
-			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
-			String shipName = "";
+			PirateShip pirateShip = pirateShipService.getShipById(pirate.getPirateShipId());
+			pirateShipService.updatePoints((pirateShip.getShipPoints() + pointsToAdd), pirate.getPirateShipId());
 			
-			for (Pirate pirate : pirates) {
-				if (pirate.getRealName().equals(user)) {
-					int currentPoints = pirate.getPiratePoints();
-					int currentOverall = pirate.getOverallPiratePoints();
-					pirate.setPiratePoints(currentPoints + pointsToAdd);
-					pirate.setOverallPiratePoints(currentOverall + pointsToAdd);
-					
-					for (PirateShip pirateShip : pirateShips) {
-						if (pirateShip.getShipId() == pirate.getPirateShipId()) {
-							int currentShipPoints = pirateShip.getShipPoints();
-							int currentOverallShip = pirateShip.getOverallShipPoints();
-							pirateShip.setShipPoints(currentShipPoints + pointsToAdd);
-							pirateShip.setOverallShipPoints(currentOverallShip + pointsToAdd);
-							shipName = pirateShip.getShipName();
-						}
-					}
-				}
-			}
+			PiratePointsHistory newHistoryEvent = new PiratePointsHistory();
+			newHistoryEvent.setPirateId(pirate.getUserId());
+			newHistoryEvent.setDateOfEvent(dateOfEvent);
+			newHistoryEvent.setEvent(typeOfEvent);
+			newHistoryEvent.setPoints(pointsToAdd);
 			
-			List<PirateHistory> pirateHistories = piratePointsDataHistory.getPirates();
-			boolean pirateHistoryFound = false;
+			piratePointsHistoryService.addNewEvent(newHistoryEvent);
 			
-			for (PirateHistory pirateHistory : pirateHistories) {
-				if (pirateHistory.getRealName().equals(user)) {
-					pirateHistoryFound = true;
-					List<String> events = pirateHistory.getPointEvents();
-					events.add(pointsToAdd + " points -- Event: " + typeOfEvent + " -- Date: " + dateOfEvent);
-				}
-			}
-			
-			if (!pirateHistoryFound) {
-				PirateHistory newHistory = new PirateHistory();
-				newHistory.setRealName(user);
-			
-				List<String> newEvents = new ArrayList<String>();
-				newEvents.add(pointsToAdd + " points -- Event: " + typeOfEvent + " -- Date: " + dateOfEvent);
-				newHistory.setPointEvents(newEvents);
-			
-				pirateHistories.add(newHistory);
-			}
-			
-			piratePointsDataHistory.setPirates(pirateHistories);
-			piratePointsDataHistory.writePiratePointsDataHistory(piratePointsDataHistory);
-			
-			piratePointsData.setPirates(pirates);
-			piratePointsData.setPirateShips(pirateShips);
-			PiratePointsData.writePiratePointsData(piratePointsData);
-			
-			return "You have added " + pointsToAdd + " points to " + user + "'s and " + shipName + "'s total.";
+			return "You have added " + pointsToAdd + " points to " + user + "'s and " + pirateShip.getShipName() + "'s total.";
 		}
 		
 		return null;

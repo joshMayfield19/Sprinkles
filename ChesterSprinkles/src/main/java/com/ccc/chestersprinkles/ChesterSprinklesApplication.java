@@ -13,6 +13,7 @@ import com.ccc.chestersprinkles.dao.ChallengeIdeaDao;
 import com.ccc.chestersprinkles.dao.CommandIdeaDao;
 import com.ccc.chestersprinkles.dao.ParrotPhraseDao;
 import com.ccc.chestersprinkles.dao.PirateDao;
+import com.ccc.chestersprinkles.dao.PiratePointsHistoryDao;
 import com.ccc.chestersprinkles.dao.PirateShipDao;
 import com.ccc.chestersprinkles.dao.PresentationDao;
 import com.ccc.chestersprinkles.dao.SlackUserDao;
@@ -23,10 +24,11 @@ import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
 import com.ccc.chestersprinkles.service.CommandIdeaService;
 import com.ccc.chestersprinkles.service.ParrotPhraseService;
+import com.ccc.chestersprinkles.service.PiratePointsHistoryService;
 import com.ccc.chestersprinkles.service.PresentationService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
-@SpringBootApplication(scanBasePackages = {"me.ramswaroop.jbot", "com.ccc.chestersprinkles"})
+@SpringBootApplication(scanBasePackages = {"me.ramswaroop.jbot", "com.ccc.chestersprinkles", "com.ccc.chestersprinkles.utility"})
 public class ChesterSprinklesApplication {
 
 	public static void main(String[] args) throws Exception {
@@ -119,5 +121,15 @@ public class ChesterSprinklesApplication {
 	@Bean
 	public ChallengeIdeaDao challengeIdeaDao() {
 		return new ChallengeIdeaDao();
+	}
+	
+	@Bean
+	public PiratePointsHistoryService piratePointsHistoryService() {
+		return new PiratePointsHistoryService();
+	}
+	
+	@Bean
+	public PiratePointsHistoryDao piratePointsHistoryDao() {
+		return new PiratePointsHistoryDao();
 	}
 }

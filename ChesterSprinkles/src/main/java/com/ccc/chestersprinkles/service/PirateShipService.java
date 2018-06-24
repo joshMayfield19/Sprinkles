@@ -38,4 +38,8 @@ public class PirateShipService {
 
 		return null;
 	}
+	
+	public void updatePoints(int points, int shipId) {
+		pirateShipDao.updatePoints(points, shipId);
+	}
 }
