@@ -46,4 +46,8 @@ public class PirateService {
 	public void updatePoints(int points, int pirateId) {
 		pirateDao.updatePoints(points, pirateId);
 	}
+	
+	public void updateWalkThePlank(int plankNum, int pirateId) {
+		pirateDao.updateWalkThePlank(plankNum, pirateId);
+	}
 }

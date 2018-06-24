@@ -12,13 +12,14 @@ import com.ccc.chestersprinkles.model.Pirate;
 
 public class PirateDao {
 	private static final String GET_TOP_FIVE_PIRATES = "select pirate_id, user_id, ship_id, current_points, total_points, "
-			+ "doubloons, pirate_name, top_five, captain from pirate where rownum <= 5 order by current_points desc";
+			+ "doubloons, pirate_name, top_five, captain, plank_num from pirate where rownum <= 5 order by current_points desc";
 	private static final String GET_PIRATE_BY_USER_ID = "select pirate_id, user_id, ship_id, current_points, total_points, "
-			+ "doubloons, pirate_name, top_five, captain from pirate where user_id=?";
+			+ "doubloons, pirate_name, top_five, captain, plank_num from pirate where user_id=?";
 	private static final String GET_PIRATE_BY_NAME = "select pirate_id, user_id, ship_id, current_points, total_points, "
-			+ "doubloons, pirate_name, top_five, captain from pirate inner join slack_user on pirate.user_id = slack_user.slack_user_id "
+			+ "doubloons, pirate_name, top_five, captain, plank_num from pirate inner join slack_user on pirate.user_id = slack_user.slack_user_id "
 			+ "where slack_user.first_name=? and slack_user.last_name=?";
 	private static final String UPDATE_PIRATE_POINTS = "update pirate set total_points = ?, current_points = ? where user_id = ?";
+	private static final String UPDATE_PLANK = "update pirate set plank_num = ? where user_id = ?";
 	
 	public List<Pirate> getTopFivePirates() throws SQLException {
 		List<Pirate> pirates = new ArrayList<Pirate>(); 
@@ -41,6 +42,7 @@ public class PirateDao {
 	            pirate.setPirateName(rs.getString("pirate_name"));
 	            pirate.setTopFivePirate(rs.getInt("top_five") == 1 ? true : false);
 	            pirate.setCaptain(rs.getInt("captain") == 1 ? true : false);
+	            pirate.setPlankNum(rs.getInt("plank_num"));
 	            pirates.add(pirate);
 	        }
 	        
@@ -78,6 +80,7 @@ public class PirateDao {
 	            pirate.setPirateName(rs.getString("pirate_name"));
 	            pirate.setTopFivePirate(rs.getInt("top_five") == 1 ? true : false);
 	            pirate.setCaptain(rs.getInt("captain") == 1 ? true : false);
+	            pirate.setPlankNum(rs.getInt("plank_num"));
 	        }
 	    } catch (SQLException e ) {
 	        //JDBCTutorialUtilities.printSQLException(e);
@@ -114,6 +117,7 @@ public class PirateDao {
 	            pirate.setPirateName(rs.getString("pirate_name"));
 	            pirate.setTopFivePirate(rs.getInt("top_five") == 1 ? true : false);
 	            pirate.setCaptain(rs.getInt("captain") == 1 ? true : false);
+	            pirate.setPlankNum(rs.getInt("plank_num"));
 	        }
 	    } catch (SQLException e ) {
 	        //JDBCTutorialUtilities.printSQLException(e);
@@ -145,6 +149,35 @@ public class PirateDao {
 	    	stmt.setInt(1, points);
 	    	stmt.setInt(2,  points);
 	    	stmt.setInt(3, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void updateWalkThePlank(int plankNum, int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_PLANK);
+	    	
+	    	stmt.setInt(1, plankNum);
+	    	stmt.setInt(2, pirateId);
 
 			// execute update SQL stetement
 	    	stmt.executeUpdate();

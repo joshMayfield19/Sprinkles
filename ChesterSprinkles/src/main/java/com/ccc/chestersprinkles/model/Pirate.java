@@ -12,6 +12,7 @@ public class Pirate implements Comparable<Pirate> {
 	private boolean isTopFivePirate;
 	private boolean isOnWinningShip;
 	private boolean isCaptain;
+	private int plankNum;
 	
 	public Pirate () {
 		
@@ -76,6 +77,14 @@ public class Pirate implements Comparable<Pirate> {
 
 	public int getUserId() {
 		return userId;
+	}
+
+	public int getPlankNum() {
+		return plankNum;
+	}
+
+	public void setPlankNum(int plankNum) {
+		this.plankNum = plankNum;
 	}
 
 	public void setUserId(int userId) {

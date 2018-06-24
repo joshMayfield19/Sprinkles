@@ -19,6 +19,7 @@
         <presenter>Caleb Hall</presenter>
         <presenter>Michael Peacock</presenter>
         <presenter>Justin Eberlein</presenter>
+        <presenter>David Mullen</presenter>
     </presenters>
     <allTimePresenters>
         <allTimePresenter>
@@ -117,5 +118,7 @@
         <command>*Submitted by:* Michael Morris --- *Command:* !inPirate $var = Use a regex expression on provided string to translate it into pirate speak, savvy?</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !manOverboard - Rescues the last person to have walked the plank</command>
         <command>*Submitted by:* Robert Cole --- *Command:* Natural language parsing for commands :stuck_out_tongue:</command>
+        <command>*Submitted by:* Josh Mayfield --- *Command:* !whosThePlankiest - Top five plank walkers</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !unicornOfTheSea - Displays a random Narwhal picture</command>
     </commands>
 </chester_sprinkles>

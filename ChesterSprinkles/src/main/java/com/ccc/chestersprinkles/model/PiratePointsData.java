@@ -24,6 +24,10 @@ public class PiratePointsData {
 	@XmlElementWrapper(name="pirates")
 	@XmlElement(name="pirate")
 	private List<Pirate> pirates;
+	
+	@XmlElementWrapper(name="upcomingEvents")
+	@XmlElement(name="upcomingEvent")
+	private List<UpcomingEvent> upcomingEvents;
     
     public PiratePointsData() {
     	
@@ -75,5 +79,13 @@ public class PiratePointsData {
 
 	public void setPirates(List<Pirate> pirates) {
 		this.pirates = pirates;
+	}
+	
+	public List<UpcomingEvent> getUpcomingEvents() {
+		return upcomingEvents;
+	}
+
+	public void setUpcomingEvents(List<UpcomingEvent> upcomingEvents) {
+		this.upcomingEvents = upcomingEvents;
 	}
 }

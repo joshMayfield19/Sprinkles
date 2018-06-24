@@ -23,7 +23,7 @@ public class PresenterCommand extends Command {
 	private static SlackUserService slackUserService;
 	
 	@Autowired
-	private static PresentationService presentationService;
+	private PresentationService presentationService;
 	
 	public static String getPresentationTotalCommandResponse(Event event) {
 		if (validateInput(event)) {
@@ -65,7 +65,7 @@ public class PresenterCommand extends Command {
 
 	public static String getPresentersCommandResponse(Event event) {
 		if (validateInput(event)) {
-			List<Presentation> currentPresenters = presentationService.getCurrentPresentation();
+			//List<Presentation> currentPresenters = presentationService.getCurrentPresentation();
 			ChesterSprinklesData chesterSprinkles = ChesterSprinklesData.getSprinklesData();
 			
 			if (StringUtils.isEmpty(chesterSprinkles.getCurrentChallenge())) {
