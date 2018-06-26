@@ -50,4 +50,8 @@ public class PirateService {
 	public void updateWalkThePlank(int plankNum, int pirateId) {
 		pirateDao.updateWalkThePlank(plankNum, pirateId);
 	}
+	
+	public void updateDoubloons(int doubloons, int pirateId) {
+		pirateDao.updateDoubloons(doubloons, pirateId);
+	}
 }

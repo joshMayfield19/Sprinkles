@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
     <raffleDateTime>6/28/18</raffleDateTime>
-    <raffleStartingTicket></raffleStartingTicket>
-    <raffleEndingTicket></raffleEndingTicket>
+    <raffleStartingTicket>078154</raffleStartingTicket>
+    <raffleEndingTicket>078196</raffleEndingTicket>
     <raffleExcludedTickets></raffleExcludedTickets>
     <currentChallenge>S.O.S.</currentChallenge>
     <currentChallengeDate>6/25/18</currentChallengeDate>
@@ -16,9 +16,7 @@
         <presenter>Dave Arlington</presenter>
         <presenter>James Fulford</presenter>
         <presenter>Christopher Nabors</presenter>
-        <presenter>Caleb Hall</presenter>
         <presenter>Michael Peacock</presenter>
-        <presenter>Justin Eberlein</presenter>
         <presenter>David Mullen</presenter>
     </presenters>
     <allTimePresenters>

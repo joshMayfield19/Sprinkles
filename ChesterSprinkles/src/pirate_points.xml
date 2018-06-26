@@ -926,27 +926,6 @@
     </pirates>
     <upcomingEvents>
         <upcomingEvent>
-            <event>Coding Challenge Pirates: S.O.S. (Attending)</event>
-            <contact>Josh Mayfield</contact>
-            <date>6/25/18  12:00pm</date>
-            <location>LeSabre</location>
-            <points>50</points>
-        </upcomingEvent>
-        <upcomingEvent>
-            <event>Coding Challenge Pirates: S.O.S. (Presenting)</event>
-            <contact>Josh Mayfield</contact>
-            <date>6/25/18  12:00pm</date>
-            <location>LeSabre</location>
-            <points>150</points>
-        </upcomingEvent>
-        <upcomingEvent>
-            <event>LOGO Training (Functional Programming)</event>
-            <contact>Dave Arlington</contact>
-            <date>6/25/18  3:00pm</date>
-            <location>Electra</location>
-            <points>20</points>
-        </upcomingEvent>
-        <upcomingEvent>
             <event>Tech Tuesday (A High-Level look at AWS)</event>
             <contact>Pat Morton</contact>
             <date>6/26/18  11:00am</date>
@@ -956,7 +935,7 @@
         <upcomingEvent>
             <event>Book Club - Clean Code (Ch. 16)</event>
             <contact>Robert Cole</contact>
-            <date>6/26/18  12:00pm</date>
+            <date>6/27/18  12:00pm</date>
             <location>LeSabre</location>
             <points>30</points>
         </upcomingEvent>
