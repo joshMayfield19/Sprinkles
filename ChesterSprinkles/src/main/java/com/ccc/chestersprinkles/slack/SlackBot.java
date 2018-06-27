@@ -541,6 +541,15 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!activate(.*))$")
+	public void activateDoubloons(WebSocketSession session, Event event) {
+		String commandResponse = piratePointsCommand.getActivateDoubloonsCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatAreDoubloons)$")
 	public void whatAreDoubloons(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getWhatAreDoubloonsHelpCommandResponse(event, slackUserService);

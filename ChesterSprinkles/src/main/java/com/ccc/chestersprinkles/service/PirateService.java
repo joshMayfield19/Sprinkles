@@ -28,9 +28,9 @@ public class PirateService {
 		return null;
 	}
 	
-	public Pirate getPirateByUser(int userId){
+	public Pirate getPirateBySlackId(String slackId){
 		try {
-			return pirateDao.getPirateByUser(userId);
+			return pirateDao.getPirateBySlackId(slackId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,12 +39,16 @@ public class PirateService {
 		return null;
 	}
 	
+	public List<Pirate> getPiratesByShipId(int shipId) {
+		return pirateDao.getPiratesByShipId(shipId);
+	}
+	
 	public Pirate getPirateByName(String firstName, String lastName) {
 		return pirateDao.getPirateByName(firstName, lastName);
 	}
 	
-	public void updatePoints(int points, int pirateId) {
-		pirateDao.updatePoints(points, pirateId);
+	public void updatePoints(int points, int userId) {
+		pirateDao.updatePoints(points, userId);
 	}
 	
 	public void updateWalkThePlank(int plankNum, int pirateId) {
@@ -53,5 +57,9 @@ public class PirateService {
 	
 	public void updateDoubloons(int doubloons, int pirateId) {
 		pirateDao.updateDoubloons(doubloons, pirateId);
+	}
+	
+	public void updateDoubloonsActivation(Pirate pirate) {
+		pirateDao.updateDoubloonsActivation(pirate);
 	}
 }

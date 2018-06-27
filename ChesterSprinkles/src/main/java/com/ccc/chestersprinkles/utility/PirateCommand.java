@@ -27,9 +27,9 @@ public class PirateCommand extends Command {
 			
 			SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size()));
 			
-			Pirate pirate = pirateService.getPirateByUser(randomSlackUser.getSlackUserId());
+			Pirate pirate = pirateService.getPirateBySlackId(randomSlackUser.getSlackId());
 			int currentPlankNum = pirate.getPlankNum();
-			pirateService.updateWalkThePlank((currentPlankNum + 1), randomSlackUser.getSlackUserId());
+			pirateService.updateWalkThePlank((currentPlankNum + 1), pirate.getPirateId());
 			
 			return "Ahoy! It's time for " + randomSlackUser.getFirstName()  + " " + randomSlackUser.getLastName() + " to walk the plank! Get moving!";
 		}

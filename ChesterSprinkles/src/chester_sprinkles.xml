@@ -118,5 +118,6 @@
         <command>*Submitted by:* Robert Cole --- *Command:* Natural language parsing for commands :stuck_out_tongue:</command>
         <command>*Submitted by:* Josh Mayfield --- *Command:* !whosThePlankiest - Top five plank walkers</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !unicornOfTheSea - Displays a random Narwhal picture</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !gimme Get some random sea junk</command>
     </commands>
 </chester_sprinkles>

@@ -926,13 +926,6 @@
     </pirates>
     <upcomingEvents>
         <upcomingEvent>
-            <event>Tech Tuesday (A High-Level look at AWS)</event>
-            <contact>Pat Morton</contact>
-            <date>6/26/18  11:00am</date>
-            <location>LeSabre</location>
-            <points>50</points>
-        </upcomingEvent>
-        <upcomingEvent>
             <event>Book Club - Clean Code (Ch. 16)</event>
             <contact>Robert Cole</contact>
             <date>6/27/18  12:00pm</date>

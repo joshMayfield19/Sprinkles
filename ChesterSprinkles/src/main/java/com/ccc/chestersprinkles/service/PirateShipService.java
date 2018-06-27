@@ -42,4 +42,8 @@ public class PirateShipService {
 	public void updatePoints(int points, int shipId) {
 		pirateShipDao.updatePoints(points, shipId);
 	}
+	
+	public void updateCaptainByShipId(int shipId, int captain) {
+		pirateShipDao.updateCaptainByShipId(shipId, captain);
+	}
 }

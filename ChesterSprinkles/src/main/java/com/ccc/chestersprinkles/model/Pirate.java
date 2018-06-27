@@ -13,6 +13,8 @@ public class Pirate implements Comparable<Pirate> {
 	private boolean isOnWinningShip;
 	private boolean isCaptain;
 	private int plankNum;
+	private SlackUser slackUser;
+	private DoubloonActivity doubloonActivity;
 	
 	public Pirate () {
 		
@@ -28,6 +30,8 @@ public class Pirate implements Comparable<Pirate> {
 		this.isTopFivePirate = false;
 		this.isOnWinningShip = false;
 		this.isCaptain = false;
+		this.slackUser = new SlackUser();
+		this.doubloonActivity = new DoubloonActivity();
 	}
 	
 	public String getPirateName() {
@@ -81,6 +85,22 @@ public class Pirate implements Comparable<Pirate> {
 
 	public int getPlankNum() {
 		return plankNum;
+	}
+
+	public SlackUser getSlackUser() {
+		return slackUser;
+	}
+
+	public DoubloonActivity getDoubloonActivity() {
+		return doubloonActivity;
+	}
+
+	public void setDoubloonActivity(DoubloonActivity doubloonActivity) {
+		this.doubloonActivity = doubloonActivity;
+	}
+
+	public void setSlackUser(SlackUser slackUser) {
+		this.slackUser = slackUser;
 	}
 
 	public void setPlankNum(int plankNum) {
