@@ -174,11 +174,12 @@ public class PiratePointsCommand extends Command {
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
-				responses.add("You set sail and find " + doubloonsFound + " doubloons!");
+				responses.add("You set sail and find *" + doubloonsFound + "* doubloons!\n"
+						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
-					responses.add(pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
-							+ " just found a whopping 5 doubloons while sailing!!!");
+					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+							+ "* just found a whopping *5 doubloons* while sailing!!!");
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
@@ -216,11 +217,12 @@ public class PiratePointsCommand extends Command {
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
-				responses.add("You initiate a battle and find " + doubloonsFound + " doubloons!");
+				responses.add("You initiate a battle and find *" + doubloonsFound + "* doubloons!\n"
+						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
-					responses.add(pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
-							+ " just found a whopping 5 doubloons while battling!!!");
+					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+							+ "* just found a whopping *5 doubloons* while battling!!!");
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
@@ -257,11 +259,12 @@ public class PiratePointsCommand extends Command {
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
-				responses.add("You explore a nearby island and find " + doubloonsFound + " doubloons!");
+				responses.add("You explore a nearby island and find *" + doubloonsFound + "* doubloons!\n"
+						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
-					responses.add(pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
-							+ " just found a whopping 5 doubloons while exploring an island!!!");
+					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+							+ "* just found a whopping *5 doubloons* while exploring an island!!!");
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
@@ -299,11 +302,12 @@ public class PiratePointsCommand extends Command {
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
-				responses.add("While on shoreleave you find " + doubloonsFound + " doubloons!");
+				responses.add("While on shoreleave you find *" + doubloonsFound + "* doubloons!\n"
+						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
-					responses.add(pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
-							+ " just found a whopping 5 doubloons while on shoreleave!!!");
+					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+							+ "* just found a whopping *5 doubloons* while on shoreleave!!!");
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
@@ -338,16 +342,16 @@ public class PiratePointsCommand extends Command {
 				return "The doubloons commands are not active at this point.";
 			} else if (type.equals("shoreleave") && StringUtils.isNotEmpty(activity.getLastShoreleaveDate())
 					&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastShoreleaveDate()))) {
-				return "You can only run the !shoreleave command once a day";
+				return "You can only run the !shoreleave command once a day.";
 			} else if (type.equals("explore") && StringUtils.isNotEmpty(activity.getLastExploreDate())
 					&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastExploreDate()))) {
-				return "You can only run the !explore command once a day";
+				return "You can only run the !explore command once a day.";
 			} else if (type.equals("setSail") && StringUtils.isNotEmpty(activity.getLastSetSailDate())
 					&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastSetSailDate()))) {
-				return "You can only run the !setSail command once a day";
+				return "You can only run the !setSail command once a day.";
 			} else if (type.equals("battle") && StringUtils.isNotEmpty(activity.getLastBattleDate())
 					&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastBattleDate()))) {
-				return "You can only run the !battle command once a day";
+				return "You can only run the !battle command once a day.";
 			}
 
 		} catch (ParseException e) {
