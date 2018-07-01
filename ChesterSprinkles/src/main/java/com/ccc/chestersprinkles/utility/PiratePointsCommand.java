@@ -169,7 +169,11 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 
 			List<String> responses = new ArrayList<String>();
-
+			
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+			
 			if (pirate.isCaptain()) {
 				String message = validateDailyDoubloonCount(pirate, "setSail");
 
@@ -212,7 +216,11 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 
 			List<String> responses = new ArrayList<String>();
-
+			
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+			
 			if (pirate.isCaptain()) {
 				String message = validateDailyDoubloonCount(pirate, "battle");
 
@@ -254,7 +262,11 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 
 			List<String> responses = new ArrayList<String>();
-
+			
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+			
 			if (pirate.isOnWinningShip() || pirate.isTopFivePirate()) {
 				String message = validateDailyDoubloonCount(pirate, "explore");
 
@@ -298,6 +310,10 @@ public class PiratePointsCommand extends Command {
 
 			List<String> responses = new ArrayList<String>();
 
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+			
 			if (pirate.isOnWinningShip() || pirate.isTopFivePirate()) {
 				String message = validateDailyDoubloonCount(pirate, "shoreleave");
 
@@ -425,112 +441,6 @@ public class PiratePointsCommand extends Command {
 	public static String getPiratePointsHelpCommandResponse(Event event, SlackUserService slackUserService) {
 		if (validateInput(event)) {
 			return "You find all of the new commands here: https://drive.google.com/open?id=1uiRupRX_9zF_C8AUDpnUC3fsSWNFVs6A";
-		}
-
-		return null;
-	}
-
-	public static String getStartNewAdventureCommandResponse(Event event) {
-		if (validateInput(event) && isJoshUser(event)) {
-			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
-
-			List<Pirate> pirates = piratePointsData.getPirates();
-			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
-
-			for (Pirate pirate : pirates) {
-				pirate.setPiratePoints(0);
-			}
-
-			for (PirateShip pirateShip : pirateShips) {
-				pirateShip.setShipPoints(0);
-			}
-
-			piratePointsData.setPirates(pirates);
-			piratePointsData.setPirateShips(pirateShips);
-			PiratePointsData.writePiratePointsData(piratePointsData);
-
-			return "You have reset all of the adventure points.";
-		}
-
-		return null;
-	}
-
-	public static String getCalculateLeadersCommandResponse(Event event) {
-		if (validateInput(event) && isJoshUser(event)) {
-			PiratePointsData piratePointsData = PiratePointsData.getPiratePointsData();
-			List<Pirate> pirates = piratePointsData.getPirates();
-			List<PirateShip> pirateShips = piratePointsData.getPirateShips();
-
-			List<Pirate> blueInsanityPirates = new ArrayList<Pirate>();
-			List<Pirate> prideOfTidePirates = new ArrayList<Pirate>();
-			List<Pirate> corruptedWolfPirates = new ArrayList<Pirate>();
-			List<Pirate> scurvySunPirates = new ArrayList<Pirate>();
-			List<Pirate> cryOfDaggerPirates = new ArrayList<Pirate>();
-
-			for (Pirate pirate : pirates) {
-				pirate.setOnWinningShip(false);
-				pirate.setTopFivePirate(false);
-				pirate.setCaptain(false);
-
-				if (pirate.getPirateShipId() == PRIDE_OF_TIDE) {
-					prideOfTidePirates.add(pirate);
-				} else if (pirate.getPirateShipId() == SCURVY_SUN) {
-					scurvySunPirates.add(pirate);
-				} else if (pirate.getPirateShipId() == CRY_OF_DAGGER) {
-					cryOfDaggerPirates.add(pirate);
-				} else if (pirate.getPirateShipId() == BLUE_INSANITY) {
-					blueInsanityPirates.add(pirate);
-				} else if (pirate.getPirateShipId() == CORRUPT_WOLF) {
-					corruptedWolfPirates.add(pirate);
-				}
-			}
-
-			Collections.sort(prideOfTidePirates);
-			Collections.sort(scurvySunPirates);
-			Collections.sort(cryOfDaggerPirates);
-			Collections.sort(blueInsanityPirates);
-			Collections.sort(corruptedWolfPirates);
-			Collections.sort(pirates);
-			Collections.sort(pirateShips);
-
-			pirates.get(0).setTopFivePirate(true);
-			pirates.get(1).setTopFivePirate(true);
-			pirates.get(2).setTopFivePirate(true);
-			pirates.get(3).setTopFivePirate(true);
-			pirates.get(4).setTopFivePirate(true);
-
-			for (Pirate pirate : pirates) {
-				if (pirate.getPirateShipId() == pirateShips.get(0).getShipId()) {
-					pirate.setOnWinningShip(true);
-				}
-
-				if (pirate.getRealName().equals(cryOfDaggerPirates.get(0).getRealName())
-						|| pirate.getRealName().equals(prideOfTidePirates.get(0).getRealName())
-						|| pirate.getRealName().equals(blueInsanityPirates.get(0).getRealName())
-						|| pirate.getRealName().equals(scurvySunPirates.get(0).getRealName())
-						|| pirate.getRealName().equals(corruptedWolfPirates.get(0).getRealName())) {
-					pirate.setCaptain(true);
-
-					for (PirateShip pirateShip : pirateShips) {
-						if (pirate.getPirateShipId() == pirateShip.getShipId()) {
-							// pirateShip.setShipCaptain(pirate.getPirateName()
-							// + " (" + pirate.getRealName() + ")");
-						}
-					}
-				}
-			}
-
-			piratePointsData.setPirates(pirates);
-			piratePointsData.setPirateShips(pirateShips);
-			PiratePointsData.writePiratePointsData(piratePointsData);
-
-			return "*The winning ship is* " + pirateShips.get(0).getShipName() + "!\n"
-					+ "*The Top Five Pirates are:*\n " + pirates.get(0).getPirateName() + " ("
-					+ pirates.get(0).getRealName() + ")\n" + pirates.get(1).getPirateName() + " ("
-					+ pirates.get(1).getRealName() + ")\n" + pirates.get(2).getPirateName() + " ("
-					+ pirates.get(2).getRealName() + ")\n" + pirates.get(3).getPirateName() + " ("
-					+ pirates.get(3).getRealName() + ")\n" + pirates.get(4).getPirateName() + " ("
-					+ pirates.get(4).getRealName() + ")\n" + "*The captains have also been assigned for each ship!*";
 		}
 
 		return null;
@@ -678,6 +588,10 @@ public class PiratePointsCommand extends Command {
 					captain = pirateCapt.getPirateName();
 					break;
 				}
+			}
+			
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
 			
 			if (pirate != null && pirateShip != null) {
