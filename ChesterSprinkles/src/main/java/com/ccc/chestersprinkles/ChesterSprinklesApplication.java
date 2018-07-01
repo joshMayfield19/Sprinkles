@@ -12,6 +12,8 @@ import com.ccc.chestersprinkles.dao.ChallengeDao;
 import com.ccc.chestersprinkles.dao.ChallengeIdeaDao;
 import com.ccc.chestersprinkles.dao.CommandIdeaDao;
 import com.ccc.chestersprinkles.dao.DoubloonActivityDao;
+import com.ccc.chestersprinkles.dao.DoubloonItemHistoryDao;
+import com.ccc.chestersprinkles.dao.DoubloonShopItemDao;
 import com.ccc.chestersprinkles.dao.ParrotPhraseDao;
 import com.ccc.chestersprinkles.dao.PirateDao;
 import com.ccc.chestersprinkles.dao.PiratePointsHistoryDao;
@@ -25,6 +27,8 @@ import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
 import com.ccc.chestersprinkles.service.CommandIdeaService;
 import com.ccc.chestersprinkles.service.DoubloonActivityService;
+import com.ccc.chestersprinkles.service.DoubloonItemHistoryService;
+import com.ccc.chestersprinkles.service.DoubloonShopItemService;
 import com.ccc.chestersprinkles.service.ParrotPhraseService;
 import com.ccc.chestersprinkles.service.PiratePointsHistoryService;
 import com.ccc.chestersprinkles.service.PresentationService;
@@ -143,5 +147,25 @@ public class ChesterSprinklesApplication {
 	@Bean
 	public DoubloonActivityDao doubloonActivityDao() {
 		return new DoubloonActivityDao();
+	}
+	
+	@Bean
+	public DoubloonShopItemService doubloonShopItemService() {
+		return new DoubloonShopItemService();
+	}
+	
+	@Bean
+	public DoubloonShopItemDao doubloonShopItemDao() {
+		return new DoubloonShopItemDao();
+	}
+	
+	@Bean
+	public DoubloonItemHistoryService doubloonItemHistoryService() {
+		return new DoubloonItemHistoryService();
+	}
+	
+	@Bean
+	public DoubloonItemHistoryDao doubloonItemHistoryDao() {
+		return new DoubloonItemHistoryDao();
 	}
 }

@@ -14,13 +14,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
 import com.ccc.chestersprinkles.model.SlackUser;
-import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
-import com.ccc.chestersprinkles.service.CommandIdeaService;
-import com.ccc.chestersprinkles.service.ParrotPhraseService;
-import com.ccc.chestersprinkles.service.PirateService;
-import com.ccc.chestersprinkles.service.PirateShipService;
-import com.ccc.chestersprinkles.service.PresentationService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 import com.ccc.chestersprinkles.utility.ChallengeCommand;
 import com.ccc.chestersprinkles.utility.MiscCommand;
@@ -28,14 +22,13 @@ import com.ccc.chestersprinkles.utility.PirateCommand;
 import com.ccc.chestersprinkles.utility.PiratePointsCommand;
 import com.ccc.chestersprinkles.utility.PresenterCommand;
 import com.ccc.chestersprinkles.utility.RaffleCommand;
+import com.ccc.chestersprinkles.utility.ShopCommand;
 
 import me.ramswaroop.jbot.core.slack.Bot;
 import me.ramswaroop.jbot.core.slack.Controller;
 import me.ramswaroop.jbot.core.slack.EventType;
-import me.ramswaroop.jbot.core.slack.models.Channel;
 import me.ramswaroop.jbot.core.slack.models.Event;
 import me.ramswaroop.jbot.core.slack.models.Message;
-import me.ramswaroop.jbot.core.slack.models.RichMessage;
 
 /**
  * A Slack Bot sample. Ye can create multiple bots by just extending
@@ -69,22 +62,13 @@ public class SlackBot extends Bot {
 	private ChallengeService challengeService;
 	
 	@Autowired
-	private PresentationService presentationService;
-	
-	@Autowired
-	private ParrotPhraseService parrotPhraseService;
-	
-	@Autowired
-	private CommandIdeaService commandIdeaService;
-	
-	@Autowired
-	private ChallengeIdeaService challengeIdeaService;
-	
-	@Autowired
 	private PiratePointsCommand piratePointsCommand;
 	
 	@Autowired
 	private PirateCommand pirateCommand;
+	
+	@Autowired
+	private ShopCommand shopCommand;
 	
 	//private static final String JOSH_ID = "U2AR5EH8U";
 
@@ -228,7 +212,7 @@ public class SlackBot extends Bot {
 	 **************************************
 	 */
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatDoWeDoWithADrunkenSailor)$")
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatDoWeDoWithADrunkenSailor|!drunkenSailor)$")
 	public void whatDoWeDoWithADrunkenSailor(WebSocketSession session, Event event) {
 		String commandResponse = PirateCommand.getWhatDoYouDoDrunkerCommandResponse(event);
 		
@@ -475,10 +459,9 @@ public class SlackBot extends Bot {
 		PiratePointsCommand.getGatherParrotLanguageCommandResponse(event);
 	}
 	
-	//	@Controller(events = EventType.DIRECT_MENTION, pattern = "(?i)^(<@U7Q2LFQ9F> parrotSpeak(.*))$")
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!pollyWantACracker)$")
 	public void pollyWantACracker(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getPollyWantACrackerCommandResponse(event);
+		String commandResponse = piratePointsCommand.getPollyWantACrackerCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
@@ -655,6 +638,41 @@ public class SlackBot extends Bot {
 	
 	/**************************************
 	 * 
+	 * 		SHOP COMMANDS
+	 * 
+	 * 
+	 **************************************
+	 */
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!shopItems)$")
+	public void shopItems(WebSocketSession session, Event event) {
+		String commandResponse = shopCommand.getAllShopItems(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyPolly)$")
+	public void buyPolly(WebSocketSession session, Event event) {
+		String commandResponse = shopCommand.buyPollyWantACracker(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyName(.*))$")
+	public void buyName(WebSocketSession session, Event event) {
+		String commandResponse = shopCommand.buyNameChange(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	/**************************************
+	 * 
 	 * 		CHALLENGE COMMANDS
 	 * 
 	 * 
@@ -730,7 +748,7 @@ public class SlackBot extends Bot {
 		}
 	}
 
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^!addBotCommand$", next = "confirmBotCommand")
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!addBotCommand|!addCommand)$", next = "confirmBotCommand")
 	public void addBotCommand(WebSocketSession session, Event event) {
 		if (event.getUserId() != null && !StringUtils.isEmpty(event.getText())) {
 			if (!addBotCommandReturn) {

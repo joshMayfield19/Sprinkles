@@ -926,27 +926,6 @@
     </pirates>
     <upcomingEvents>
         <upcomingEvent>
-            <event>Book Club - Clean Code (Ch. 16)</event>
-            <contact>Robert Cole</contact>
-            <date>6/27/18  12:00pm</date>
-            <location>LeSabre</location>
-            <points>30</points>
-        </upcomingEvent>
-        <upcomingEvent>
-            <event>IOT Club</event>
-            <contact>Jimmy Dotson</contact>
-            <date>6/27/18  3:00pm</date>
-            <location>Wildcat</location>
-            <points>20</points>
-        </upcomingEvent>
-        <upcomingEvent>
-            <event>IOS Dev Club</event>
-            <contact>Robert Cole</contact>
-            <date>6/28/18  11:30am</date>
-            <location>Wildcat</location>
-            <points>20</points>
-        </upcomingEvent>
-        <upcomingEvent>
             <event>RSI Innovation Brainstorming</event>
             <contact>Dave Arlington</contact>
             <date>6/28/18  2:00pm</date>

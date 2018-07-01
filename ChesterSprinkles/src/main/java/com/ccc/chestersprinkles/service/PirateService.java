@@ -62,4 +62,16 @@ public class PirateService {
 	public void updateDoubloonsActivation(Pirate pirate) {
 		pirateDao.updateDoubloonsActivation(pirate);
 	}
+	
+	public void updateNameChange(int pirateId, String name, int newDoubloonCount) {
+		pirateDao.updateNameChange(pirateId, name, newDoubloonCount);
+	}
+	
+	public void updatePollyCommand(int pirateId, int newDoubloonCount) {
+		pirateDao.updatePollyCommand(pirateId, newDoubloonCount);
+	}
+	
+	public void updateChannelId(int pirateId, String channel) {
+		pirateDao.updateChannelId(pirateId, channel);
+	}
 }

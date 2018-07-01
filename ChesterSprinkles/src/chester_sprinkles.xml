@@ -2,23 +2,17 @@
 <chester_sprinkles>
     <raffleDateTime>6/28/18</raffleDateTime>
     <raffleStartingTicket>078154</raffleStartingTicket>
-    <raffleEndingTicket>078196</raffleEndingTicket>
-    <raffleExcludedTickets></raffleExcludedTickets>
+    <raffleEndingTicket>078200</raffleEndingTicket>
+    <raffleExcludedTickets>078173;078174;078157</raffleExcludedTickets>
     <currentChallenge>S.O.S.</currentChallenge>
     <currentChallengeDate>6/25/18</currentChallengeDate>
     <currentChallengeLink>https://drive.google.com/open?id=1Bw9b9QOHfV1EWAwt9fkjB-351m2ua5r3</currentChallengeLink>
     <raffleWinners>
-        <raffleWinner>Pat M</raffleWinner>
+        <raffleWinner>Dale H</raffleWinner>
+        <raffleWinner>Nina L</raffleWinner>
         <raffleWinner>David H</raffleWinner>
-        <raffleWinner>KD W</raffleWinner>
     </raffleWinners>
-    <presenters>
-        <presenter>Dave Arlington</presenter>
-        <presenter>James Fulford</presenter>
-        <presenter>Christopher Nabors</presenter>
-        <presenter>Michael Peacock</presenter>
-        <presenter>David Mullen</presenter>
-    </presenters>
+    <presenters/>
     <allTimePresenters>
         <allTimePresenter>
             <name>Josh Mayfield</name>

@@ -75,34 +75,41 @@ public class PiratePointsCommand extends Command {
 		return JOSH_ID.equals(event.getUserId());
 	}
 
-	public static String getPollyWantACrackerCommandResponse(Event event) {
+	public String getPollyWantACrackerCommandResponse(Event event) {
 		if (validateInput(event) && isJoshUser(event)) {
-			ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
-			List<String> phrases = parrotLanguage.getPhrases();
-
-			int randomNum = getRandomNumber(phrases.size());
-			String parrotSpeak = phrases.get(randomNum - 1);
-			StringBuilder parrotSpeakOutput = new StringBuilder();
-			String[] parrotSpeakSplit = parrotSpeak.split(" ");
-			parrotSpeakOutput.append("Squawk...");
-
-			for (int i = 0; i < parrotSpeakSplit.length; i++) {
-				int rando = getRandomNumber(2);
-
-				if (rando == 1) {
-					parrotSpeakOutput.append(parrotSpeakSplit[i].toUpperCase());
-				} else {
-					parrotSpeakOutput.append(parrotSpeakSplit[i]);
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			
+			if (pirate.isCanPolly()) {
+				ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
+				List<String> phrases = parrotLanguage.getPhrases();
+		
+				int randomNum = getRandomNumber(phrases.size());
+				String parrotSpeak = phrases.get(randomNum - 1);
+				StringBuilder parrotSpeakOutput = new StringBuilder();
+				String[] parrotSpeakSplit = parrotSpeak.split(" ");
+				parrotSpeakOutput.append("Squawk...");
+		
+				for (int i = 0; i < parrotSpeakSplit.length; i++) {
+					int rando = getRandomNumber(2);
+		
+					if (rando == 1) {
+						parrotSpeakOutput.append(parrotSpeakSplit[i].toUpperCase());
+					} else {
+						parrotSpeakOutput.append(parrotSpeakSplit[i]);
+					}
+		
+					if (i != parrotSpeakSplit.length - 1) {
+						parrotSpeakOutput.append(" ");
+					}
 				}
-
-				if (i != parrotSpeakSplit.length - 1) {
-					parrotSpeakOutput.append(" ");
-				}
+		
+				parrotSpeakOutput.append("...Squawk!!!");
+		
+				return parrotSpeakOutput.toString();
 			}
-
-			parrotSpeakOutput.append("...Squawk!!!");
-
-			return parrotSpeakOutput.toString();
+			else {
+				return "You haven't purchased this command.";
+			}
 		}
 
 		return null;
@@ -361,7 +368,7 @@ public class PiratePointsCommand extends Command {
 	}
 
 	private static int getDoubloons() {
-		return new Random().nextInt(10) == 0 ? 5 : (new Random().nextInt(3) == 0 ? 2 : 1);
+		return new Random().nextInt(100) == 0 ? 5 : (new Random().nextInt(3) == 0 ? 2 : 1);
 	}
 
 	public static String getWhatAreDoubloonsHelpCommandResponse(Event event, SlackUserService slackUserService) {
@@ -698,12 +705,16 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 			PirateShip pirateShip = pirateShipService.getShipById(pirate.getPirateShipId());
 
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+			
 			if (pirate != null && pirateShip != null) {
 				return "*Pirate Name:* " + pirate.getPirateName() + "\n" + "*Pirate Ship:* " + pirateShip.getShipName()
 						+ "\n" + "*Pirate Points:* " + pirate.getPiratePoints() + "\n" + "*Doubloons:* "
 						+ pirate.getDoubloons() + "\n";
 			}
-
+			
 			return "I don't see you on my pirate registry. Overboard you go!";
 		}
 
