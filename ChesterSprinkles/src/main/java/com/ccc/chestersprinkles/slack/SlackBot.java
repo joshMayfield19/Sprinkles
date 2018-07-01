@@ -355,24 +355,6 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!startNewAdventure)$")
-	public void startNewAdventure(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getStartNewAdventureCommandResponse(event);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-	
-	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!calculateLeaders)$")
-	public void calculateLeaders(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getCalculateLeadersCommandResponse(event);
-		
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!addPoints(.*))$")
 	public void addPoints(WebSocketSession session, Event event) {
 		String commandResponse = piratePointsCommand.getAddPointsCommandResponse(event);
@@ -669,6 +651,26 @@ public class SlackBot extends Bot {
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
 		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyBottle)$")
+	public void buyBottle(WebSocketSession session, Event event) {
+		reply(session, event, new Message("Command not implemented yet."));
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyWfh)$")
+	public void buyWfh(WebSocketSession session, Event event) {
+		reply(session, event, new Message("Command not implemented yet."));
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buy2Raffle)$")
+	public void buy2Raffle(WebSocketSession session, Event event) {
+		reply(session, event, new Message("Command not implemented yet."));
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyIgnoreRaffle)$")
+	public void buyIgnoreRaffle(WebSocketSession session, Event event) {
+		reply(session, event, new Message("Command not implemented yet."));
 	}
 	
 	/**************************************
