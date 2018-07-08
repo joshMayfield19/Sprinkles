@@ -402,7 +402,7 @@ public class SlackBot extends Bot {
 	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
 	public void myCrewInfo(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getMyCrewInfoCommandResponse(event, slackUserService);
+		String commandResponse = piratePointsCommand.getMyCrewInfoCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
@@ -506,6 +506,34 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!plunder)$")
+	public void plunder(WebSocketSession session, Event event) {
+		List<String> commandResponses = piratePointsCommand.getPlunderCommandResponse(event);
+		
+		if (commandResponses != null) {
+			reply(session, event, new Message(commandResponses.get(0)));
+			
+			if (commandResponses.size() == 2) {
+				event.setChannelId(CODING_CHALLENGE_CHANNEL);
+				reply(session, event, new Message(commandResponses.get(1)));
+			}
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!grog)$")
+	public void grog(WebSocketSession session, Event event) {
+		List<String> commandResponses = piratePointsCommand.getGrogCommandResponse(event);
+		
+		if (commandResponses != null) {
+			reply(session, event, new Message(commandResponses.get(0)));
+			
+			if (commandResponses.size() == 2) {
+				event.setChannelId(CODING_CHALLENGE_CHANNEL);
+				reply(session, event, new Message(commandResponses.get(1)));
+			}
+		}
+	}
+	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!activate(.*))$")
 	public void activateDoubloons(WebSocketSession session, Event event) {
 		String commandResponse = piratePointsCommand.getActivateDoubloonsCommandResponse(event);
@@ -515,9 +543,27 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!topFiveAct)$")
+	public void activateTopFive(WebSocketSession session, Event event) {
+		String commandResponse = piratePointsCommand.getTopFiveActivationResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatAreDoubloons)$")
 	public void whatAreDoubloons(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getWhatAreDoubloonsHelpCommandResponse(event, slackUserService);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!adventure)$")
+	public void adventure(WebSocketSession session, Event event) {
+		String commandResponse = piratePointsCommand.getAdventureCommandResponse(event);
 		
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));

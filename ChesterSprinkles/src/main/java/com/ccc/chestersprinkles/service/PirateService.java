@@ -63,6 +63,10 @@ public class PirateService {
 		pirateDao.updateDoubloonsActivation(pirate);
 	}
 	
+	public void updateTopFivePirate(Pirate pirate) {
+		pirateDao.updateTopFivePirate(pirate);
+	}
+	
 	public void updateNameChange(int pirateId, String name, int newDoubloonCount) {
 		pirateDao.updateNameChange(pirateId, name, newDoubloonCount);
 	}
@@ -73,5 +77,9 @@ public class PirateService {
 	
 	public void updateChannelId(int pirateId, String channel) {
 		pirateDao.updateChannelId(pirateId, channel);
+	}
+	
+	public void updateZeroPoints() {
+		pirateDao.updateZeroPoints();
 	}
 }

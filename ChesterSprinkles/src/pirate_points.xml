@@ -925,12 +925,54 @@
         </pirate>
     </pirates>
     <upcomingEvents>
+		<upcomingEvent>
+            <event>IOS Dev Club</event>
+            <contact>Robert Cole</contact>
+            <date>7/6/18  3:30 pm</date>
+            <location>Wildcat</location>
+            <points>20</points>
+        </upcomingEvent>
         <upcomingEvent>
+            <event>LOGO Training</event>
+            <contact>Dave Arlington</contact>
+            <date>7/9/18  3:00 pm</date>
+            <location>Electra</location>
+            <points>20</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>Book Club - Clean Code (Ch 17)</event>
+            <contact>Robert Cole</contact>
+            <date>7/11/18  12:00 pm</date>
+            <location>LeSabre</location>
+            <points>30</points>
+        </upcomingEvent>
+        <upcomingEvent>
+            <event>IoT Club</event>
+            <contact>Jimmy Dotson</contact>
+            <date>7/11/18  3:00 pm</date>
+            <location>Wildcat</location>
+            <points>20</points>
+        </upcomingEvent>
+         <upcomingEvent>
+            <event>IOS Dev Club</event>
+            <contact>Robert Cole</contact>
+            <date>7/12/18  11:30 am</date>
+            <location>Wildcat</location>
+            <points>20</points>
+        </upcomingEvent>
+         <upcomingEvent>
             <event>RSI Innovation Brainstorming</event>
             <contact>Dave Arlington</contact>
-            <date>6/28/18  2:00pm</date>
+            <date>7/12/18  2:00 pm</date>
             <location>Wildcat</location>
             <points>30</points>
+        </upcomingEvent>
+\		<upcomingEvent>
+            <event>Swift and IOS Meetup</event>
+            <contact>Robert Cole</contact>
+            <date>7/12/18  6:00 pm</date>
+            <location>LeSabre</location>
+            <points>75</points>
         </upcomingEvent>
     </upcomingEvents>
 </pirate_points>

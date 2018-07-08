@@ -76,38 +76,37 @@ public class PiratePointsCommand extends Command {
 	}
 
 	public String getPollyWantACrackerCommandResponse(Event event) {
-		if (validateInput(event) && isJoshUser(event)) {
+		if (validateInput(event)) {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
-			
+
 			if (pirate.isCanPolly()) {
 				ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
 				List<String> phrases = parrotLanguage.getPhrases();
-		
+
 				int randomNum = getRandomNumber(phrases.size());
 				String parrotSpeak = phrases.get(randomNum - 1);
 				StringBuilder parrotSpeakOutput = new StringBuilder();
 				String[] parrotSpeakSplit = parrotSpeak.split(" ");
 				parrotSpeakOutput.append("Squawk...");
-		
+
 				for (int i = 0; i < parrotSpeakSplit.length; i++) {
 					int rando = getRandomNumber(2);
-		
+
 					if (rando == 1) {
 						parrotSpeakOutput.append(parrotSpeakSplit[i].toUpperCase());
 					} else {
 						parrotSpeakOutput.append(parrotSpeakSplit[i]);
 					}
-		
+
 					if (i != parrotSpeakSplit.length - 1) {
 						parrotSpeakOutput.append(" ");
 					}
 				}
-		
+
 				parrotSpeakOutput.append("...Squawk!!!");
-		
+
 				return parrotSpeakOutput.toString();
-			}
-			else {
+			} else {
 				return "You haven't purchased this command.";
 			}
 		}
@@ -128,38 +127,76 @@ public class PiratePointsCommand extends Command {
 			}
 		}
 	}
+
+	public String getTopFiveActivationResponse(Event event) {
+		if (validateInput(event) && isJoshUser(event)) {
+			List<Pirate> pirates = pirateService.getTopFivePirates();
+
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+			LocalDate startDate = LocalDate.now();
+			String startDateString = startDate.format(formatter);
+
+			LocalDate endDate = LocalDate.now().plusDays(7);
+			String endDateString = endDate.format(formatter);
+
+			for (Pirate pirate : pirates) {
+				pirate.setTopFivePirate(true);
+				pirateService.updateTopFivePirate(pirate);
+				doubloonActivityService.updateTopFiveStartEndDate(startDateString, endDateString, pirate.getPirateId());
+			}
+			
+			pirateService.updateZeroPoints();
+			
+			return "You have activated the Top Five Pirates.";
+		}
+
+		return null;
+	}
 	
-	public String getActivateDoubloonsCommandResponse(Event event) {
+	public String getAdventureCommandResponse(Event event) {
 		if (validateInput(event)) {
+			return "*Here is the list of the current destinations*:\n(1) Monsoon Lagoon --- 1750 points\n"
+					+ "(2) The Gloomy Isles --- 5000 points\n"
+					+ "(3) The Volcanic Haven --- 9500 points.\n\n"
+					+ "*Here is the list of upcoming Top Five pirates dates*:\n"
+					+ "(1) 7/6/18\n(2) 8/17/18\n(3) 9/28/18";
+		}
+		
+		return null;
+	}
+
+	public String getActivateDoubloonsCommandResponse(Event event) {
+		if (validateInput(event) && isJoshUser(event)) {
 			String[] inputString = event.getText().split(" ");
 			int shipId = Integer.parseInt(inputString[1]);
 
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 			LocalDate startDate = LocalDate.now();
 			String startDateString = startDate.format(formatter);
-			
+
 			LocalDate endDate = LocalDate.now().plusDays(14);
 			String endDateString = endDate.format(formatter);
-			
+
 			List<Pirate> pirates = pirateService.getPiratesByShipId(shipId);
-			
+
 			Collections.sort(pirates);
-			
+
 			pirates.get(0).setCaptain(true);
-			
+
 			for (Pirate pirate : pirates) {
 				if (pirate.getPiratePoints() != 0) {
 					pirate.setOnWinningShip(true);
 					pirateService.updateDoubloonsActivation(pirate);
-					doubloonActivityService.updateCommandStartEndDate(startDateString, endDateString, pirate.getPirateId());
+					doubloonActivityService.updateCommandStartEndDate(startDateString, endDateString,
+							pirate.getPirateId());
 				}
 			}
-			
+
 			pirateShipService.updateCaptainByShipId(shipId, pirates.get(0).getPirateId());
-			
+
 			return "You have activated the doubloons commands for ship id " + shipId;
 		}
-		
+
 		return null;
 	}
 
@@ -169,11 +206,11 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 
 			List<String> responses = new ArrayList<String>();
-			
+
 			if (StringUtils.isEmpty(pirate.getChannelId())) {
 				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
-			
+
 			if (pirate.isCaptain()) {
 				String message = validateDailyDoubloonCount(pirate, "setSail");
 
@@ -181,12 +218,13 @@ public class PiratePointsCommand extends Command {
 					responses.add(message);
 					return responses;
 				}
-				
+
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
 				responses.add("You set sail and find *" + doubloonsFound + "* doubloons!\n"
-						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
+						+ "The last day you can run this command is *"
+						+ pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
 					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
@@ -194,7 +232,7 @@ public class PiratePointsCommand extends Command {
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
-				
+
 				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 				Date currentDate = new Date();
 				String currentDateString = formatter.format(currentDate);
@@ -216,11 +254,11 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 
 			List<String> responses = new ArrayList<String>();
-			
+
 			if (StringUtils.isEmpty(pirate.getChannelId())) {
 				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
-			
+
 			if (pirate.isCaptain()) {
 				String message = validateDailyDoubloonCount(pirate, "battle");
 
@@ -228,12 +266,13 @@ public class PiratePointsCommand extends Command {
 					responses.add(message);
 					return responses;
 				}
-				
+
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
 				responses.add("You initiate a battle and find *" + doubloonsFound + "* doubloons!\n"
-						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
+						+ "The last day you can run this command is *"
+						+ pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
 					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
@@ -241,7 +280,7 @@ public class PiratePointsCommand extends Command {
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
-				
+
 				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 				Date currentDate = new Date();
 				String currentDateString = formatter.format(currentDate);
@@ -262,24 +301,25 @@ public class PiratePointsCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 
 			List<String> responses = new ArrayList<String>();
-			
+
 			if (StringUtils.isEmpty(pirate.getChannelId())) {
 				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
-			
-			if (pirate.isOnWinningShip() || pirate.isTopFivePirate()) {
+
+			if (pirate.isOnWinningShip()) {
 				String message = validateDailyDoubloonCount(pirate, "explore");
 
 				if (StringUtils.isNotEmpty(message)) {
 					responses.add(message);
 					return responses;
 				}
-				
+
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
 				responses.add("You explore a nearby island and find *" + doubloonsFound + "* doubloons!\n"
-						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
+						+ "The last day you can run this command is *"
+						+ pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
 					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
@@ -287,7 +327,7 @@ public class PiratePointsCommand extends Command {
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
-				
+
 				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 				Date currentDate = new Date();
 				String currentDateString = formatter.format(currentDate);
@@ -295,7 +335,7 @@ public class PiratePointsCommand extends Command {
 				doubloonActivityService.updateExplore(currentDateString, pirate.getPirateId());
 			} else {
 				responses.add(
-						"You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.");
+						"Your ship needs to have reached an island.");
 			}
 
 			return responses;
@@ -313,8 +353,8 @@ public class PiratePointsCommand extends Command {
 			if (StringUtils.isEmpty(pirate.getChannelId())) {
 				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
-			
-			if (pirate.isOnWinningShip() || pirate.isTopFivePirate()) {
+
+			if (pirate.isOnWinningShip()) {
 				String message = validateDailyDoubloonCount(pirate, "shoreleave");
 
 				if (StringUtils.isNotEmpty(message)) {
@@ -326,7 +366,8 @@ public class PiratePointsCommand extends Command {
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
 				responses.add("While on shoreleave you find *" + doubloonsFound + "* doubloons!\n"
-						+ "The last day you can run this command is *" + pirate.getDoubloonActivity().getCommandEndDate() + "*.");
+						+ "The last day you can run this command is *"
+						+ pirate.getDoubloonActivity().getCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
 					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
@@ -342,7 +383,103 @@ public class PiratePointsCommand extends Command {
 				doubloonActivityService.updateShoreleave(currentDateString, pirate.getPirateId());
 			} else {
 				responses.add(
-						"You need to be either on the Winning Ship or in the Top Five Pirates at the end of the previous Pirate Adventure.");
+						"Your ship needs to have reached an island.");
+			}
+
+			return responses;
+		}
+
+		return null;
+	}
+
+	public List<String> getPlunderCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+
+			List<String> responses = new ArrayList<String>();
+
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+
+			if (pirate.isTopFivePirate()) {
+				String message = validateDailyDoubloonCount(pirate, "plunder");
+
+				if (StringUtils.isNotEmpty(message)) {
+					responses.add(message);
+					return responses;
+				}
+
+				int doubloonsFound = getDoubloons();
+				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
+				pirate.setDoubloons(doubloonsTotal);
+				responses.add("While plundering a nearby tavern, you find *" + doubloonsFound + "* doubloons!\n"
+						+ "The last day you can run this command is *"
+						+ pirate.getDoubloonActivity().getTopFiveCommandEndDate() + "*.");
+
+				if (doubloonsFound == 5) {
+					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+							+ "* just found a whopping *5 doubloons* while on plundering a nearby tavern!!!");
+				}
+
+				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
+
+				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+				Date currentDate = new Date();
+				String currentDateString = formatter.format(currentDate);
+
+				doubloonActivityService.updatePlunder(currentDateString, pirate.getPirateId());
+			} else {
+				responses.add(
+						"You need to be in the Top Five Pirates at the end of the previous Pirate Adventure.");
+			}
+
+			return responses;
+		}
+
+		return null;
+	}
+
+	public List<String> getGrogCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+
+			List<String> responses = new ArrayList<String>();
+
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+
+			if (pirate.isTopFivePirate()) {
+				String message = validateDailyDoubloonCount(pirate, "grog");
+
+				if (StringUtils.isNotEmpty(message)) {
+					responses.add(message);
+					return responses;
+				}
+
+				int doubloonsFound = getDoubloons();
+				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
+				pirate.setDoubloons(doubloonsTotal);
+				responses.add("While on drinking a mug of grog you find *" + doubloonsFound + "* doubloons at the bottom of the cup!\n"
+						+ "The last day you can run this command is *"
+						+ pirate.getDoubloonActivity().getTopFiveCommandEndDate() + "*.");
+
+				if (doubloonsFound == 5) {
+					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+							+ "* just found a whopping *5 doubloons* at the bottom of a grog mug!!!");
+				}
+
+				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
+
+				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+				Date currentDate = new Date();
+				String currentDateString = formatter.format(currentDate);
+
+				doubloonActivityService.updateGrog(currentDateString, pirate.getPirateId());
+			} else {
+				responses.add(
+						"You need to be in the Top Five Pirates at the end of the previous Pirate Adventure.");
 			}
 
 			return responses;
@@ -358,6 +495,23 @@ public class PiratePointsCommand extends Command {
 			String currentDateString = formatter.format(currentDate);
 
 			DoubloonActivity activity = pirate.getDoubloonActivity();
+
+			if (type.equals("plunder") || type.equals("grog")) {
+				if (StringUtils.isEmpty(activity.getTopFiveCommandStartDate())
+						|| StringUtils.isEmpty(activity.getTopFiveCommandEndDate())
+						|| formatter.parse(currentDateString)
+								.before(formatter.parse(activity.getTopFiveCommandStartDate()))
+						|| formatter.parse(currentDateString)
+								.after(formatter.parse(activity.getTopFiveCommandEndDate()))) {
+					return "The doubloons commands are not active at this point.";
+				} else if (type.equals("plunder") && StringUtils.isNotEmpty(activity.getLastPlunderDate())
+						&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastPlunderDate()))) {
+					return "You can only run the !plunder command once a day.";
+				} else if (type.equals("grog") && StringUtils.isNotEmpty(activity.getLastGrogDate())
+						&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastGrogDate()))) {
+					return "You can only run the !grog command once a day.";
+				}
+			}
 
 			if (StringUtils.isEmpty(activity.getCommandStartDate()) || StringUtils.isEmpty(activity.getCommandEndDate())
 					|| formatter.parse(currentDateString).before(formatter.parse(activity.getCommandStartDate()))
@@ -409,15 +563,20 @@ public class PiratePointsCommand extends Command {
 
 			return "*Here are the top 5 pirates!*\n" + pirates.get(0).getPirateName() + " ("
 					+ pirates.get(0).getSlackUser().getFirstName() + " " + pirates.get(0).getSlackUser().getLastName()
-					+ "): *" + pirates.get(0).getPiratePoints() + "* points\n" + pirates.get(1).getPirateName() + " ("
+					+ "): *" + pirates.get(0).getPiratePoints() + "* points (Total: "
+					+ pirates.get(0).getOverallPiratePoints() + " points) \n" + pirates.get(1).getPirateName() + " ("
 					+ pirates.get(1).getSlackUser().getFirstName() + " " + pirates.get(1).getSlackUser().getLastName()
-					+ "): *" + pirates.get(1).getPiratePoints() + "* points\n" + pirates.get(2).getPirateName() + " ("
+					+ "): *" + pirates.get(1).getPiratePoints() + "* points (Total: "
+					+ pirates.get(1).getOverallPiratePoints() + " points) \n" + pirates.get(2).getPirateName() + " ("
 					+ pirates.get(2).getSlackUser().getFirstName() + " " + pirates.get(2).getSlackUser().getLastName()
-					+ "): *" + pirates.get(2).getPiratePoints() + "* points\n" + pirates.get(3).getPirateName() + " ("
+					+ "): *" + pirates.get(2).getPiratePoints() + "* points (Total: "
+					+ pirates.get(2).getOverallPiratePoints() + " points) \n" + pirates.get(3).getPirateName() + " ("
 					+ pirates.get(3).getSlackUser().getFirstName() + " " + pirates.get(3).getSlackUser().getLastName()
-					+ "): *" + pirates.get(3).getPiratePoints() + "* points\n" + pirates.get(4).getPirateName() + " ("
+					+ "): *" + pirates.get(3).getPiratePoints() + "* points (Total: "
+					+ pirates.get(3).getOverallPiratePoints() + " points) \n" + pirates.get(4).getPirateName() + " ("
 					+ pirates.get(4).getSlackUser().getFirstName() + " " + pirates.get(4).getSlackUser().getLastName()
-					+ "): *" + pirates.get(4).getPiratePoints() + "* points\n";
+					+ "): *" + pirates.get(4).getPiratePoints() + "* points (Total: "
+					+ pirates.get(4).getOverallPiratePoints() + " points) \n";
 		}
 
 		return null;
@@ -503,31 +662,23 @@ public class PiratePointsCommand extends Command {
 		return null;
 	}
 
-	public static String getMyCrewInfoCommandResponse(Event event, SlackUserService slackUserService) {
+	public String getMyCrewInfoCommandResponse(Event event) {
 		if (validateInput(event)) {
-			populateSessionPirateInfo(event, slackUserService);
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			List<Pirate> pirates = pirateService.getPiratesByShipId(pirate.getPirateShipId());
 
-			int userShipId = 0;
-
-			for (Pirate pirate : pirates) {
-				if (pirate.getRealName().equals(realName)) {
-					userShipId = pirate.getPirateShipId();
-				}
+			Collections.sort(pirates);
+			
+			StringBuilder output = new StringBuilder();
+			
+			output.append("*Here is the manifest of your ship:*\n");
+			
+			for (Pirate pir : pirates) {
+				output.append("*Pirate Name:* " + pir.getPirateName() + " --- *Real Name:* " + pir.getSlackUser().getFirstName() + " " + pir.getSlackUser().getLastName() + 
+						" --- *Points:* " + pir.getOverallPiratePoints() + "\n");
 			}
-
-			if (userShipId == PRIDE_OF_TIDE) {
-				return "Your fellow crew members of *The Pride of the Tide* are located on this manifest. https://drive.google.com/open?id=1w-bLGbdrjg1aEj-IJ1Ue_rz_tsoG1u9U";
-			} else if (userShipId == SCURVY_SUN) {
-				return "Your fellow crew members of *The Scurvy Sun* are located on this manifest. https://drive.google.com/open?id=1KsUnp3Ple22u3Us9P4NdPVJsJ7VOIuoj";
-			} else if (userShipId == CRY_OF_DAGGER) {
-				return "Your fellow crew members of *The Cry of the Dagger* are located on this manifest. https://drive.google.com/open?id=1YOHC-oeMR1hGIGbsen90c0CXkJrdXIXm";
-			} else if (userShipId == BLUE_INSANITY) {
-				return "Your fellow crew members of *The Blue Insanity* are located on this manifest. https://drive.google.com/open?id=1s5HIAIjhbCeSLxv_V9dCCYSU60mUeF1U";
-			} else if (userShipId == CORRUPT_WOLF) {
-				return "Your fellow crew members of *The Corrupted Wolf* are located on this manifest. https://drive.google.com/open?id=1wPPq-KsXH_ar1fCvJKMh52sfWMEezcIC";
-			} else {
-				return "You are not assigned to a ship yet!";
-			}
+			
+			return output.toString();
 		}
 
 		return null;
@@ -582,22 +733,22 @@ public class PiratePointsCommand extends Command {
 			PirateShip pirateShip = pirateShipService.getShipById(pirate.getPirateShipId());
 			List<Pirate> pirates = pirateService.getPiratesByShipId(pirate.getPirateShipId());
 			String captain = "No Captain Yet.";
-			
+
 			for (Pirate pirateCapt : pirates) {
 				if (pirateCapt.isCaptain()) {
 					captain = pirateCapt.getPirateName();
 					break;
 				}
 			}
-			
+
 			if (StringUtils.isEmpty(pirate.getChannelId())) {
 				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
-			
+
 			if (pirate != null && pirateShip != null) {
-				return "*Ship Name:* " + pirateShip.getShipName() + "\n" + "*Ship Captain:* "
-						+ captain + "\n" + "*Ship Crew:* " + pirateShip.getShipCrew() + "\n"
-						+ "*Ship Points:* " + pirateShip.getShipPoints() + "\n";
+				return "*Ship Name:* " + pirateShip.getShipName() + "\n" + "*Ship Captain:* " + captain + "\n"
+						+ "*Ship Crew:* " + pirateShip.getShipCrew() + "\n" + "*Ship Points:* "
+						+ pirateShip.getShipPoints() + "\n";
 			}
 
 			return "I don't see you on my pirate registry. Overboard you go!";
@@ -622,13 +773,13 @@ public class PiratePointsCommand extends Command {
 			if (StringUtils.isEmpty(pirate.getChannelId())) {
 				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
 			}
-			
+
 			if (pirate != null && pirateShip != null) {
-				return "*Pirate Name:* " + pirate.getPirateName() + "\n" + "*Pirate Ship:* " + pirateShip.getShipName()
-						+ "\n" + "*Pirate Points:* " + pirate.getPiratePoints() + "\n" + "*Doubloons:* "
-						+ pirate.getDoubloons() + "\n";
+				return "*Pirate Name:* " + pirate.getPirateName() + "\n*Pirate Ship:* " + pirateShip.getShipName()
+						+ "\n*Current Pirate Points:* " + pirate.getPiratePoints() + "\n*Total Pirate Points:* " + pirate.getOverallPiratePoints() 
+						+ "\n*Doubloons:* " + pirate.getDoubloons() + "\n";
 			}
-			
+
 			return "I don't see you on my pirate registry. Overboard you go!";
 		}
 
@@ -649,13 +800,5 @@ public class PiratePointsCommand extends Command {
 		}
 
 		return designatedShip;
-	}
-
-	private static void populateSessionPirateInfo(Event event, SlackUserService slackUserService) {
-		currentUser = slackUserService.getSlackUser(event.getUserId());
-		realName = currentUser.getFirstName() + " " + currentUser.getLastName();
-		piratePoints = PiratePointsData.getPiratePointsData();
-		pirates = piratePoints.getPirates();
-		pirateShips = piratePoints.getPirateShips();
 	}
 }

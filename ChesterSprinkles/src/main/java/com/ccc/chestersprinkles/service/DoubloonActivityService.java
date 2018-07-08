@@ -29,7 +29,19 @@ public class DoubloonActivityService {
 		doubloonActivityDao.updateSetSail(setSailDate, pirateId);
 	}
 	
+	public void updatePlunder(String plunderDate, int pirateId) {
+		doubloonActivityDao.updatePlunder(plunderDate, pirateId);
+	}
+	
+	public void updateGrog(String grogDate, int pirateId) {
+		doubloonActivityDao.updateGrog(grogDate, pirateId);
+	}
+	
 	public void updateCommandStartEndDate(String startDate, String endDate, int pirateId) {
 		doubloonActivityDao.updateCommandStartEndDate(startDate, endDate, pirateId);
+	}
+	
+	public void updateTopFiveStartEndDate(String startDate, String endDate, int pirateId) {
+		doubloonActivityDao.updateTopFiveStartEndDate(startDate, endDate, pirateId);
 	}
 }

@@ -9,6 +9,10 @@ public class DoubloonActivity {
 	private String lastExploreDate;
 	private String lastBattleDate;
 	private String lastSetSailDate;
+	private String topFiveCommandStartDate;
+	private String topFiveCommandEndDate;
+	private String lastPlunderDate;
+	private String lastGrogDate;
 	
 	public DoubloonActivity() {
 		
@@ -44,6 +48,38 @@ public class DoubloonActivity {
 
 	public String getLastSetSailDate() {
 		return lastSetSailDate;
+	}
+
+	public String getTopFiveCommandStartDate() {
+		return topFiveCommandStartDate;
+	}
+
+	public String getTopFiveCommandEndDate() {
+		return topFiveCommandEndDate;
+	}
+
+	public String getLastPlunderDate() {
+		return lastPlunderDate;
+	}
+
+	public String getLastGrogDate() {
+		return lastGrogDate;
+	}
+
+	public void setTopFiveCommandStartDate(String topFiveCommandStartDate) {
+		this.topFiveCommandStartDate = topFiveCommandStartDate;
+	}
+
+	public void setTopFiveCommandEndDate(String topFiveCommandEndDate) {
+		this.topFiveCommandEndDate = topFiveCommandEndDate;
+	}
+
+	public void setLastPlunderDate(String lastPlunderDate) {
+		this.lastPlunderDate = lastPlunderDate;
+	}
+
+	public void setLastGrogDate(String lastGrogDate) {
+		this.lastGrogDate = lastGrogDate;
 	}
 
 	public void setActivityId(int activityId) {

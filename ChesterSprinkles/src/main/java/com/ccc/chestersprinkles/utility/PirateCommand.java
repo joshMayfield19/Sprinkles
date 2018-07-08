@@ -25,7 +25,7 @@ public class PirateCommand extends Command {
 		if (validateInput(event)) {
 			List<SlackUser> allUsers = slackUserService.getSlackUsers();
 			
-			SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size()));
+			SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size()-1));
 			
 			Pirate pirate = pirateService.getPirateBySlackId(randomSlackUser.getSlackId());
 			int currentPlankNum = pirate.getPlankNum();
