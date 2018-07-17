@@ -2,14 +2,35 @@ package com.ccc.chestersprinkles.utility;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
 
+@Component
 public class MiscCommand extends Command {
 	public static String getHelpCommandResponse(Event event) {
 		if (validateInput(event)) {
 			return "Here is the list of me orders: https://drive.google.com/open?id=1JTev4MYesSjiRIHMbxPkXEG_DOrjGmUb";
+		}
+		
+		return null;
+	}
+	
+	public String getWeapojCommandResponse(Event event) {
+		if (validateInput(event)) {
+			int rando = getRandomNumber(4);
+			
+			if (rando == 1) {
+				return "Josh is such a doofus. Am I right?\n";
+			} else if (rando == 2) {
+				return "At least I know how to spell weapon.\n";
+			} else if (rando == 3) {
+				return "Josh programmed me? There must bee so many typos in my codde.\n";
+			} else {
+				return "Let's get our pitchforks and show him what for!!!!!!!.\n";
+			} 
 		}
 		
 		return null;

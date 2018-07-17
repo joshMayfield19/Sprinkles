@@ -38,4 +38,8 @@ public class SlackUserService {
 
 		return null;
 	}
+	
+	public void addNewSlackUser(SlackUser slackUser) {
+		slackUserDao.addNewSlackUser(slackUser);
+	}
 }

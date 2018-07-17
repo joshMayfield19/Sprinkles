@@ -1,6 +1,5 @@
 package com.ccc.chestersprinkles.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,25 +17,15 @@ public class PirateService {
 	private PirateDao pirateDao;
 	
 	public List<Pirate> getTopFivePirates(){
-		try {
-			return pirateDao.getTopFivePirates();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+		return pirateDao.getTopFivePirates();
+	}
+	
+	public List<Pirate> getTopPlankWalkers(){
+		return pirateDao.getTopPlankWalkers();
 	}
 	
 	public Pirate getPirateBySlackId(String slackId){
-		try {
-			return pirateDao.getPirateBySlackId(slackId);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
+		return pirateDao.getPirateBySlackId(slackId);
 	}
 	
 	public List<Pirate> getPiratesByShipId(int shipId) {
@@ -47,8 +36,8 @@ public class PirateService {
 		return pirateDao.getPirateByName(firstName, lastName);
 	}
 	
-	public void updatePoints(int points, int userId) {
-		pirateDao.updatePoints(points, userId);
+	public void updatePoints(int points, int totalPoints, int userId) {
+		pirateDao.updatePoints(points, totalPoints, userId);
 	}
 	
 	public void updateWalkThePlank(int plankNum, int pirateId) {
@@ -81,5 +70,9 @@ public class PirateService {
 	
 	public void updateZeroPoints() {
 		pirateDao.updateZeroPoints();
+	}
+	
+	public void addNewPirate(int shipId, String pirateName) {
+		pirateDao.addNewPirate(shipId, pirateName);
 	}
 }

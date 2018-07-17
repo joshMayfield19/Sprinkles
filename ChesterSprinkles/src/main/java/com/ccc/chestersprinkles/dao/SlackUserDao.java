@@ -13,6 +13,7 @@ import com.ccc.chestersprinkles.model.SlackUser;
 public class SlackUserDao {
 	private static final String GET_SLACK_USERS = "select slack_user_id, first_name, last_name, slack_id from slack_user";
 	private static final String GET_SLACK_USER_BY_ID = "select slack_user_id, first_name, last_name, slack_id from slack_user where slack_id = ?";
+	private static final String ADD_NEW_USER = "insert into slack_user (first_name, last_name, slack_id) values (?,?,?)";
 	
 	public List<SlackUser> getSlackUsers() throws SQLException {
 		List<SlackUser> slackUsers = new ArrayList<SlackUser>(); 
@@ -73,5 +74,35 @@ public class SlackUserDao {
 	    }
 	    
 	    return slackUser;
+	}
+	
+	public void addNewSlackUser(SlackUser slackUser) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(ADD_NEW_USER);
+	    	
+	    	stmt.setString(1, slackUser.getFirstName());
+	    	stmt.setString(2,  slackUser.getLastName());
+	    	stmt.setString(3, slackUser.getSlackId());
+
+			// execute insert SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
 	}
 }

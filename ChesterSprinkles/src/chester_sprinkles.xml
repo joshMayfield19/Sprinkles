@@ -12,7 +12,11 @@
         <raffleWinner>Nina L</raffleWinner>
         <raffleWinner>David H</raffleWinner>
     </raffleWinners>
-    <presenters/>
+    <presenters>
+        <presenter>Dave Arlington</presenter>
+        <presenter>Andre Gueret</presenter>
+        <presenter>David Mullen</presenter>
+    </presenters>
     <allTimePresenters>
         <allTimePresenter>
             <name>Josh Mayfield</name>
@@ -112,5 +116,8 @@
         <command>*Submitted by:* Josh Mayfield --- *Command:* !whosThePlankiest - Top five plank walkers</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !unicornOfTheSea - Displays a random Narwhal picture</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !gimme Get some random sea junk</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !hackerLeaderBoard - DM Command. Gives the count that you've executed the hackThePlanet and other commands</command>
+        <command>*Submitted by:* Michael Peacock --- *Command:* !ponyBro - add ponies to the channel b/c apparently they're already here</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !spam - Performs a command at random (walkThePlank, weapoj, drunkenSailor, etc)</command>
     </commands>
 </chester_sprinkles>

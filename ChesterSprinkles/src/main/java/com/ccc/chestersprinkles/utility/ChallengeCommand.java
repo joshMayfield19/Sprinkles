@@ -2,8 +2,6 @@ package com.ccc.chestersprinkles.utility;
 
 import java.util.List;
 
-import org.springframework.util.StringUtils;
-
 import com.ccc.chestersprinkles.model.Challenge;
 import com.ccc.chestersprinkles.model.ChesterSprinklesData;
 import com.ccc.chestersprinkles.service.ChallengeService;
@@ -49,7 +47,7 @@ public class ChallengeCommand extends Command {
 				return "There is no challenge currently going on.";
 			}
 			else {
-				return "We are currenly working on a problem titled *" + challenge.getChallengeName()
+				return "We are currently working on a problem titled *" + challenge.getChallengeName()
 								+ "*\nWe will be presenting our solutions on *" + challenge.getChallengeDate()
 								+ "*\nYe can find the information on this challenge here: "
 								+ challenge.getChallengeLink();

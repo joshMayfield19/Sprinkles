@@ -44,4 +44,8 @@ public class DoubloonActivityService {
 	public void updateTopFiveStartEndDate(String startDate, String endDate, int pirateId) {
 		doubloonActivityDao.updateTopFiveStartEndDate(startDate, endDate, pirateId);
 	}
+	
+	public void addNewDoubloonAct() {
+		doubloonActivityDao.addNewDoubloonAct();
+	}
 }

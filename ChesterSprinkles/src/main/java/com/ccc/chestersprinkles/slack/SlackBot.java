@@ -70,6 +70,9 @@ public class SlackBot extends Bot {
 	@Autowired
 	private ShopCommand shopCommand;
 	
+	@Autowired
+	private MiscCommand miscCommand;
+	
 	//private static final String JOSH_ID = "U2AR5EH8U";
 
 	/**
@@ -204,6 +207,15 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!weapoj)$")
+	public void weapoj(WebSocketSession session, Event event) {
+		String commandResponse = miscCommand.getWeapojCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	/**************************************
 	 * 
 	 * 		PIRATE COMMANDS
@@ -329,6 +341,15 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!plankLife)$")
+	public void plankLife(WebSocketSession session, Event event) {
+		String commandResponse = pirateCommand.getTopPlankWalkersCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	/**************************************
 	 * 
 	 * 		PIRATE POINTS COMMANDS
@@ -346,11 +367,12 @@ public class SlackBot extends Bot {
 		}
 	}
 	
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!sortingEyepatch(.*))$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!sortingEyepatch(.*))$")
 	public void sortPirate(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getSortingEyepatchCommandResponse(event, slackUserService);
+		String commandResponse = piratePointsCommand.getSortingEyepatchCommandResponse(event);
 		
 		if (commandResponse != null) {
+			event.setChannelId(CODING_CHALLENGE_CHANNEL);
 			reply(session, event, new Message(commandResponse));
 		}
 	}

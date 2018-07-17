@@ -19,12 +19,8 @@ public class Pirate implements Comparable<Pirate> {
 	private String channelId;
 	
 	public Pirate () {
-		
-	}
-	
-	public Pirate (String realName) {
 		this.pirateName = "Pending";
-		this.realName = realName;
+		//this.realName = realName;
 		this.pirateShipId = 0;
 		this.piratePoints = 0;
 		this.doubloons = 0;
@@ -159,10 +155,10 @@ public class Pirate implements Comparable<Pirate> {
 
 	@Override
 	public int compareTo(Pirate pirate) {
-		if (this.piratePoints == pirate.piratePoints) {
+		if (this.overallPiratePoints == pirate.overallPiratePoints) {
 			return 0;
 		}
-		else if (this.piratePoints < pirate.piratePoints) {
+		else if (this.overallPiratePoints < pirate.overallPiratePoints) {
 			return 1;
 		}
 		else {

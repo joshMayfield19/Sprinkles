@@ -37,6 +37,23 @@ public class PirateCommand extends Command {
 		return null;
 	}
 	
+	public String getTopPlankWalkersCommandResponse(Event event) {
+		if (validateInput(event)) {
+			List<Pirate> pirates = pirateService.getTopPlankWalkers();
+			
+			StringBuilder output = new StringBuilder();
+			
+			output.append("*Here are the pirates who have walked the plank the most*\n");
+			for (Pirate pirate : pirates) {
+				output.append("Walked " + pirate.getPlankNum() + " times --- " + pirate.getPirateName() + " (" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName() + ")\n");
+			}
+			
+			return output.toString();
+		}
+		
+		return null;
+	}
+	
 	public static String getWhatDoYouDoDrunkerCommandResponse(Event event) {
 		if (validateInput(event)) {
 			int rando = getRandomNumber(10);
