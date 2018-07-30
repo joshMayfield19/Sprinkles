@@ -20,15 +20,27 @@ public class MiscCommand extends Command {
 	
 	public String getWeapojCommandResponse(Event event) {
 		if (validateInput(event)) {
-			int rando = getRandomNumber(4);
+			int rando = getRandomNumber(7);
 			
-			if (rando == 1) {
+			if (rando == 0) {
 				return "Josh is such a doofus. Am I right?\n";
-			} else if (rando == 2) {
+			} else if (rando == 1) {
 				return "At least I know how to spell weapon.\n";
-			} else if (rando == 3) {
+			} else if (rando == 2) {
 				return "Josh programmed me? There must bee so many typos in my codde.\n";
-			} else {
+			} else if (rando == 3) {
+				return "Josh fail English? That's unpossible!\n";
+			} 
+			else if (rando == 4) {
+				return "Josh ate too much plastic candy.\n";
+			} 
+			else if (rando == 5) {
+				return "This is Josh's sandbox, he's not allowed to go in the deep end.\n";
+			} 
+			else if (rando == 6) {
+				return "Josh is learnding!\n";
+			} 
+			else {
 				return "Let's get our pitchforks and show him what for!!!!!!!.\n";
 			} 
 		}
@@ -58,13 +70,13 @@ public class MiscCommand extends Command {
 
 	public static String getBlaymonCommandResponse(Event event) {
 		if (validateInput(event)) {
-			int rando = getRandomNumber(4);
+			int rando = getRandomNumber(3);
 	
 			if (rando == 1) {
 				return "Haymon did it. Not me!\n";
 			} else if (rando == 2) {
 				return "I saw Haymon walking away with an incriminating smile.\n";
-			} else if (rando == 3) {
+			} else if (rando == 0) {
 				return "We all know who is to blame.\n";
 			} else {
 				return "I know right? Come on Haymon, get it right.\n";
@@ -76,7 +88,7 @@ public class MiscCommand extends Command {
 	
 	public static String getHackThePlanetCommandResponse(Event event) {
 		if (validateInput(event)) {
-			int rando = getRandomNumber(10);
+			int rando = getRandomNumber(9);
 	
 			if (rando == 1) {
 				return "Snoop onto them, as they snoop onto us.\n";
@@ -94,7 +106,7 @@ public class MiscCommand extends Command {
 				return "Hackers of the world, unite!\n";
 			} else if (rando == 8) {
 				return "Rabbit, Flu-shot, someone talk to me!\n";
-			} else if (rando == 9) {
+			} else if (rando == 0) {
 				return "Super hero-like, even...\n";
 			} else {
 				return "Hack the Planet!\n";

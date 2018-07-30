@@ -14,50 +14,67 @@ import me.ramswaroop.jbot.core.slack.models.Event;
 
 @Component
 public class PirateCommand extends Command {
-	
+
 	@Autowired
 	private PirateService pirateService;
-	
+
 	@Autowired
 	private SlackUserService slackUserService;
-	
+
 	public String getWalkThePlankCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<SlackUser> allUsers = slackUserService.getSlackUsers();
-			
-			SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size()-1));
-			
+
+			SlackUser randomSlackUser = allUsers.get(getRandomNumber(allUsers.size() - 1));
+
 			Pirate pirate = pirateService.getPirateBySlackId(randomSlackUser.getSlackId());
 			int currentPlankNum = pirate.getPlankNum();
 			pirateService.updateWalkThePlank((currentPlankNum + 1), pirate.getPirateId());
 			
-			return "Ahoy! It's time for " + randomSlackUser.getFirstName()  + " " + randomSlackUser.getLastName() + " to walk the plank! Get moving!";
+			String plankWalker = randomSlackUser.getFirstName() + " " + randomSlackUser.getLastName();
+			
+			int rando = getRandomNumber(5);
+
+			if (rando == 0) {
+				return "I hope *" + plankWalker + "* knows how to swim!";
+			} else if (rando == 1) {
+				return "Oops! Seems *" + plankWalker + "* 'fell' off the ship.";
+			} else if (rando == 2) {
+				return "It's time for *" + plankWalker + "* to take a long walk down a short diving board.";
+			} else if (rando == 3) {
+				return "*" + plankWalker + "*, let me show you where the pool is...";
+			} else if (rando == 4) {
+				return "*" + plankWalker + "*, think of this as a very wet vacation from your ship. :stuck_out_tongue:";
+			} else {
+				return "Ahoy! It's time for *" + plankWalker + "* to walk the plank! Get moving!";
+			}
 		}
-		
+
 		return null;
 	}
-	
+
 	public String getTopPlankWalkersCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<Pirate> pirates = pirateService.getTopPlankWalkers();
-			
+
 			StringBuilder output = new StringBuilder();
-			
+
 			output.append("*Here are the pirates who have walked the plank the most*\n");
 			for (Pirate pirate : pirates) {
-				output.append("Walked " + pirate.getPlankNum() + " times --- " + pirate.getPirateName() + " (" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName() + ")\n");
+				output.append("Walked " + pirate.getPlankNum() + " times --- " + pirate.getPirateName() + " ("
+						+ pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName() + ")\n");
 			}
-			
+
 			return output.toString();
 		}
-		
+
 		return null;
 	}
-	
+
 	public static String getWhatDoYouDoDrunkerCommandResponse(Event event) {
 		if (validateInput(event)) {
-			int rando = getRandomNumber(10);
-			
+			int rando = getRandomNumber(9);
+
 			if (rando == 1) {
 				return "Shave his belly with a rusty razor.\n";
 			} else if (rando == 2) {
@@ -74,34 +91,34 @@ public class PirateCommand extends Command {
 				return "Give 'im a dose of salt and water.\n";
 			} else if (rando == 8) {
 				return "Stick on 'is back a mustard plaster.\n";
-			} else if (rando == 9) {
+			} else if (rando == 0) {
 				return "Send him up the crows nest till he falls down.\n";
 			} else {
 				return "Soak 'im in whale oil till he sprouts a flipper.\n";
-			} 
+			}
 		}
-		
+
 		return null;
 	}
-	
+
 	public static String getShantyCommandResponse(Event event) {
 		if (validateInput(event)) {
-			int rando = getRandomNumber(4);
-	
+			int rando = getRandomNumber(3);
+
 			if (rando == 1) {
 				return "https://www.youtube.com/watch?v=0jGMgWUJcKc\n";
 			} else if (rando == 2) {
 				return "https://www.youtube.com/watch?v=d1DGNh9fOmw\n";
-			} else if (rando == 3) {
+			} else if (rando == 0) {
 				return "https://www.youtube.com/watch?v=20n3N1uhztc\n";
 			} else {
 				return "https://www.youtube.com/watch?v=pSnZ-J3kMmI\n";
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	public static String getFuttocksCommandResponse(Event event) {
 		return validateInput(event) ? "At their furthest reach, my dear boy.\n" : null;
 	}
@@ -137,7 +154,7 @@ public class PirateCommand extends Command {
 	public static String getArrCommandResponse(Event event) {
 		return validateInput(event) ? "Arr! Ye be right!\n" : null;
 	}
-	
+
 	public static String getAvastCommandResponse(Event event) {
 		return validateInput(event) ? "Avast! Look here matey.\n" : null;
 	}

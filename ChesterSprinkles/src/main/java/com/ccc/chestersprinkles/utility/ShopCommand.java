@@ -112,4 +112,30 @@ public class ShopCommand extends Command {
 		
 		return null;
 	}
+	
+	public String buyBottle(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			DoubloonShopItem item = doubloonShopItemService.getItemByCommand(event.getText());
+			
+			if (item == null) {
+				return "I don't recognize the shop command " + event.getText();
+			}
+			
+			if (pirate.getDoubloons() < item.getItemPrice()) {
+				return "You need " + item.getItemPrice() + " doubloons for this purchase.";
+			}
+			
+			int pirateDoubloon = pirate.getDoubloons();
+			int newCount = pirateDoubloon - item.getItemPrice();
+			
+			pirateService.updateBottleCommand(pirate.getPirateId(), newCount);
+			doubloonShopItemService.updateQuantity(item.getItemId(), item.getItemQuantity()-1);
+			doubloonItemHistoryService.addNewItemPurchase(pirate.getPirateId(), event.getText(), null, item.getItemPrice());
+			
+			return "You have successfully unlocked the *!messageInABottle* command.";
+		}
+		
+		return null;
+	}
 }

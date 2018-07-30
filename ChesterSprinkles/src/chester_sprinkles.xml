@@ -16,6 +16,7 @@
         <presenter>Dave Arlington</presenter>
         <presenter>Andre Gueret</presenter>
         <presenter>David Mullen</presenter>
+        <presenter>Tim Hayes</presenter>
     </presenters>
     <allTimePresenters>
         <allTimePresenter>
@@ -113,11 +114,14 @@
         <command>*Submitted by:* Michael Morris --- *Command:* !inPirate $var = Use a regex expression on provided string to translate it into pirate speak, savvy?</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !manOverboard - Rescues the last person to have walked the plank</command>
         <command>*Submitted by:* Robert Cole --- *Command:* Natural language parsing for commands :stuck_out_tongue:</command>
-        <command>*Submitted by:* Josh Mayfield --- *Command:* !whosThePlankiest - Top five plank walkers</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !unicornOfTheSea - Displays a random Narwhal picture</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !gimme Get some random sea junk</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !hackerLeaderBoard - DM Command. Gives the count that you've executed the hackThePlanet and other commands</command>
         <command>*Submitted by:* Michael Peacock --- *Command:* !ponyBro - add ponies to the channel b/c apparently they're already here</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !spam - Performs a command at random (walkThePlank, weapoj, drunkenSailor, etc)</command>
+        <command>*Submitted by:* Michael Morris --- *Command:* !addShanty - Add a shanty to the list</command>
+        <command>*Submitted by:* Michael Morris --- *Command:* !listShanites - See the shanty list</command>
+        <command>*Submitted by:* Jaforrest Jackson --- *Command:* !daily - post top pirates, top ships, and upcoming events</command>
+        <command>*Submitted by:* Michael Peacock --- *Command:* !zorldo - show gifs video game characters as imagined on Jeopardy</command>
     </commands>
 </chester_sprinkles>

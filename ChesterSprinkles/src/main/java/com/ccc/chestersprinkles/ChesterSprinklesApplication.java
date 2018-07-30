@@ -8,12 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.sqlite.JDBC;
 import org.sqlite.SQLiteJDBCLoader;
 
+import com.ccc.chestersprinkles.dao.BottleEventDao;
 import com.ccc.chestersprinkles.dao.ChallengeDao;
 import com.ccc.chestersprinkles.dao.ChallengeIdeaDao;
 import com.ccc.chestersprinkles.dao.CommandIdeaDao;
 import com.ccc.chestersprinkles.dao.DoubloonActivityDao;
 import com.ccc.chestersprinkles.dao.DoubloonItemHistoryDao;
 import com.ccc.chestersprinkles.dao.DoubloonShopItemDao;
+import com.ccc.chestersprinkles.dao.PointEventDao;
 import com.ccc.chestersprinkles.dao.ParrotPhraseDao;
 import com.ccc.chestersprinkles.dao.PirateDao;
 import com.ccc.chestersprinkles.dao.PiratePointsHistoryDao;
@@ -23,12 +25,14 @@ import com.ccc.chestersprinkles.dao.SlackUserDao;
 import com.ccc.chestersprinkles.dao.SqliteDao;
 import com.ccc.chestersprinkles.service.PirateService;
 import com.ccc.chestersprinkles.service.PirateShipService;
+import com.ccc.chestersprinkles.service.BottleEventService;
 import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
 import com.ccc.chestersprinkles.service.CommandIdeaService;
 import com.ccc.chestersprinkles.service.DoubloonActivityService;
 import com.ccc.chestersprinkles.service.DoubloonItemHistoryService;
 import com.ccc.chestersprinkles.service.DoubloonShopItemService;
+import com.ccc.chestersprinkles.service.PointEventService;
 import com.ccc.chestersprinkles.service.ParrotPhraseService;
 import com.ccc.chestersprinkles.service.PiratePointsHistoryService;
 import com.ccc.chestersprinkles.service.PresentationService;
@@ -167,5 +171,25 @@ public class ChesterSprinklesApplication {
 	@Bean
 	public DoubloonItemHistoryDao doubloonItemHistoryDao() {
 		return new DoubloonItemHistoryDao();
+	}
+	
+	@Bean
+	public PointEventService eventService() {
+		return new PointEventService();
+	}
+	
+	@Bean
+	public PointEventDao eventDao() {
+		return new PointEventDao();
+	}
+	
+	@Bean
+	public BottleEventService bottleEventService() {
+		return new BottleEventService();
+	}
+	
+	@Bean
+	public BottleEventDao bottleEventDao() {
+		return new BottleEventDao();
 	}
 }

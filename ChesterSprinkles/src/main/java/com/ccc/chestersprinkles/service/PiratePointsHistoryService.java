@@ -1,5 +1,7 @@
 package com.ccc.chestersprinkles.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +18,9 @@ public class PiratePointsHistoryService {
 	
 	public void addNewEvent(PiratePointsHistory piratePointsHistory) {
 		piratePointsHistoryDao.addNewEvent(piratePointsHistory);
+	}
+	
+	public List<PiratePointsHistory> getHistoryByPirateId(int pirateId) {
+		return piratePointsHistoryDao.getHistoryByPirateId(pirateId);
 	}
 }

@@ -12,6 +12,9 @@ public class DoubloonActivityDao {
 	private static final String UPDATE_EXPLORE_DATE = "update doubloon_act set explore_dte = ? where pirate_id = ?";
 	private static final String UPDATE_SET_SAIL_DATE = "update doubloon_act set set_sail_dte = ? where pirate_id = ?";
 	private static final String UPDATE_START_END = "update doubloon_act set command_start = ?, command_end = ? where pirate_id = ?";
+	private static final String UPDATE_RESET = "update doubloon_act set command_start = ?, command_end = ?, battle_dte = ?, explore_dte = ?, "
+			+ "set_sail_dte = ?, shoreleave_dte = ? where pirate_id = ?";
+	private static final String UPDATE_TOP_5_RESET = "update doubloon_act set top_five_start = ?, top_five_end = ?, plunder_dte = ?, grog_dte = ? where pirate_id = ?";
 	private static final String UPDATE_TOP_START_END = "update doubloon_act set top_five_start = ?, top_five_end = ? where pirate_id = ?";
 	private static final String UPDATE_PLUNDER_DATE = "update doubloon_act set plunder_dte = ? where pirate_id = ?";
 	private static final String UPDATE_GROG_DATE = "update doubloon_act set grog_dte = ? where pirate_id = ?";
@@ -234,6 +237,72 @@ public class DoubloonActivityDao {
 	    	
 	    	stmt.setString(1, date);
 	    	stmt.setInt(2, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void deactivateCommands(int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_RESET);
+	    	
+	    	stmt.setString(1, StringUtils.EMPTY);
+	    	stmt.setString(2, StringUtils.EMPTY);
+	    	stmt.setString(3, StringUtils.EMPTY);
+	    	stmt.setString(4, StringUtils.EMPTY);
+	    	stmt.setString(5, StringUtils.EMPTY);
+	    	stmt.setString(6, StringUtils.EMPTY);
+	    	stmt.setInt(7, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void deactivateTopFive(int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_TOP_5_RESET);
+	    	
+	    	stmt.setString(1, StringUtils.EMPTY);
+	    	stmt.setString(2, StringUtils.EMPTY);
+	    	stmt.setString(3, StringUtils.EMPTY);
+	    	stmt.setString(4, StringUtils.EMPTY);
+	    	stmt.setInt(5, pirateId);
 
 			// execute update SQL stetement
 	    	stmt.executeUpdate();

@@ -14,36 +14,34 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ccc.chestersprinkles.model.BottleEvent;
 import com.ccc.chestersprinkles.model.DoubloonActivity;
 import com.ccc.chestersprinkles.model.ParrotLanguageStorage;
 import com.ccc.chestersprinkles.model.Pirate;
-import com.ccc.chestersprinkles.model.PiratePointsData;
 import com.ccc.chestersprinkles.model.PiratePointsHistory;
 import com.ccc.chestersprinkles.model.PirateShip;
+import com.ccc.chestersprinkles.model.PointEvent;
 import com.ccc.chestersprinkles.model.SlackUser;
-import com.ccc.chestersprinkles.model.UpcomingEvent;
+import com.ccc.chestersprinkles.service.BottleEventService;
 import com.ccc.chestersprinkles.service.DoubloonActivityService;
 import com.ccc.chestersprinkles.service.PiratePointsHistoryService;
 import com.ccc.chestersprinkles.service.PirateService;
 import com.ccc.chestersprinkles.service.PirateShipService;
+import com.ccc.chestersprinkles.service.PointEventService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
 
 @Component
 public class PiratePointsCommand extends Command {
-	private static PiratePointsData piratePoints;
-
 	private static final String JOSH_ID = "U2AR5EH8U";
-	private static final String KD_ID = "U56V0HYTX";
-	private static final String CALEB_ID = "U52NQPT7X";
 
 	private static final String KD_SPRINKLES_CHANNEL = "G7S3DCZAB";
 	private static final String CODING_CHALLENGE_CHANNEL = "C5VRF4892";
-	
+
 	@Autowired
 	private SlackUserService slackUserService;
-	
+
 	@Autowired
 	private PirateService pirateService;
 
@@ -56,8 +54,131 @@ public class PiratePointsCommand extends Command {
 	@Autowired
 	private DoubloonActivityService doubloonActivityService;
 
+	@Autowired
+	private PointEventService eventService;
+
+	@Autowired
+	private BottleEventService bottleEventService;
+
 	private static boolean isJoshUser(Event event) {
 		return JOSH_ID.equals(event.getUserId());
+	}
+
+	public String getMessageInABottleCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			
+			if (pirate.isCanBottle()) {
+				BottleEvent bottleEvent = bottleEventService.getBottleEventByPirateId(pirate.getPirateId());
+				int bottleDoub = bottleEvent.getDoubReward();
+				int bottlePoint = bottleEvent.getPointReward();
+				
+				if (bottleEvent.getBottleEndDate() == null) {
+					return "No message in a bottle has appeard to you yet.";
+				}
+				
+				if (bottleEvent.isRewardCollected()) {
+					return "You have already read your message. You can't recieve a new message again until after " + bottleEvent.getBottleEndDate() + ".";
+				}
+				
+				int currentPoints = pirate.getPiratePoints();
+				int totalPoints = pirate.getOverallPiratePoints();
+				int doubloons = pirate.getDoubloons();
+				
+				boolean doubloonReward = new Random().nextInt(50) == 0;
+				
+				if (doubloonReward) {
+					int newDoub = new Random().nextInt(2) + 1;
+					pirateService.updateDoubloons(doubloons + newDoub, pirate.getPirateId());
+					bottleEventService.updateDoubloons(newDoub + bottleDoub, pirate.getPirateId());
+					
+					return "You opened the message and  " + newDoub + " doubloons fell out!";
+				}
+				else {
+					int newPoints = new Random().nextInt(15) + 1;
+					pirateService.updatePoints(currentPoints + newPoints, totalPoints + newPoints, pirate.getUserId());
+					bottleEventService.updatePoints(newPoints + bottlePoint, pirate.getPirateId());
+					
+					return "You opened the message and " + newPoints + " points appeared before you!";
+				}
+			}
+			else {
+				return "You haven't purchased the *!messageInABottle* command.";
+			}
+		}
+
+		return null;
+	}
+
+	public List<String> getStartNewMessageCommandResponse(Event event) {
+		if (validateInput(event)) {
+			boolean triggerEvent = new Random().nextInt(1) == 0;
+			
+			if (triggerEvent && event.getChannelId().equals(CODING_CHALLENGE_CHANNEL)) {
+				List<String> responses = new ArrayList<String>();
+				List<Pirate> pirates = pirateService.getBottlePirates();
+				
+				if (pirates.size()==0) {
+					return null;
+				}
+				
+				int randomPirate = getRandomNumber(pirates.size());
+				
+				if (randomPirate > 0) {
+					randomPirate = randomPirate -1;
+				}
+				
+				Pirate pirate = pirates.get(randomPirate);
+				
+				if (StringUtils.isEmpty(pirate.getChannelId())) {
+					return null;
+				}
+				
+				BottleEvent bottleEvent = bottleEventService.getBottleEventByPirateId(pirate.getPirateId());
+
+				SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+				
+				Date currentDate = new Date();
+				String currentDateString = formatter.format(currentDate);
+				
+				LocalDate endDate = LocalDate.now().plusDays(2);
+				String endDateString = endDate.format(formatter2);
+
+				try {
+					if (bottleEvent.getBottleEndDate() == null) {
+						bottleEvent = new BottleEvent();
+						bottleEvent.setPirateId(pirate.getPirateId());
+						bottleEvent.setBottleStartDate(currentDateString);
+						bottleEvent.setBottleEndDate(endDateString);
+						bottleEvent.setDoubReward(0);
+						bottleEvent.setPointReward(0);
+						bottleEvent.setRewardCollected(false);
+						
+						bottleEventService.addNewBottleEvent(bottleEvent);
+						
+						responses.add("A message in a bottle has floated up to you...");
+						responses.add(pirate.getChannelId());
+						
+						return responses;
+					} else if (formatter.parse(currentDateString)
+							.after(formatter.parse(bottleEvent.getBottleEndDate()))) {
+						bottleEventService.updateDates(currentDateString, endDateString, 0, pirate.getPirateId());
+						
+						responses.add("A message in a bottle has floated up to you...");
+						responses.add(pirate.getChannelId());
+						
+						return responses;
+					} else {
+						return null;
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public String getPollyWantACrackerCommandResponse(Event event) {
@@ -68,7 +189,7 @@ public class PiratePointsCommand extends Command {
 				ParrotLanguageStorage parrotLanguage = ParrotLanguageStorage.getParrotLanguageStorage();
 				List<String> phrases = parrotLanguage.getPhrases();
 
-				int randomNum = getRandomNumber(phrases.size());
+				int randomNum = getRandomNumber(phrases.size() - 1);
 				String parrotSpeak = phrases.get(randomNum - 1);
 				StringBuilder parrotSpeakOutput = new StringBuilder();
 				String[] parrotSpeakSplit = parrotSpeak.split(" ");
@@ -129,24 +250,39 @@ public class PiratePointsCommand extends Command {
 				pirateService.updateTopFivePirate(pirate);
 				doubloonActivityService.updateTopFiveStartEndDate(startDateString, endDateString, pirate.getPirateId());
 			}
-			
+
 			pirateService.updateZeroPoints();
-			
+
 			return "You have activated the Top Five Pirates.";
 		}
 
 		return null;
 	}
-	
+
+	public String getTopFiveDeactivationResponse(Event event) {
+		if (validateInput(event) && isJoshUser(event)) {
+			List<Pirate> pirates = pirateService.getTopFivePiratesToDeactivate();
+
+			for (Pirate pirate : pirates) {
+				pirate.setTopFivePirate(false);
+				pirateService.updateTopFivePirate(pirate);
+				doubloonActivityService.deactivateTopFive(pirate.getPirateId());
+			}
+
+			return "You have deactivated the Top Five Pirates.";
+		}
+
+		return null;
+	}
+
 	public String getAdventureCommandResponse(Event event) {
 		if (validateInput(event)) {
 			return "*Here is the list of the current destinations*:\n(1) Monsoon Lagoon --- 1750 points\n"
-					+ "(2) The Gloomy Isles --- 5000 points\n"
-					+ "(3) The Volcanic Haven --- 9500 points.\n\n"
+					+ "(2) The Gloomy Isles --- 5000 points\n" + "(3) The Volcanic Haven --- 9500 points.\n\n"
 					+ "*Here is the list of upcoming Top Five pirates dates*:\n"
 					+ "(1) 7/6/18\n(2) 8/17/18\n(3) 9/28/18";
 		}
-		
+
 		return null;
 	}
 
@@ -180,6 +316,25 @@ public class PiratePointsCommand extends Command {
 			pirateShipService.updateCaptainByShipId(shipId, pirates.get(0).getPirateId());
 
 			return "You have activated the doubloons commands for ship id " + shipId;
+		}
+
+		return null;
+	}
+
+	public String getDeactivateDoubloonsCommandResponse(Event event) {
+		if (validateInput(event) && isJoshUser(event)) {
+			String[] inputString = event.getText().split(" ");
+			int shipId = Integer.parseInt(inputString[1]);
+
+			List<Pirate> pirates = pirateService.getPiratesByShipId(shipId);
+
+			for (Pirate pirate : pirates) {
+				pirate.setOnWinningShip(false);
+				pirateService.updateDoubloonsActivation(pirate);
+				doubloonActivityService.deactivateCommands(pirate.getPirateId());
+			}
+
+			return "You have deactivated the doubloons commands for ship id " + shipId;
 		}
 
 		return null;
@@ -319,8 +474,7 @@ public class PiratePointsCommand extends Command {
 
 				doubloonActivityService.updateExplore(currentDateString, pirate.getPirateId());
 			} else {
-				responses.add(
-						"Your ship needs to have reached an island.");
+				responses.add("Your ship needs to have reached an island.");
 			}
 
 			return responses;
@@ -367,8 +521,7 @@ public class PiratePointsCommand extends Command {
 
 				doubloonActivityService.updateShoreleave(currentDateString, pirate.getPirateId());
 			} else {
-				responses.add(
-						"Your ship needs to have reached an island.");
+				responses.add("Your ship needs to have reached an island.");
 			}
 
 			return responses;
@@ -415,8 +568,7 @@ public class PiratePointsCommand extends Command {
 
 				doubloonActivityService.updatePlunder(currentDateString, pirate.getPirateId());
 			} else {
-				responses.add(
-						"You need to be in the Top Five Pirates at the end of the previous Pirate Adventure.");
+				responses.add("You need to be in the Top Five Pirates at the end of the previous Pirate Adventure.");
 			}
 
 			return responses;
@@ -446,8 +598,8 @@ public class PiratePointsCommand extends Command {
 				int doubloonsFound = getDoubloons();
 				int doubloonsTotal = pirate.getDoubloons() + doubloonsFound;
 				pirate.setDoubloons(doubloonsTotal);
-				responses.add("While on drinking a mug of grog you find *" + doubloonsFound + "* doubloons at the bottom of the cup!\n"
-						+ "The last day you can run this command is *"
+				responses.add("While on drinking a mug of grog you find *" + doubloonsFound
+						+ "* doubloons at the bottom of the cup!\n" + "The last day you can run this command is *"
 						+ pirate.getDoubloonActivity().getTopFiveCommandEndDate() + "*.");
 
 				if (doubloonsFound == 5) {
@@ -463,8 +615,7 @@ public class PiratePointsCommand extends Command {
 
 				doubloonActivityService.updateGrog(currentDateString, pirate.getPirateId());
 			} else {
-				responses.add(
-						"You need to be in the Top Five Pirates at the end of the previous Pirate Adventure.");
+				responses.add("You need to be in the Top Five Pirates at the end of the previous Pirate Adventure.");
 			}
 
 			return responses;
@@ -496,8 +647,8 @@ public class PiratePointsCommand extends Command {
 						&& formatter.parse(currentDateString).equals(formatter.parse(activity.getLastGrogDate()))) {
 					return "You can only run the !grog command once a day.";
 				}
-			}
-			else if (StringUtils.isEmpty(activity.getCommandStartDate()) || StringUtils.isEmpty(activity.getCommandEndDate())
+			} else if (StringUtils.isEmpty(activity.getCommandStartDate())
+					|| StringUtils.isEmpty(activity.getCommandEndDate())
 					|| formatter.parse(currentDateString).before(formatter.parse(activity.getCommandStartDate()))
 					|| formatter.parse(currentDateString).after(formatter.parse(activity.getCommandEndDate()))) {
 				return "The doubloons commands are not active at this point.";
@@ -544,18 +695,19 @@ public class PiratePointsCommand extends Command {
 	public String getPirateLeaderboardCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<Pirate> pirates = pirateService.getTopFivePirates();
-			
+
 			StringBuilder output = new StringBuilder();
-			
+
 			output.append("*Here are the top 5 pirates!*\n");
-			
+
 			for (Pirate pirate : pirates) {
-				output.append(pirate.getPirateName() + " (" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
-					+ "): *" + pirate.getPiratePoints() + " points* (Total: " + pirate.getOverallPiratePoints() + " points) \n");
+				output.append(pirate.getPirateName() + " (" + pirate.getSlackUser().getFirstName() + " "
+						+ pirate.getSlackUser().getLastName() + "): *" + pirate.getPiratePoints() + " points* (Total: "
+						+ pirate.getOverallPiratePoints() + " points) \n");
 			}
-			
+
 			return output.toString();
-			
+
 		}
 
 		return null;
@@ -564,15 +716,16 @@ public class PiratePointsCommand extends Command {
 	public String getShipLeaderboardCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<PirateShip> pirateShips = pirateShipService.getTopShips();
-			
+
 			StringBuilder output = new StringBuilder();
-			
+
 			output.append("*Here is the points standings for the Ships!*\n");
-			
+
 			for (PirateShip pirateShip : pirateShips) {
-				output.append(pirateShip.getShipName() + ": *" + pirateShip.getShipPoints() + " points*\n");
+				output.append(pirateShip.getShipFlag() + " " + pirateShip.getShipName() + ": *"
+						+ pirateShip.getShipPoints() + " points*\n");
 			}
-			
+
 			return output.toString();
 		}
 
@@ -587,19 +740,29 @@ public class PiratePointsCommand extends Command {
 		return null;
 	}
 
-	public static String getUpcomingEventsCommandResponse(Event event) {
+	public String getEventsCommandResponse(Event event) {
 		if (validateInput(event)) {
-			piratePoints = PiratePointsData.getPiratePointsData();
-			List<UpcomingEvent> upcomingEvents = piratePoints.getUpcomingEvents();
+			List<PointEvent> pointsEvents = eventService.getEvents();
 
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("*Here is a list of the upcoming events that award points:*\n");
 
-			for (UpcomingEvent upcomingEvent : upcomingEvents) {
-				stringBuilder.append("*(").append(upcomingEvent.getDate()).append(" | ")
-						.append(upcomingEvent.getLocation()).append(")*  _").append(upcomingEvent.getEvent())
-						.append("_ -- Rewards: *").append(upcomingEvent.getPoints()).append(" points* -- ")
-						.append("Contact: *").append(upcomingEvent.getContact()).append("* for more info.\n");
+			for (PointEvent pointsEvent : pointsEvents) {
+				SimpleDateFormat fromSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String displayDate = StringUtils.EMPTY;
+
+				try {
+					Date dbDate = fromSdf.parse(pointsEvent.getDate());
+					SimpleDateFormat toSdf = new SimpleDateFormat("MM-dd-yyyy h:mm a");
+					displayDate = toSdf.format(dbDate);
+				} catch (ParseException e) {
+					return null;
+				}
+
+				stringBuilder.append("*(").append(displayDate).append(" | ").append(pointsEvent.getLocation())
+						.append(")*  _").append(pointsEvent.getEvent()).append("_ -- Rewards: *")
+						.append(pointsEvent.getPoints()).append(" points* -- ").append("Contact: *")
+						.append(pointsEvent.getContact()).append("* for more info.\n");
 			}
 
 			return stringBuilder.toString();
@@ -617,7 +780,8 @@ public class PiratePointsCommand extends Command {
 			String typeOfEvent = inputString[5];
 
 			Pirate pirate = pirateService.getPirateByName(inputString[1], inputString[2]);
-			pirateService.updatePoints((pirate.getPiratePoints() + pointsToAdd), (pirate.getOverallPiratePoints() + pointsToAdd), pirate.getUserId());
+			pirateService.updatePoints((pirate.getPiratePoints() + pointsToAdd),
+					(pirate.getOverallPiratePoints() + pointsToAdd), pirate.getUserId());
 
 			PirateShip pirateShip = pirateShipService.getShipById(pirate.getPirateShipId());
 			pirateShipService.updatePoints((pirateShip.getShipPoints() + pointsToAdd), pirate.getPirateShipId());
@@ -650,16 +814,17 @@ public class PiratePointsCommand extends Command {
 			List<Pirate> pirates = pirateService.getPiratesByShipId(pirate.getPirateShipId());
 
 			Collections.sort(pirates);
-			
+
 			StringBuilder output = new StringBuilder();
-			
+
 			output.append("*Here is the manifest of your ship:*\n");
-			
+
 			for (Pirate pir : pirates) {
-				output.append("*Pirate Name:* " + pir.getPirateName() + " --- *Real Name:* " + pir.getSlackUser().getFirstName() + " " + pir.getSlackUser().getLastName() + 
-						" --- *Points:* " + pir.getOverallPiratePoints() + "\n");
+				output.append("*Pirate Name:* " + pir.getPirateName() + " --- *Real Name:* "
+						+ pir.getSlackUser().getFirstName() + " " + pir.getSlackUser().getLastName() + " --- *Points:* "
+						+ pir.getOverallPiratePoints() + "\n");
 			}
-			
+
 			return output.toString();
 		}
 
@@ -672,27 +837,28 @@ public class PiratePointsCommand extends Command {
 			String[] inputStringSplit = inputString.split("\\|");
 			PirateShip assignedShip = pirateShipService.getShipToAddCrew();
 			int shipCrew = assignedShip.getShipCrew();
-			assignedShip.setShipCrew(shipCrew+=1);
-			
-			//insert into slack_user
+			assignedShip.setShipCrew(shipCrew += 1);
+
+			// insert into slack_user
 			SlackUser slackUser = new SlackUser();
 			slackUser.setFirstName(inputStringSplit[1]);
 			slackUser.setLastName(inputStringSplit[2]);
 			slackUser.setSlackId(inputStringSplit[3]);
-			
+
 			slackUserService.addNewSlackUser(slackUser);
-			
-			//insert into pirate
+
+			// insert into pirate
 			pirateService.addNewPirate(assignedShip.getShipId(), inputStringSplit[4]);
-			                                  
-			//insert into doubloon_act
+
+			// insert into doubloon_act
 			doubloonActivityService.addNewDoubloonAct();
-			
-			//update pirate ship
+
+			// update pirate ship
 			pirateShipService.updateShipCrew(assignedShip);
-			
-			return "Aye, *" + slackUser.getFirstName() + " " + slackUser.getLastName() + "* has been added to the crew of *" + assignedShip.getShipName()
-					+ "*. I dub ye *" + inputStringSplit[4] + "*. Start a new Direct Message with me and type *!myPirateInfo* "
+
+			return "Aye, *" + slackUser.getFirstName() + " " + slackUser.getLastName()
+					+ "* has been added to the crew of *" + assignedShip.getShipName() + "*. I dub ye *"
+					+ inputStringSplit[4] + "*. Start a new Direct Message with me and type *!myPirateInfo* "
 					+ "to see your info and *!myShipInfo* for your ship info."
 					+ " *(NOTE: There could be a chance that I don't reply to you in the Direct Message. If that's "
 					+ "the case let Josh Mayfield know. He will fix it. He has to be good for something.)*";
@@ -750,11 +916,40 @@ public class PiratePointsCommand extends Command {
 
 			if (pirate != null && pirateShip != null) {
 				return "*Pirate Name:* " + pirate.getPirateName() + "\n*Pirate Ship:* " + pirateShip.getShipName()
-						+ "\n*Current Pirate Points:* " + pirate.getPiratePoints() + "\n*Total Pirate Points:* " + pirate.getOverallPiratePoints() 
-						+ "\n*Doubloons:* " + pirate.getDoubloons() + "\n";
+						+ "\n*Current Pirate Points:* " + pirate.getPiratePoints() + "\n*Total Pirate Points:* "
+						+ pirate.getOverallPiratePoints() + "\n*Doubloons:* " + pirate.getDoubloons() + "\n"
+						+ "*Times you have walked the plank:* " + pirate.getPlankNum() + "\n";
 			}
 
 			return "I don't see you on my pirate registry. Overboard you go!";
+		}
+
+		return null;
+	}
+
+	public String getMyPointHistoryCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			List<PiratePointsHistory> piratePointsHistory = piratePointsHistoryService
+					.getHistoryByPirateId(pirate.getPirateId());
+
+			if (StringUtils.isEmpty(pirate.getChannelId())) {
+				pirateService.updateChannelId(pirate.getPirateId(), event.getChannelId());
+			}
+
+			if (pirate != null && piratePointsHistory != null) {
+				StringBuilder output = new StringBuilder();
+				output.append("*Here are all the events that you took part in:*\n");
+
+				for (PiratePointsHistory history : piratePointsHistory) {
+					output.append("*Date:* " + history.getDateOfEvent() + " --- *Event:* " + history.getEvent()
+							+ " --- *Points earned:* " + history.getPoints() + "\n");
+				}
+
+				return output.toString();
+			} else {
+				return "You don't have any points yet!!!";
+			}
 		}
 
 		return null;

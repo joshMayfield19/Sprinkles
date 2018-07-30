@@ -41,6 +41,14 @@ public class DoubloonActivityService {
 		doubloonActivityDao.updateCommandStartEndDate(startDate, endDate, pirateId);
 	}
 	
+	public void deactivateCommands(int pirateId) {
+		doubloonActivityDao.deactivateCommands(pirateId);
+	}
+	
+	public void deactivateTopFive(int pirateId) {
+		doubloonActivityDao.deactivateTopFive(pirateId);
+	}
+	
 	public void updateTopFiveStartEndDate(String startDate, String endDate, int pirateId) {
 		doubloonActivityDao.updateTopFiveStartEndDate(startDate, endDate, pirateId);
 	}

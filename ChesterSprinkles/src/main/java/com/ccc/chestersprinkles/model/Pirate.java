@@ -14,6 +14,7 @@ public class Pirate implements Comparable<Pirate> {
 	private boolean isCaptain;
 	private int plankNum;
 	private boolean canPolly;
+	private boolean canBottle;
 	private SlackUser slackUser;
 	private DoubloonActivity doubloonActivity;
 	private String channelId;
@@ -99,6 +100,14 @@ public class Pirate implements Comparable<Pirate> {
 
 	public String getChannelId() {
 		return channelId;
+	}
+
+	public boolean isCanBottle() {
+		return canBottle;
+	}
+
+	public void setCanBottle(boolean canBottle) {
+		this.canBottle = canBottle;
 	}
 
 	public void setChannelId(String channelId) {

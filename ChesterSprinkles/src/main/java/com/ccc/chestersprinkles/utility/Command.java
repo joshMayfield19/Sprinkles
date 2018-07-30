@@ -17,6 +17,6 @@ public class Command {
 	
 	protected static int getRandomNumber(int max) {
 		Random rand = new Random();
-		return rand.nextInt(max) + 1;
+		return rand.nextInt(max);
  	}
 }

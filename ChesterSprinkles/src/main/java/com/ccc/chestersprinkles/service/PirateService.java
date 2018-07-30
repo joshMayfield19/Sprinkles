@@ -20,8 +20,16 @@ public class PirateService {
 		return pirateDao.getTopFivePirates();
 	}
 	
+	public List<Pirate> getTopFivePiratesToDeactivate(){
+		return pirateDao.getTopFivePiratesToDeactivate();
+	}
+	
 	public List<Pirate> getTopPlankWalkers(){
 		return pirateDao.getTopPlankWalkers();
+	}
+	
+	public List<Pirate> getBottlePirates(){
+		return pirateDao.getBottlePirates();
 	}
 	
 	public Pirate getPirateBySlackId(String slackId){
@@ -74,5 +82,9 @@ public class PirateService {
 	
 	public void addNewPirate(int shipId, String pirateName) {
 		pirateDao.addNewPirate(shipId, pirateName);
+	}
+	
+	public void updateBottleCommand(int pirateId, int newDoubloonCount) {
+		pirateDao.updateBottleCommand(pirateId, newDoubloonCount);
 	}
 }

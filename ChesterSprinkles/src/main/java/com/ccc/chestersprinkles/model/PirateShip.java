@@ -7,6 +7,7 @@ public class PirateShip implements Comparable<PirateShip> {
 	private int shipPoints;
 	private int overallShipPoints;
 	private int shipCrew;
+	private String shipFlag;
 	
 	public String getShipName() {
 		return shipName;
@@ -19,6 +20,12 @@ public class PirateShip implements Comparable<PirateShip> {
 	}
 	public int getShipId() {
 		return shipId;
+	}
+	public String getShipFlag() {
+		return shipFlag;
+	}
+	public void setShipFlag(String shipFlag) {
+		this.shipFlag = shipFlag;
 	}
 	public void setShipId(int shipId) {
 		this.shipId = shipId;
