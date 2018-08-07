@@ -34,10 +34,10 @@ import me.ramswaroop.jbot.core.slack.models.Event;
 
 @Component
 public class PiratePointsCommand extends Command {
-	private static final String JOSH_ID = "U2AR5EH8U";
+	private static final String JOSH_ID = "UBYAE4ANA";
 
-	private static final String KD_SPRINKLES_CHANNEL = "G7S3DCZAB";
-	private static final String CODING_CHALLENGE_CHANNEL = "C5VRF4892";
+	private static final String KD_SPRINKLES_CHANNEL = "GC2RPBCA0";
+	private static final String CODING_CHALLENGE_CHANNEL = "CC06WLNA1";
 
 	@Autowired
 	private SlackUserService slackUserService;
@@ -74,29 +74,33 @@ public class PiratePointsCommand extends Command {
 				int bottlePoint = bottleEvent.getPointReward();
 				
 				if (bottleEvent.getBottleEndDate() == null) {
-					return "No message in a bottle has appeard to you yet.";
+					return "No message in a bottle has appeared to you yet.";
 				}
 				
 				if (bottleEvent.isRewardCollected()) {
-					return "You have already read your message. You can't recieve a new message again until after " + bottleEvent.getBottleEndDate() + ".";
+					return "You have already read your message. You can't receive a new message again until after " + bottleEvent.getBottleEndDate() + ".";
 				}
 				
 				int currentPoints = pirate.getPiratePoints();
 				int totalPoints = pirate.getOverallPiratePoints();
 				int doubloons = pirate.getDoubloons();
 				
+				PirateShip ship = pirateShipService.getShipById(pirate.getPirateShipId());
+				int shipPoints = ship.getOverallShipPoints();
+				
 				boolean doubloonReward = new Random().nextInt(50) == 0;
 				
 				if (doubloonReward) {
-					int newDoub = new Random().nextInt(2) + 1;
+					int newDoub = new Random().nextInt(5) + 1;
 					pirateService.updateDoubloons(doubloons + newDoub, pirate.getPirateId());
 					bottleEventService.updateDoubloons(newDoub + bottleDoub, pirate.getPirateId());
 					
 					return "You opened the message and  " + newDoub + " doubloons fell out!";
 				}
 				else {
-					int newPoints = new Random().nextInt(15) + 1;
+					int newPoints = new Random().nextInt(20) + 1;
 					pirateService.updatePoints(currentPoints + newPoints, totalPoints + newPoints, pirate.getUserId());
+					pirateShipService.updatePoints(shipPoints + newPoints, ship.getShipId());
 					bottleEventService.updatePoints(newPoints + bottlePoint, pirate.getPirateId());
 					
 					return "You opened the message and " + newPoints + " points appeared before you!";
@@ -112,7 +116,7 @@ public class PiratePointsCommand extends Command {
 
 	public List<String> getStartNewMessageCommandResponse(Event event) {
 		if (validateInput(event)) {
-			boolean triggerEvent = new Random().nextInt(1) == 0;
+			boolean triggerEvent = new Random().nextInt(30) == 0;
 			
 			if (triggerEvent && event.getChannelId().equals(CODING_CHALLENGE_CHANNEL)) {
 				List<String> responses = new ArrayList<String>();
@@ -142,7 +146,7 @@ public class PiratePointsCommand extends Command {
 				Date currentDate = new Date();
 				String currentDateString = formatter.format(currentDate);
 				
-				LocalDate endDate = LocalDate.now().plusDays(2);
+				LocalDate endDate = LocalDate.now().plusDays(5);
 				String endDateString = endDate.format(formatter2);
 
 				try {
@@ -157,7 +161,7 @@ public class PiratePointsCommand extends Command {
 						
 						bottleEventService.addNewBottleEvent(bottleEvent);
 						
-						responses.add("A message in a bottle has floated up to you...");
+						responses.add("A message in a bottle has floated up to you... Type *!messageInABottle* to read the message.");
 						responses.add(pirate.getChannelId());
 						
 						return responses;
@@ -165,7 +169,7 @@ public class PiratePointsCommand extends Command {
 							.after(formatter.parse(bottleEvent.getBottleEndDate()))) {
 						bottleEventService.updateDates(currentDateString, endDateString, 0, pirate.getPirateId());
 						
-						responses.add("A message in a bottle has floated up to you...");
+						responses.add("A message in a bottle has floated up to you... Type *!messageInABottle* to read the message.");
 						responses.add(pirate.getChannelId());
 						
 						return responses;
@@ -280,7 +284,7 @@ public class PiratePointsCommand extends Command {
 			return "*Here is the list of the current destinations*:\n(1) Monsoon Lagoon --- 1750 points\n"
 					+ "(2) The Gloomy Isles --- 5000 points\n" + "(3) The Volcanic Haven --- 9500 points.\n\n"
 					+ "*Here is the list of upcoming Top Five pirates dates*:\n"
-					+ "(1) 7/6/18\n(2) 8/17/18\n(3) 9/28/18";
+					+ "(1) 7/6/18\n(2) 8/22/18\n(3) 9/28/18";
 		}
 
 		return null;
@@ -812,7 +816,7 @@ public class PiratePointsCommand extends Command {
 		if (validateInput(event)) {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
 			List<Pirate> pirates = pirateService.getPiratesByShipId(pirate.getPirateShipId());
-
+			
 			Collections.sort(pirates);
 
 			StringBuilder output = new StringBuilder();

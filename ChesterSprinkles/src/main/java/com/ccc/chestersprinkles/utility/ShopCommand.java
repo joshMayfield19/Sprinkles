@@ -138,4 +138,20 @@ public class ShopCommand extends Command {
 		
 		return null;
 	}
+	
+	public String buyWfh(Event event) {
+		if (validateInput(event)) {
+			return "Command not implemented yet.";
+		}
+		
+		return null;
+	}
+	
+	public String buyLotSpot(Event event) {
+		if (validateInput(event)) {
+			return "Command not implemented yet.";
+		}
+		
+		return null;
+	}
 }

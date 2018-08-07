@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
     <raffleDateTime>8/2/18</raffleDateTime>
-    <raffleStartingTicket></raffleStartingTicket>
-    <raffleEndingTicket></raffleEndingTicket>
-    <raffleExcludedTickets></raffleExcludedTickets>
+    <raffleStartingTicket>212012</raffleStartingTicket>
+    <raffleEndingTicket>212057</raffleEndingTicket>
+    <raffleExcludedTickets>212032;212025;212049</raffleExcludedTickets>
     <currentChallenge>The Hunt for the Ghostly Treasure</currentChallenge>
     <currentChallengeDate>7/30/18</currentChallengeDate>
     <currentChallengeLink>https://drive.google.com/open?id=14SRn15R8MlL29OU5B8BbP-sGOethzp_I</currentChallengeLink>
     <raffleWinners>
-        <raffleWinner>Dale H</raffleWinner>
-        <raffleWinner>Nina L</raffleWinner>
-        <raffleWinner>David H</raffleWinner>
+        <raffleWinner>Evan B</raffleWinner>
+        <raffleWinner>Laura F</raffleWinner>
+        <raffleWinner>Cameron M</raffleWinner>
     </raffleWinners>
     <presenters>
         <presenter>Dave Arlington</presenter>
         <presenter>Andre Gueret</presenter>
         <presenter>David Mullen</presenter>
         <presenter>Tim Hayes</presenter>
+        <presenter>Nathan Ryan</presenter>
+        <presenter>Jaforrest Jackson</presenter>
+        <presenter>Rami Ismail</presenter>
     </presenters>
     <allTimePresenters>
         <allTimePresenter>
@@ -106,7 +109,12 @@
     </allTimePresenters>
     <ideas>
         <idea>*Submitted by:* Robert Cole --- *Idea:* Pirate Battle. Would be cool to have a simple shooter where your pirate ship has to fight off other pirate ships.</idea>
-        <idea>*Submitted by:* Robert Cole --- *Idea:* Treasure Hunt. Maybe with traps. So something similar to minesweeper but you have to find the hidden treasure too.</idea>
+        <idea>*Submitted by:* David Mullen --- *Idea:* Poker game, e.g. Texas Hold'em or any kind of card game, against computer or human opponent.</idea>
+        <idea>*Submitted by:* David Mullen --- *Idea:* Direction puzzle game, e.g. ChuChu Rocket and RoboRally. Direct drunken pirates to different destinations.</idea>
+        <idea>*Submitted by:* Bret Owens --- *Idea:* Pirate Ship RPG: Inlcudes "Walk the Plank" turn based mini-game, Shanty creation, and Sprinkles as Captain</idea>
+        <idea>*Submitted by:* Taylor Montgomery --- *Idea:* Play the classic game Battleship using our own ships</idea>
+        <idea>*Submitted by:* Nathan Ryan --- *Idea:* Pirate Dress-up. Try different kicky outfits on your pirate!</idea>
+        <idea>*Submitted by:* Taylor Montgomery --- *Idea:* Plank Walkers - Price is Right Mountain Climbers game, but sub a plank for the mountain, and a random pirate from the channel for the climber. Guess the price of everyday pirate items (hook, dagger, eye patch, rum, peg leg, etc)</idea>
     </ideas>
     <commands>
         <command>*Submitted by:* Robert Cole --- *Command:* dailyChallenge - Would provide a daily challange, something similar to code golf, daily UI challenges, etc.</command>
@@ -123,5 +131,8 @@
         <command>*Submitted by:* Michael Morris --- *Command:* !listShanites - See the shanty list</command>
         <command>*Submitted by:* Jaforrest Jackson --- *Command:* !daily - post top pirates, top ships, and upcoming events</command>
         <command>*Submitted by:* Michael Peacock --- *Command:* !zorldo - show gifs video game characters as imagined on Jeopardy</command>
+        <command>*Submitted by:* Michael Morris --- *Command:* !saavy - shows the number of days left til talk like a pirate day.</command>
+        <command>*Submitted by:* Jaforrest Jackson --- *Command:* !rescue - Try to save the last person to walk the plank. Should have a random chance for failure to rescue.</command>
+        <command>*Submitted by:* Michael Peacock --- *Command:* !intercom - send a message only visible to crew members of your ship</command>
     </commands>
 </chester_sprinkles>

@@ -49,8 +49,8 @@ public class SlackBot extends Bot {
 	private String currentUser = "";
 	private boolean addBotCommandReturn = false;
 	private boolean addChallengeIdeaReturn = false;
-	private static final String KD_SPRINKLES_CHANNEL = "G7S3DCZAB";
-	private static final String CODING_CHALLENGE_CHANNEL = "C5VRF4892";
+	private static final String KD_SPRINKLES_CHANNEL = "GC2RPBCA0";
+	private static final String CODING_CHALLENGE_CHANNEL = "CC06WLNA1";
 
 	// @Autowired
 	// private TextAdventure textAdventure;
@@ -171,6 +171,15 @@ public class SlackBot extends Bot {
 	 **************************************
 	 */
 
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!stapler)$")
+	public void stapler(WebSocketSession session, Event event) {
+		String commandResponse = MiscCommand.getStaplerCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!blaymon)$")
 	public void blaymon(WebSocketSession session, Event event) {
 		String commandResponse = MiscCommand.getBlaymonCommandResponse(event);
@@ -779,17 +788,20 @@ public class SlackBot extends Bot {
 
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyWfh)$")
 	public void buyWfh(WebSocketSession session, Event event) {
-		reply(session, event, new Message("Command not implemented yet."));
+		String commandResponse = shopCommand.buyWfh(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
 	}
 
-	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buy2Raffle)$")
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyLotSpot)$")
 	public void buy2Raffle(WebSocketSession session, Event event) {
-		reply(session, event, new Message("Command not implemented yet."));
-	}
+		String commandResponse = shopCommand.buyLotSpot(event);
 
-	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyIgnoreRaffle)$")
-	public void buyIgnoreRaffle(WebSocketSession session, Event event) {
-		reply(session, event, new Message("Command not implemented yet."));
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
 	}
 
 	/**************************************
