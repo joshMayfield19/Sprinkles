@@ -180,6 +180,16 @@ public class SlackBot extends Bot {
 		}
 	}
 	
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!unicornOfTheSea)$")
+	public void unicornOfTheSea(WebSocketSession session, Event event) {
+		/*String commandResponse = miscCommand.getUnicornOfTheSeaCommandResponse(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}*/
+	}
+	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!blaymon)$")
 	public void blaymon(WebSocketSession session, Event event) {
 		String commandResponse = MiscCommand.getBlaymonCommandResponse(event);
@@ -349,7 +359,34 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!plankSniper(.*))$")
+	public void plankSniper(WebSocketSession session, Event event) {
+	String commandResponse = pirateCommand.getPlankSniperCommandResponse(event);
 
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!mutiny(.*))$")
+	public void mutiny(WebSocketSession session, Event event) {
+		String commandResponse = pirateCommand.getMutinyCommandResponse(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!manOverboard)$")
+	public void manOverboard(WebSocketSession session, Event event) {
+		/*String commandResponse = pirateCommand.getManOverboardCommandResponse(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}*/
+	}
+	
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!plankLife)$")
 	public void plankLife(WebSocketSession session, Event event) {
 		String commandResponse = pirateCommand.getTopPlankWalkersCommandResponse(event);
@@ -505,7 +542,7 @@ public class SlackBot extends Bot {
 		}
 	}
 
-	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!battle)$")
+	/*@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!battle)$")
 	public void battle(WebSocketSession session, Event event) {
 		List<String> commandResponses = piratePointsCommand.getBattleCommandResponse(event);
 
@@ -517,7 +554,7 @@ public class SlackBot extends Bot {
 				reply(session, event, new Message(commandResponses.get(1)));
 			}
 		}
-	}
+	}*/
 
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!explore)$")
 	public void explore(WebSocketSession session, Event event) {
@@ -758,7 +795,34 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyPlankSniper)$")
+	public void buyPlankSniper(WebSocketSession session, Event event) {
+		String commandResponse = shopCommand.buyPlankSniper(event);
 
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyMutiny)$")
+	public void buyMutiny(WebSocketSession session, Event event) {
+		String commandResponse = shopCommand.buyMutiny(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!gamble)$")
+	public void gamble(WebSocketSession session, Event event) {
+		String commandResponse = shopCommand.gamble(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyPolly)$")
 	public void buyPolly(WebSocketSession session, Event event) {
 		String commandResponse = shopCommand.buyPollyWantACracker(event);

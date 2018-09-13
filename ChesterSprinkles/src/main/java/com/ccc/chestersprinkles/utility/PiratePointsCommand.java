@@ -88,7 +88,7 @@ public class PiratePointsCommand extends Command {
 				PirateShip ship = pirateShipService.getShipById(pirate.getPirateShipId());
 				int shipPoints = ship.getOverallShipPoints();
 				
-				boolean doubloonReward = new Random().nextInt(50) == 0;
+				boolean doubloonReward = new Random().nextInt(20) == 0;
 				
 				if (doubloonReward) {
 					int newDoub = new Random().nextInt(5) + 1;
@@ -561,7 +561,7 @@ public class PiratePointsCommand extends Command {
 
 				if (doubloonsFound == 5) {
 					responses.add("*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
-							+ "* just found a whopping *5 doubloons* while on plundering a nearby tavern!!!");
+							+ "* just found a whopping *5 doubloons* while plundering a nearby tavern!!!");
 				}
 
 				pirateService.updateDoubloons(doubloonsTotal, pirate.getPirateId());
@@ -922,7 +922,9 @@ public class PiratePointsCommand extends Command {
 				return "*Pirate Name:* " + pirate.getPirateName() + "\n*Pirate Ship:* " + pirateShip.getShipName()
 						+ "\n*Current Pirate Points:* " + pirate.getPiratePoints() + "\n*Total Pirate Points:* "
 						+ pirate.getOverallPiratePoints() + "\n*Doubloons:* " + pirate.getDoubloons() + "\n"
-						+ "*Times you have walked the plank:* " + pirate.getPlankNum() + "\n";
+						+ "*Times you have walked the plank:* " + pirate.getPlankNum() + "\n"
+								+ "*Plank Sniper Charges:* " + pirate.getPlankSniper() + "\n"
+								+ "*Mutiny Charges:* " + pirate.getMutiny() + "\n";
 			}
 
 			return "I don't see you on my pirate registry. Overboard you go!";

@@ -26,7 +26,8 @@ public class PirateDao {
 			+ "pirate.pirate_name, pirate.plank_num, slack_user.first_name, slack_user.last_name from pirate "
 			+ "inner join slack_user on pirate.user_id = slack_user.slack_user_id order by pirate.plank_num desc limit 5";
 	private static final String GET_PIRATE_BY_SLACK_ID = "select pirate.pirate_id, pirate.user_id, pirate.ship_id, pirate.current_points, pirate.total_points, "
-			+ "pirate.doubloons, pirate.pirate_name, pirate.top_five, pirate.captain, pirate.winning_ship, pirate.plank_num, pirate.polly, pirate.bottle, pirate.channel, slack_user.first_name, slack_user.last_name, slack_user.slack_id,"
+			+ "pirate.doubloons, pirate.pirate_name, pirate.top_five, pirate.captain, pirate.winning_ship, pirate.plank_num, pirate.polly, pirate.bottle, pirate.channel, "
+			+ "pirate.mutiny, pirate.sniper, pirate.loot_dte, slack_user.first_name, slack_user.last_name, slack_user.slack_id,"
 			+ "doubloon_act.command_start, doubloon_act.command_end, doubloon_act.shoreleave_dte, doubloon_act.explore_dte, doubloon_act.battle_dte, doubloon_act.set_sail_dte,"
 			+ "doubloon_act.top_five_start, doubloon_act.top_five_end, doubloon_act.plunder_dte, doubloon_act.grog_dte "
 			+ "from pirate "
@@ -34,7 +35,7 @@ public class PirateDao {
 			+ "inner join doubloon_act on pirate.pirate_id = doubloon_act.pirate_id "
 			+ "where slack_user.slack_id=?";
 	private static final String GET_PIRATE_BY_SHIP_ID = "select pirate.pirate_id, pirate.user_id, pirate.pirate_name, pirate.ship_id, pirate.current_points, "
-			+ "pirate.total_points, pirate.top_five, pirate.captain, pirate.winning_ship, doubloon_act.command_start, doubloon_act.command_end, slack_user.first_name, "
+			+ "pirate.total_points, pirate.top_five, pirate.captain, pirate.winning_ship, pirate.plank_num, doubloon_act.command_start, doubloon_act.command_end, slack_user.first_name, "
 			+ "slack_user.last_name "
 			+ "from pirate "
 			+ "inner join doubloon_act on pirate.pirate_id = doubloon_act.pirate_id "
@@ -51,6 +52,11 @@ public class PirateDao {
 	private static final String UPDATE_NAME = "update pirate set pirate_name = ?, doubloons = ? where pirate_id = ?";
 	private static final String UPDATE_POLLY = "update pirate set polly = 1, doubloons = ? where pirate_id = ?";
 	private static final String UPDATE_BOTTLE = "update pirate set bottle = 1, doubloons = ? where pirate_id = ?";
+	private static final String UPDATE_MUTINY = "update pirate set mutiny = (mutiny+1), doubloons = ? where pirate_id = ?";
+	private static final String UPDATE_USE_MUTINY = "update pirate set mutiny = (mutiny-1) where pirate_id = ?";
+	private static final String UPDATE_SNIPER = "update pirate set sniper = (sniper+1), doubloons = ? where pirate_id = ?";
+	private static final String UPDATE_USE_SNIPER = "update pirate set sniper = (sniper-1) where pirate_id = ?";
+	private static final String UPDATE_LOOT_DTE = "update pirate set loot_dte = ?, doubloons = ? where pirate_id = ?";
 	private static final String UPDATE_CHANNEL = "update pirate set channel = ? where pirate_id = ?";
 	private static final String UPDATE_PIRATE_POINTS_ZERO = "update pirate set current_points = 0";
 	private static final String ADD_NEW_PIRATE = "insert into pirate (user_id, ship_id, current_points, total_points, doubloons, pirate_name, top_five, captain, plank_num, winning_ship, polly, bottle, channel) "
@@ -247,15 +253,16 @@ public class PirateDao {
 	            pirate.setTopFivePirate(rs.getInt(7) == 1 ? true : false);
 	            pirate.setCaptain(rs.getInt(8) == 1 ? true : false);
 	            pirate.setOnWinningShip(rs.getInt(9) == 1 ? true : false);
+	            pirate.setPlankNum(rs.getInt(10));
 	            
 	            DoubloonActivity doubloonActivity = new DoubloonActivity();
-	            doubloonActivity.setCommandStartDate(rs.getString(10));
-	            doubloonActivity.setCommandEndDate(rs.getString(11));
+	            doubloonActivity.setCommandStartDate(rs.getString(11));
+	            doubloonActivity.setCommandEndDate(rs.getString(12));
 	            pirate.setDoubloonActivity(doubloonActivity);
 	            
 	            SlackUser slackUser = new SlackUser();
-	            slackUser.setFirstName(rs.getString(12));
-	            slackUser.setLastName(rs.getString(13));
+	            slackUser.setFirstName(rs.getString(13));
+	            slackUser.setLastName(rs.getString(14));
 	            pirate.setSlackUser(slackUser);
 	            
 	            pirates.add(pirate);
@@ -305,24 +312,27 @@ public class PirateDao {
 	            pirate.setCanPolly(rs.getInt(12) == 1 ? true : false);
 	            pirate.setCanBottle(rs.getInt(13) == 1 ? true : false);
 	            pirate.setChannelId(rs.getString(14));
+	            pirate.setMutiny(rs.getInt(15));
+	            pirate.setPlankSniper(rs.getInt(16));
+	            pirate.setLootDate(rs.getString(17));
 	            
 	            SlackUser slackUser = new SlackUser();
-	            slackUser.setFirstName(rs.getString(15));
-	            slackUser.setLastName(rs.getString(16));
-	            slackUser.setSlackId(rs.getString(17));
+	            slackUser.setFirstName(rs.getString(18));
+	            slackUser.setLastName(rs.getString(19));
+	            slackUser.setSlackId(rs.getString(20));
 	            pirate.setSlackUser(slackUser);
 	            
 	            DoubloonActivity doubloonActivity = new DoubloonActivity();
-	            doubloonActivity.setCommandStartDate(rs.getString(18));
-	            doubloonActivity.setCommandEndDate(rs.getString(19));
-	            doubloonActivity.setLastShoreleaveDate(rs.getString(20));
-	            doubloonActivity.setLastExploreDate(rs.getString(21));
-	            doubloonActivity.setLastBattleDate(rs.getString(22));
-	            doubloonActivity.setLastSetSailDate(rs.getString(23));
-	            doubloonActivity.setTopFiveCommandStartDate(rs.getString(24));
-	            doubloonActivity.setTopFiveCommandEndDate(rs.getString(25));
-	            doubloonActivity.setLastPlunderDate(rs.getString(26));
-	            doubloonActivity.setLastGrogDate(rs.getString(27));
+	            doubloonActivity.setCommandStartDate(rs.getString(21));
+	            doubloonActivity.setCommandEndDate(rs.getString(22));
+	            doubloonActivity.setLastShoreleaveDate(rs.getString(23));
+	            doubloonActivity.setLastExploreDate(rs.getString(24));
+	            doubloonActivity.setLastBattleDate(rs.getString(25));
+	            doubloonActivity.setLastSetSailDate(rs.getString(26));
+	            doubloonActivity.setTopFiveCommandStartDate(rs.getString(27));
+	            doubloonActivity.setTopFiveCommandEndDate(rs.getString(28));
+	            doubloonActivity.setLastPlunderDate(rs.getString(29));
+	            doubloonActivity.setLastGrogDate(rs.getString(30));
 	            pirate.setDoubloonActivity(doubloonActivity);
 	        }
 	    } catch (SQLException e ) {
@@ -603,6 +613,150 @@ public class PirateDao {
 	    	
 	    	stmt.setInt(1, doubloons);
 	    	stmt.setInt(2, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+
+	public void updateMutinyCommand(int pirateId, int doubloons) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_MUTINY);
+	    	
+	    	stmt.setInt(1, doubloons);
+	    	stmt.setInt(2, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void updatePlankSniperCommand(int pirateId, int doubloons) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_SNIPER);
+	    	
+	    	stmt.setInt(1, doubloons);
+	    	stmt.setInt(2, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+
+	public void updateUsePlankSniperCommand(int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_USE_SNIPER);
+	    	
+	    	stmt.setInt(1, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+
+	public void updateUseMutinyCommand(int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_USE_MUTINY);
+	    	
+	    	stmt.setInt(1, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void updateLootDateCommand(int pirateId, int doubloons, String lootDate) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_LOOT_DTE);
+	    	
+	    	stmt.setString(1, lootDate);
+	    	stmt.setInt(2, doubloons);
+	    	stmt.setInt(3, pirateId);
 
 			// execute update SQL stetement
 	    	stmt.executeUpdate();

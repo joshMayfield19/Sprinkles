@@ -1,7 +1,9 @@
 package com.ccc.chestersprinkles.utility;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,7 @@ public class PirateCommand extends Command {
 
 	@Autowired
 	private SlackUserService slackUserService;
-
+	
 	public String getWalkThePlankCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<SlackUser> allUsers = slackUserService.getSlackUsers();
@@ -33,26 +35,117 @@ public class PirateCommand extends Command {
 			
 			String plankWalker = randomSlackUser.getFirstName() + " " + randomSlackUser.getLastName();
 			
-			int rando = getRandomNumber(5);
+			return getPlankWalkerStatement(plankWalker);
+		}
 
-			if (rando == 0) {
-				return "I hope *" + plankWalker + "* knows how to swim!";
-			} else if (rando == 1) {
-				return "Oops! Seems *" + plankWalker + "* 'fell' off the ship.";
-			} else if (rando == 2) {
-				return "It's time for *" + plankWalker + "* to take a long walk down a short diving board.";
-			} else if (rando == 3) {
-				return "*" + plankWalker + "*, let me show you where the pool is...";
-			} else if (rando == 4) {
-				return "*" + plankWalker + "*, think of this as a very wet vacation from your ship. :stuck_out_tongue:";
-			} else {
-				return "Ahoy! It's time for *" + plankWalker + "* to walk the plank! Get moving!";
+		return null;
+	}
+	
+	public String getMutinyCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			
+			if (pirate.getMutiny() > 0) {
+				String input = event.getText();
+				String[] inputSplit = input.split(" ");
+				
+				String shipString = inputSplit[1];
+				String shipName = StringUtils.EMPTY;
+				List<Pirate> pirates = null;
+				
+				if (shipString.toLowerCase().equals("pride")) {
+					pirates = pirateService.getPiratesByShipId(7);
+					shipName = "The Pride of the Tide";
+				}
+				else if (shipString.toLowerCase().equals("scurvy")) {
+					pirates = pirateService.getPiratesByShipId(2);
+					shipName = "The Scurvy Sun";
+				}
+				else if (shipString.toLowerCase().equals("insanity")) {
+					pirates = pirateService.getPiratesByShipId(4);
+					shipName = "The Blue Insanity";
+				}
+				else if (shipString.toLowerCase().equals("dagger")) {
+					pirates = pirateService.getPiratesByShipId(3);
+					shipName = "The Cry of the Dagger";
+				}
+				else if (shipString.toLowerCase().equals("wolf")) {
+					pirates = pirateService.getPiratesByShipId(5);
+					shipName = "The Corrupted Wolf";
+				}
+				else {
+					return "I don't recognize that ship.";
+				}
+				
+				for (Pirate pir : pirates) {
+					int currentPlankNum = pir.getPlankNum();
+					pirateService.updateWalkThePlank((currentPlankNum + 1), pir.getPirateId());
+				}
+				
+				pirateService.updateUseMutinyCommand(pirate.getPirateId());
+				
+				return "You have caused a mutiny on *" + shipName + "*. Everyone on that ship has now walked the plank!";
+			}
+			else {
+				return "You don't have any charges of !mutiny. You can purchase them in the shop.";
 			}
 		}
 
 		return null;
 	}
 
+	
+	public String getPlankSniperCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			
+			if (pirate.getPlankSniper() > 0) {
+				String input = event.getText();
+				String[] inputSplit = input.split(" ");
+				
+				String walkerStringSlackId = inputSplit[1].substring(2, 11);
+				Pirate pirateWalker = pirateService.getPirateBySlackId(walkerStringSlackId);
+				
+				if (pirateWalker == null) {
+					return "I don't recognize that pirate.";
+				}
+				
+				int currentPlankNum = pirateWalker.getPlankNum();
+				pirateService.updateWalkThePlank((currentPlankNum + 1), pirateWalker.getPirateId());
+				
+				SlackUser walker = pirateWalker.getSlackUser();
+				String walkerName = walker.getFirstName() + " " + walker.getLastName();
+				
+				pirateService.updateUsePlankSniperCommand(pirate.getPirateId());
+				
+				return getPlankWalkerStatement(walkerName);
+			}
+			else {
+				return "You don't have any charges of !plankSniper. You can purchase them in the shop.";
+			}
+		}
+
+		return null;
+	}
+
+	private String getPlankWalkerStatement(String plankWalker) {
+		int rando = getRandomNumber(5);
+
+		if (rando == 0) {
+			return "I hope *" + plankWalker + "* knows how to swim!";
+		} else if (rando == 1) {
+			return "Oops! Seems *" + plankWalker + "* 'fell' off the ship.";
+		} else if (rando == 2) {
+			return "It's time for *" + plankWalker + "* to take a long walk down a short diving board.";
+		} else if (rando == 3) {
+			return "*" + plankWalker + "*, let me show you where the pool is...";
+		} else if (rando == 4) {
+			return "*" + plankWalker + "*, think of this as a very wet vacation from your ship. :stuck_out_tongue:";
+		} else {
+			return "Ahoy! It's time for *" + plankWalker + "* to walk the plank! Get moving!";
+		}
+	}
+	
 	public String getTopPlankWalkersCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<Pirate> pirates = pirateService.getTopPlankWalkers();

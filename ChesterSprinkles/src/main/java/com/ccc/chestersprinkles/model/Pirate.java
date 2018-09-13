@@ -13,8 +13,11 @@ public class Pirate implements Comparable<Pirate> {
 	private boolean isOnWinningShip;
 	private boolean isCaptain;
 	private int plankNum;
+	private int mutiny;
+	private int plankSniper;
 	private boolean canPolly;
 	private boolean canBottle;
+	private String lootDate;
 	private SlackUser slackUser;
 	private DoubloonActivity doubloonActivity;
 	private String channelId;
@@ -104,6 +107,30 @@ public class Pirate implements Comparable<Pirate> {
 
 	public boolean isCanBottle() {
 		return canBottle;
+	}
+
+	public int getMutiny() {
+		return mutiny;
+	}
+
+	public int getPlankSniper() {
+		return plankSniper;
+	}
+
+	public String getLootDate() {
+		return lootDate;
+	}
+
+	public void setLootDate(String lootDate) {
+		this.lootDate = lootDate;
+	}
+
+	public void setMutiny(int mutiny) {
+		this.mutiny = mutiny;
+	}
+
+	public void setPlankSniper(int plankSniper) {
+		this.plankSniper = plankSniper;
 	}
 
 	public void setCanBottle(boolean canBottle) {
