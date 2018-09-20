@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
     <raffleDateTime>9/6/18</raffleDateTime>
-    <raffleStartingTicket></raffleStartingTicket>
-    <raffleEndingTicket></raffleEndingTicket>
+    <raffleStartingTicket>212058</raffleStartingTicket>
+    <raffleEndingTicket>212096</raffleEndingTicket>
     <raffleExcludedTickets></raffleExcludedTickets>
     <currentChallenge>The Great Battle of the Atlantic</currentChallenge>
     <currentChallengeDate>9/10/18</currentChallengeDate>
@@ -118,5 +118,7 @@
         <command>*Submitted by:* Robert Cole --- *Command:* !poolParty - Must buy this command with doubloons. For one day, anyone that walks the plank gets pirate points.</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !slipperShoes - Can purchase. Would temporarily increase someone's walkThePlank percentage</command>
         <command>*Submitted by:* Ariel Burke --- *Command:* !stickyShoes Decreases the chance of you walking the plank.  Will cost dubloons and will be limited how many times you can buy.</command>
+        <command>*Submitted by:* Andre Gueret --- *Command:* !shantyRecommend this would be followed by a direct YouTube link to a new shanty</command>
+        <command>*Submitted by:* Caleb Hall --- *Command:* !executivePlankLeaderboards See how many times ATL people have walked the plank.</command>
     </commands>
 </chester_sprinkles>
