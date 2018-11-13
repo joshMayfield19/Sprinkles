@@ -305,7 +305,35 @@ public class ShopCommand extends Command {
 
 	public String buyLotSpot(Event event) {
 		if (validateInput(event)) {
-			return "Command not implemented yet.";
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+			DoubloonShopItem item = doubloonShopItemService.getItemByCommand(event.getText());
+			
+			if (item == null) {
+				return "I don't recognize the shop command " + event.getText();
+			}
+
+			if (pirate.getDoubloons() < item.getItemPrice()) {
+				return "You need " + item.getItemPrice() + " doubloons for this purchase.";
+			}
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+			LocalDate lotDate = LocalDate.now().plusMonths(3);
+			String lotDateString = lotDate.format(formatter);
+			
+			if (item.getItemQuantity() == 0) {
+				return pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName() + " has already purchased the parking lot spot. The spot will be available for repurchase on *" + lotDateString + "*.";
+			}
+
+			int pirateDoubloon = pirate.getDoubloons();
+			int newCount = pirateDoubloon - item.getItemPrice();
+
+			pirateService.updateLotDateCommand(pirate.getPirateId(), newCount, lotDateString);
+			doubloonShopItemService.updateQuantity(item.getItemId(), item.getItemQuantity() - 1);
+			doubloonItemHistoryService.addNewItemPurchase(pirate.getPirateId(), event.getText(), null,
+					item.getItemPrice());
+
+			return "You have successfully purchased a parking lot spot. The spot is number 8. You have this spot until *" + lotDateString + "*.";
 		}
 
 		return null;

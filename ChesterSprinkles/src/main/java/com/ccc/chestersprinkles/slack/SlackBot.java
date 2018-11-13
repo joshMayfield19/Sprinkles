@@ -17,6 +17,7 @@ import com.ccc.chestersprinkles.model.SlackUser;
 import com.ccc.chestersprinkles.service.ChallengeService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 import com.ccc.chestersprinkles.utility.ChallengeCommand;
+import com.ccc.chestersprinkles.utility.ManagerAssociationCommand;
 import com.ccc.chestersprinkles.utility.MiscCommand;
 import com.ccc.chestersprinkles.utility.PirateCommand;
 import com.ccc.chestersprinkles.utility.PiratePointsCommand;
@@ -72,6 +73,9 @@ public class SlackBot extends Bot {
 
 	@Autowired
 	private MiscCommand miscCommand;
+	
+	@Autowired
+	private ManagerAssociationCommand managerAssociationCommand;
 
 	// private static final String JOSH_ID = "U2AR5EH8U";
 
@@ -234,6 +238,51 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	/**************************************
+	 * 
+	 *  MANAGER COMMANDS
+	 * 
+	 * 
+	 * @param session
+	 * @param event
+	 */
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myDirectReports)$")
+	public void myDirectReports(WebSocketSession session, Event event) {
+		String commandResponse = managerAssociationCommand.getMyDirectReportsCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myManager)$")
+	public void myManager(WebSocketSession session, Event event) {
+		String commandResponse = managerAssociationCommand.getMyManagerCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!whoManager(.*))$")
+	public void whoManager(WebSocketSession session, Event event) {
+		String commandResponse = managerAssociationCommand.getWhoManagerCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!whoDirectReports(.*))$")
+	public void whoDirectReports(WebSocketSession session, Event event) {
+		String commandResponse = managerAssociationCommand.getWhoDirectReportsCommandResponse(event);
+		
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
 
 	/**************************************
 	 * 
@@ -368,6 +417,24 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!rum(.*))$")
+	public void rum(WebSocketSession session, Event event) {
+	String commandResponse = pirateCommand.getRumCommandResponse(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!:rum:(.*))$")
+	public void rumEmoji(WebSocketSession session, Event event) {
+	String commandResponse = pirateCommand.getRumCommandResponse(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
 
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!mutiny(.*))$")
 	public void mutiny(WebSocketSession session, Event event) {
@@ -413,6 +480,7 @@ public class SlackBot extends Bot {
 		}
 	}
 
+	//Example: !sortingEyepatch|Danielle|Williams|UC7GERTH9|Priscilla 'Merciless' Gail
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!sortingEyepatch(.*))$")
 	public void sortPirate(WebSocketSession session, Event event) {
 		String commandResponse = piratePointsCommand.getSortingEyepatchCommandResponse(event);
@@ -422,7 +490,8 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
-
+	
+	//Example: !addPoints Josh;Mayfield|KD;Wilson|Michael;Haymon 20 9/27/18 Innovation_Brainstorming
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!addPoints(.*))$")
 	public void addPoints(WebSocketSession session, Event event) {
 		String commandResponse = piratePointsCommand.getAddPointsCommandResponse(event);
@@ -458,7 +527,16 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myRumInfo)$")
+	public void myRumInfo(WebSocketSession session, Event event) {
+		String commandResponse = piratePointsCommand.getMyRumInfoCommandResponse(event);
 
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
+	
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!myShipInfo)$")
 	public void myShipInfo(WebSocketSession session, Event event) {
 		String commandResponse = piratePointsCommand.getMyShipInfoCommandResponse(event);
@@ -498,15 +576,6 @@ public class SlackBot extends Bot {
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!myCrewInfo)$")
 	public void myCrewInfoChannel(WebSocketSession session, Event event) {
 		String commandResponse = PiratePointsCommand.getDirectMessageChannelCommandResponse(event);
-
-		if (commandResponse != null) {
-			reply(session, event, new Message(commandResponse));
-		}
-	}
-
-	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!piratePointsHelp)$")
-	public void piratePointsHelp(WebSocketSession session, Event event) {
-		String commandResponse = PiratePointsCommand.getPiratePointsHelpCommandResponse(event, slackUserService);
 
 		if (commandResponse != null) {
 			reply(session, event, new Message(commandResponse));
@@ -860,7 +929,7 @@ public class SlackBot extends Bot {
 	}
 
 	@Controller(events = EventType.DIRECT_MESSAGE, pattern = "(?i)^(!buyLotSpot)$")
-	public void buy2Raffle(WebSocketSession session, Event event) {
+	public void buyLotSpot(WebSocketSession session, Event event) {
 		String commandResponse = shopCommand.buyLotSpot(event);
 
 		if (commandResponse != null) {

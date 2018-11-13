@@ -1,15 +1,23 @@
 package com.ccc.chestersprinkles.utility;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ccc.chestersprinkles.model.Achievement;
 import com.ccc.chestersprinkles.model.Pirate;
+import com.ccc.chestersprinkles.model.PirateShip;
+import com.ccc.chestersprinkles.model.Rum;
 import com.ccc.chestersprinkles.model.SlackUser;
+import com.ccc.chestersprinkles.service.AchievementService;
 import com.ccc.chestersprinkles.service.PirateService;
+import com.ccc.chestersprinkles.service.PirateShipService;
+import com.ccc.chestersprinkles.service.RumService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
 import me.ramswaroop.jbot.core.slack.models.Event;
@@ -22,7 +30,29 @@ public class PirateCommand extends Command {
 
 	@Autowired
 	private SlackUserService slackUserService;
+
+	@Autowired
+	private AchievementService achievementService;
+
+	@Autowired
+	private RumService rumService;
 	
+	@Autowired
+	private PirateShipService pirateShipService;
+
+	// Trey Sparks = UBTE5F1J4
+	// Reanna Reach = UBW5VUDK2
+	// Scott Monnig = UC811U8H0
+	// Ingrid Miller = UC0GUB9BR
+	// Monty Hamilton = UC0D00SFP
+	private List<String> newlyUnemployedSlackIds = Arrays.asList("UBTE5F1J4", "UBW5VUDK2", "UC811U8H0", "UC0GUB9BR",
+			"UC0D00SFP");
+
+	// Bethany Straughan = UBW657ERF
+	// Hannah Chappelle = UBX52CBFX
+	// Natascha Thomas = UBX6FTZ6H
+	private List<String> electraSlideSlackIds = Arrays.asList("UBW657ERF", "UBX52CBFX", "UBX6FTZ6H");
+
 	public String getWalkThePlankCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<SlackUser> allUsers = slackUserService.getSlackUsers();
@@ -32,61 +62,159 @@ public class PirateCommand extends Command {
 			Pirate pirate = pirateService.getPirateBySlackId(randomSlackUser.getSlackId());
 			int currentPlankNum = pirate.getPlankNum();
 			pirateService.updateWalkThePlank((currentPlankNum + 1), pirate.getPirateId());
-			
-			String plankWalker = randomSlackUser.getFirstName() + " " + randomSlackUser.getLastName();
-			
-			return getPlankWalkerStatement(plankWalker);
+
+			String achievementString = updateAcheivements(event, randomSlackUser);
+			String output = getPlankWalkerStatement(
+					randomSlackUser.getFirstName() + " " + randomSlackUser.getLastName());
+
+			if (achievementString != null) {
+				output = output + "\n" + achievementString;
+			}
+
+			return output;
 		}
 
 		return null;
 	}
-	
+
+	private String updateAcheivements(Event event, SlackUser plankWalker) {
+		Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+
+		// check Newly Unemployed
+		if (newlyUnemployedSlackIds.contains(plankWalker.getSlackId())) {
+			return checkForNewlyUnemployed(plankWalker, pirate);
+		} else if (electraSlideSlackIds.contains(plankWalker.getSlackId())) {
+			return checkForElectraSlide(plankWalker, pirate);
+		} else if (pirate.getSlackUser().getSlackId().equals(plankWalker.getSlackId())) {
+			return checkForSelfPlank(pirate);
+		}
+
+		return null;
+	}
+
+	private String checkForSelfPlank(Pirate pirate) {
+		Achievement achievement = achievementService.getAchievementByPirateId(pirate.getPirateId());
+
+		if (achievement.isHasSelfPlank()) {
+			return null;
+		} else {
+			achievementService.updateSelfPlank(true, pirate.getPirateId());
+			return "*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+					+ "* has earned the *Self Planked* achievement.";
+		}
+	}
+
+	private String checkForNewlyUnemployed(SlackUser plankWalker, Pirate pirate) {
+		Achievement achievement = achievementService.getAchievementByPirateId(pirate.getPirateId());
+		String currentNewlyUnemployed = achievement.getNewlyUnemployed();
+
+		return checkAchievementString(plankWalker, pirate, currentNewlyUnemployed, 5);
+	}
+
+	private String checkForElectraSlide(SlackUser plankWalker, Pirate pirate) {
+		Achievement achievement = achievementService.getAchievementByPirateId(pirate.getPirateId());
+		String currentElectraSlide = achievement.getElectraSlide();
+
+		return checkAchievementString(plankWalker, pirate, currentElectraSlide, 3);
+	}
+
+	private String checkAchievementString(SlackUser plankWalker, Pirate pirate, String achievementString,
+			int maxValue) {
+		if (StringUtils.isEmpty(achievementString)) {
+			if (maxValue == 5) {
+				achievementService.updateNewlyUnemployed(plankWalker.getLastName(), pirate.getPirateId());
+			} else {
+				achievementService.updateElectraSlide(plankWalker.getLastName(), pirate.getPirateId());
+			}
+		} else {
+			String[] currentArray = achievementString.split(";");
+			boolean alreadyWalked = false;
+			int newCounter = currentArray.length;
+
+			if (newCounter != maxValue) {
+				for (String name : currentArray) {
+					if (name.equals(plankWalker.getLastName())) {
+						alreadyWalked = true;
+						break;
+					}
+				}
+
+				String newValue = StringUtils.EMPTY;
+				String output = null;
+
+				if (!alreadyWalked) {
+					newValue = achievementString + ";" + plankWalker.getLastName();
+					newCounter = newCounter + 1;
+				}
+
+				if (newCounter == maxValue) {
+					newValue = "Complete";
+
+					if (maxValue == 5) {
+						output = "*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+								+ "* has earned the *Newly Unemployed* achievement.";
+					} else {
+						output = "*" + pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName()
+								+ "* has earned the *Electra Slide* achievement.";
+					}
+				}
+
+				if (StringUtils.isNotEmpty(newValue)) {
+					if (maxValue == 5) {
+						achievementService.updateNewlyUnemployed(newValue, pirate.getPirateId());
+					} else {
+						achievementService.updateElectraSlide(newValue, pirate.getPirateId());
+					}
+				}
+
+				return output;
+			}
+		}
+
+		return null;
+	}
+
 	public String getMutinyCommandResponse(Event event) {
 		if (validateInput(event)) {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
-			
+
 			if (pirate.getMutiny() > 0) {
 				String input = event.getText();
 				String[] inputSplit = input.split(" ");
-				
+
 				String shipString = inputSplit[1];
 				String shipName = StringUtils.EMPTY;
 				List<Pirate> pirates = null;
-				
+
 				if (shipString.toLowerCase().equals("pride")) {
 					pirates = pirateService.getPiratesByShipId(7);
 					shipName = "The Pride of the Tide";
-				}
-				else if (shipString.toLowerCase().equals("scurvy")) {
+				} else if (shipString.toLowerCase().equals("scurvy")) {
 					pirates = pirateService.getPiratesByShipId(2);
 					shipName = "The Scurvy Sun";
-				}
-				else if (shipString.toLowerCase().equals("insanity")) {
+				} else if (shipString.toLowerCase().equals("insanity")) {
 					pirates = pirateService.getPiratesByShipId(4);
 					shipName = "The Blue Insanity";
-				}
-				else if (shipString.toLowerCase().equals("dagger")) {
+				} else if (shipString.toLowerCase().equals("dagger")) {
 					pirates = pirateService.getPiratesByShipId(3);
 					shipName = "The Cry of the Dagger";
-				}
-				else if (shipString.toLowerCase().equals("wolf")) {
+				} else if (shipString.toLowerCase().equals("wolf")) {
 					pirates = pirateService.getPiratesByShipId(5);
 					shipName = "The Corrupted Wolf";
-				}
-				else {
+				} else {
 					return "I don't recognize that ship.";
 				}
-				
+
 				for (Pirate pir : pirates) {
 					int currentPlankNum = pir.getPlankNum();
 					pirateService.updateWalkThePlank((currentPlankNum + 1), pir.getPirateId());
 				}
-				
+
 				pirateService.updateUseMutinyCommand(pirate.getPirateId());
-				
-				return "You have caused a mutiny on *" + shipName + "*. Everyone on that ship has now walked the plank!";
-			}
-			else {
+
+				return "You have caused a mutiny on *" + shipName
+						+ "*. Everyone on that ship has now walked the plank!";
+			} else {
 				return "You don't have any charges of !mutiny. You can purchase them in the shop.";
 			}
 		}
@@ -94,33 +222,31 @@ public class PirateCommand extends Command {
 		return null;
 	}
 
-	
 	public String getPlankSniperCommandResponse(Event event) {
 		if (validateInput(event)) {
 			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
-			
+
 			if (pirate.getPlankSniper() > 0) {
 				String input = event.getText();
 				String[] inputSplit = input.split(" ");
-				
+
 				String walkerStringSlackId = inputSplit[1].substring(2, 11);
 				Pirate pirateWalker = pirateService.getPirateBySlackId(walkerStringSlackId);
-				
+
 				if (pirateWalker == null) {
 					return "I don't recognize that pirate.";
 				}
-				
+
 				int currentPlankNum = pirateWalker.getPlankNum();
 				pirateService.updateWalkThePlank((currentPlankNum + 1), pirateWalker.getPirateId());
-				
+
 				SlackUser walker = pirateWalker.getSlackUser();
 				String walkerName = walker.getFirstName() + " " + walker.getLastName();
-				
+
 				pirateService.updateUsePlankSniperCommand(pirate.getPirateId());
-				
+
 				return getPlankWalkerStatement(walkerName);
-			}
-			else {
+			} else {
 				return "You don't have any charges of !plankSniper. You can purchase them in the shop.";
 			}
 		}
@@ -128,6 +254,66 @@ public class PirateCommand extends Command {
 		return null;
 	}
 
+	public String getRumCommandResponse(Event event) {
+		if (validateInput(event)) {
+			Pirate pirate = pirateService.getPirateBySlackId(event.getUserId());
+
+			if (pirate.getRum() > 0) {
+				Rum newRum = new Rum();
+				newRum.setRumGiverId(pirate.getPirateId());
+				newRum.setRumGiver(pirate.getSlackUser().getFirstName() + " " + pirate.getSlackUser().getLastName());
+				
+				String[] inputSplit = event.getText().split(" ");
+				
+				if (inputSplit[1].length() <= 10) {
+					return "I don't recognize that pirate.";
+				}
+				
+				Pirate rumGetter = pirateService.getPirateBySlackId(inputSplit[1].substring(2, 11));
+				
+				if (rumGetter == null) {
+					return "I don't recognize that pirate.";
+				}
+				
+				PirateShip rumGetterShip = pirateShipService.getShipById(rumGetter.getPirateShipId());
+			
+				newRum.setRumGetterId(rumGetter.getPirateId());
+				newRum.setRumGetter(rumGetter.getSlackUser().getFirstName() + " " + rumGetter.getSlackUser().getLastName());
+				
+				StringBuilder rumReason = new StringBuilder();
+				for (int i = 2; i < inputSplit.length; i++) {
+					rumReason.append(inputSplit[i]).append(" "); 
+				}
+				
+				newRum.setRumReason(rumReason.toString().trim());
+				
+				if (newRum.getRumGetterId() == newRum.getRumGiverId()) {
+					return "You must be in cahoots with ole 'Ghost White' Carabis!";
+				}
+				
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+				LocalDate rumDate = LocalDate.now();
+				String rumDateString = rumDate.format(formatter);
+				
+				newRum.setRumDate(rumDateString);
+				
+				rumService.addNewEvent(newRum);
+				
+				pirateService.updateUseRumCommand(pirate.getPirateId());
+				pirateService.updateGetRumCommand(rumGetter.getPirateId());
+				
+				pirateShipService.updatePoints(rumGetterShip.getOverallShipPoints() + 5, rumGetter.getPirateShipId());
+				
+				return "*" + pirate.getSlackUser().getFirstName() + "* has given *" + rumGetter.getSlackUser().getFirstName() + "* some rum! Keep up the great work!";
+			} else {
+				return "You don't have any more rum to give out at this moment.";
+			}
+		}
+
+		return null;
+	}
+	
 	private String getPlankWalkerStatement(String plankWalker) {
 		int rando = getRandomNumber(5);
 
@@ -145,7 +331,7 @@ public class PirateCommand extends Command {
 			return "Ahoy! It's time for *" + plankWalker + "* to walk the plank! Get moving!";
 		}
 	}
-	
+
 	public String getTopPlankWalkersCommandResponse(Event event) {
 		if (validateInput(event)) {
 			List<Pirate> pirates = pirateService.getTopPlankWalkers();

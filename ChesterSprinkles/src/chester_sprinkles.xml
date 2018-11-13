@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
-    <raffleDateTime>9/6/18</raffleDateTime>
-    <raffleStartingTicket>212058</raffleStartingTicket>
-    <raffleEndingTicket>212096</raffleEndingTicket>
+    <raffleDateTime>11/22/18</raffleDateTime>
+    <raffleStartingTicket></raffleStartingTicket>
+    <raffleEndingTicket></raffleEndingTicket>
     <raffleExcludedTickets></raffleExcludedTickets>
-    <currentChallenge>The Great Battle of the Atlantic</currentChallenge>
-    <currentChallengeDate>9/10/18</currentChallengeDate>
-    <currentChallengeLink>https://drive.google.com/open?id=1PCGGOGbHxo07i6KlCk_t8GUDTnBsO09O</currentChallengeLink>
-    <raffleWinners>
-        <raffleWinner>Evan B</raffleWinner>
-        <raffleWinner>Laura F</raffleWinner>
-        <raffleWinner>Cameron M</raffleWinner>
-    </raffleWinners>
+    <currentChallenge>The Mostly-Accurate Pirate Sorting Machine</currentChallenge>
+    <currentChallengeDate>11/19/18</currentChallengeDate>
+    <currentChallengeLink>https://drive.google.com/open?id=1jTMmGTXbYTSEVJhSlUmBQYjAYhG3kO1t</currentChallengeLink>
+    <raffleWinners/>
     <presenters>
-        <presenter>David Mullen</presenter>
-        <presenter>Kenneth Reilly</presenter>
-        <presenter>Gary Gealy</presenter>
+        <presenter>Dave Arlington</presenter>
+        <presenter>Andre Gueret</presenter>
     </presenters>
     <allTimePresenters>
         <allTimePresenter>
@@ -120,5 +115,13 @@
         <command>*Submitted by:* Ariel Burke --- *Command:* !stickyShoes Decreases the chance of you walking the plank.  Will cost dubloons and will be limited how many times you can buy.</command>
         <command>*Submitted by:* Andre Gueret --- *Command:* !shantyRecommend this would be followed by a direct YouTube link to a new shanty</command>
         <command>*Submitted by:* Caleb Hall --- *Command:* !executivePlankLeaderboards See how many times ATL people have walked the plank.</command>
+        <command>*Submitted by:* Caleb Hall --- *Command:* Short versions of existing commands, such as !ac or !abc for !addBotCommand, !h for !help, etc.</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !tsunami Available for purchase. Knocks everyone off all ships</command>
+        <command>*Submitted by:* Caleb Hall --- *Command:* !rockYouLikeAHurricane Does !tsunami</command>
+        <command>*Submitted by:* Michael Peacock --- *Command:* !raffleMe make &lt;@UBYAE4ANA&gt; call my ticket number even if I don't have one</command>
+        <command>*Submitted by:* Ariel Burke --- *Command:* !allThePlankLife - A DM command to see how many times everyone has walked the plank</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !vote - Vote on pirates to receive bonus points because they've done something awesome for the RSI culture or the community.</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !woot aka !brag - Can only be used by the top pirate(s) to tease the other pirates</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !actLikeAPirate - Does a random pirate command (!walkThePLank, !gamble, !shanty, etc.)</command>
     </commands>
 </chester_sprinkles>

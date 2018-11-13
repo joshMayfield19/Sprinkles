@@ -3,6 +3,7 @@ package com.ccc.chestersprinkles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ccc.chestersprinkles.dao.AchievementDao;
 import com.ccc.chestersprinkles.dao.BottleEventDao;
 import com.ccc.chestersprinkles.dao.ChallengeDao;
 import com.ccc.chestersprinkles.dao.ChallengeIdeaDao;
@@ -10,13 +11,16 @@ import com.ccc.chestersprinkles.dao.CommandIdeaDao;
 import com.ccc.chestersprinkles.dao.DoubloonActivityDao;
 import com.ccc.chestersprinkles.dao.DoubloonItemHistoryDao;
 import com.ccc.chestersprinkles.dao.DoubloonShopItemDao;
+import com.ccc.chestersprinkles.dao.ManagerAssociationDao;
 import com.ccc.chestersprinkles.dao.ParrotPhraseDao;
 import com.ccc.chestersprinkles.dao.PirateDao;
 import com.ccc.chestersprinkles.dao.PiratePointsHistoryDao;
 import com.ccc.chestersprinkles.dao.PirateShipDao;
 import com.ccc.chestersprinkles.dao.PointEventDao;
 import com.ccc.chestersprinkles.dao.PresentationDao;
+import com.ccc.chestersprinkles.dao.RumDao;
 import com.ccc.chestersprinkles.dao.SlackUserDao;
+import com.ccc.chestersprinkles.service.AchievementService;
 import com.ccc.chestersprinkles.service.BottleEventService;
 import com.ccc.chestersprinkles.service.ChallengeIdeaService;
 import com.ccc.chestersprinkles.service.ChallengeService;
@@ -24,12 +28,14 @@ import com.ccc.chestersprinkles.service.CommandIdeaService;
 import com.ccc.chestersprinkles.service.DoubloonActivityService;
 import com.ccc.chestersprinkles.service.DoubloonItemHistoryService;
 import com.ccc.chestersprinkles.service.DoubloonShopItemService;
+import com.ccc.chestersprinkles.service.ManagerAssociationService;
 import com.ccc.chestersprinkles.service.ParrotPhraseService;
 import com.ccc.chestersprinkles.service.PiratePointsHistoryService;
 import com.ccc.chestersprinkles.service.PirateService;
 import com.ccc.chestersprinkles.service.PirateShipService;
 import com.ccc.chestersprinkles.service.PointEventService;
 import com.ccc.chestersprinkles.service.PresentationService;
+import com.ccc.chestersprinkles.service.RumService;
 import com.ccc.chestersprinkles.service.SlackUserService;
 
 @Configuration
@@ -172,5 +178,35 @@ public class ChesterConfig {
 	@Bean
 	public BottleEventDao bottleEventDao() {
 		return new BottleEventDao();
+	}
+	
+	@Bean
+	public AchievementService achievementService() {
+		return new AchievementService();
+	}
+	
+	@Bean
+	public AchievementDao achievementDao() {
+		return new AchievementDao();
+	}
+	
+	@Bean
+	public ManagerAssociationService managerAssociationService() {
+		return new ManagerAssociationService();
+	}
+	
+	@Bean
+	public ManagerAssociationDao managerAssociationDao() {
+		return new ManagerAssociationDao();
+	}
+	
+	@Bean
+	public RumService rumService() {
+		return new RumService();
+	}
+	
+	@Bean
+	public RumDao rumDao() {
+		return new RumDao();
 	}
 }

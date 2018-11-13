@@ -100,11 +100,23 @@ public class PirateService {
 		pirateDao.updateLootDateCommand(pirateId, newDoubloonCount, lootDate);
 	}
 	
+	public void updateLotDateCommand(int pirateId, int newDoubloonCount, String lotDate) {
+		pirateDao.updateLootDateCommand(pirateId, newDoubloonCount, lotDate);
+	}
+	
 	public void updateUsePlankSniperCommand(int pirateId) {
 		pirateDao.updateUsePlankSniperCommand(pirateId);
 	}
 	
 	public void updateUseMutinyCommand(int pirateId) {
 		pirateDao.updateUseMutinyCommand(pirateId);
+	}
+	
+	public void updateUseRumCommand(int pirateId) {
+		pirateDao.updateUseRumCommand(pirateId);
+	}
+	
+	public void updateGetRumCommand(int pirateId) {
+		pirateDao.updateGetRumCommand(pirateId);
 	}
 }

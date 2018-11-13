@@ -27,7 +27,7 @@ public class PirateDao {
 			+ "inner join slack_user on pirate.user_id = slack_user.slack_user_id order by pirate.plank_num desc limit 5";
 	private static final String GET_PIRATE_BY_SLACK_ID = "select pirate.pirate_id, pirate.user_id, pirate.ship_id, pirate.current_points, pirate.total_points, "
 			+ "pirate.doubloons, pirate.pirate_name, pirate.top_five, pirate.captain, pirate.winning_ship, pirate.plank_num, pirate.polly, pirate.bottle, pirate.channel, "
-			+ "pirate.mutiny, pirate.sniper, pirate.loot_dte, slack_user.first_name, slack_user.last_name, slack_user.slack_id,"
+			+ "pirate.mutiny, pirate.sniper, pirate.loot_dte, pirate.rum, pirate.lot_dte, slack_user.first_name, slack_user.last_name, slack_user.slack_id,"
 			+ "doubloon_act.command_start, doubloon_act.command_end, doubloon_act.shoreleave_dte, doubloon_act.explore_dte, doubloon_act.battle_dte, doubloon_act.set_sail_dte,"
 			+ "doubloon_act.top_five_start, doubloon_act.top_five_end, doubloon_act.plunder_dte, doubloon_act.grog_dte "
 			+ "from pirate "
@@ -55,8 +55,11 @@ public class PirateDao {
 	private static final String UPDATE_MUTINY = "update pirate set mutiny = (mutiny+1), doubloons = ? where pirate_id = ?";
 	private static final String UPDATE_USE_MUTINY = "update pirate set mutiny = (mutiny-1) where pirate_id = ?";
 	private static final String UPDATE_SNIPER = "update pirate set sniper = (sniper+1), doubloons = ? where pirate_id = ?";
+	private static final String UPDATE_USE_RUM = "update pirate set rum = (rum-1) where pirate_id = ?";
+	private static final String UPDATE_GET_RUM = "update pirate set rum = (rum+1), total_points = (total_points+5), current_points = (current_points+5) where pirate_id = ?";
 	private static final String UPDATE_USE_SNIPER = "update pirate set sniper = (sniper-1) where pirate_id = ?";
 	private static final String UPDATE_LOOT_DTE = "update pirate set loot_dte = ?, doubloons = ? where pirate_id = ?";
+	private static final String UPDATE_LOT_DTE = "update pirate set lot_dte = ?, doubloons = ? where pirate_id = ?";
 	private static final String UPDATE_CHANNEL = "update pirate set channel = ? where pirate_id = ?";
 	private static final String UPDATE_PIRATE_POINTS_ZERO = "update pirate set current_points = 0";
 	private static final String ADD_NEW_PIRATE = "insert into pirate (user_id, ship_id, current_points, total_points, doubloons, pirate_name, top_five, captain, plank_num, winning_ship, polly, bottle, channel) "
@@ -315,24 +318,26 @@ public class PirateDao {
 	            pirate.setMutiny(rs.getInt(15));
 	            pirate.setPlankSniper(rs.getInt(16));
 	            pirate.setLootDate(rs.getString(17));
+	            pirate.setRum(rs.getInt(18));
+	            pirate.setLotDate(rs.getString(19));
 	            
 	            SlackUser slackUser = new SlackUser();
-	            slackUser.setFirstName(rs.getString(18));
-	            slackUser.setLastName(rs.getString(19));
-	            slackUser.setSlackId(rs.getString(20));
+	            slackUser.setFirstName(rs.getString(20));
+	            slackUser.setLastName(rs.getString(21));
+	            slackUser.setSlackId(rs.getString(22));
 	            pirate.setSlackUser(slackUser);
 	            
 	            DoubloonActivity doubloonActivity = new DoubloonActivity();
-	            doubloonActivity.setCommandStartDate(rs.getString(21));
-	            doubloonActivity.setCommandEndDate(rs.getString(22));
-	            doubloonActivity.setLastShoreleaveDate(rs.getString(23));
-	            doubloonActivity.setLastExploreDate(rs.getString(24));
-	            doubloonActivity.setLastBattleDate(rs.getString(25));
-	            doubloonActivity.setLastSetSailDate(rs.getString(26));
-	            doubloonActivity.setTopFiveCommandStartDate(rs.getString(27));
-	            doubloonActivity.setTopFiveCommandEndDate(rs.getString(28));
-	            doubloonActivity.setLastPlunderDate(rs.getString(29));
-	            doubloonActivity.setLastGrogDate(rs.getString(30));
+	            doubloonActivity.setCommandStartDate(rs.getString(23));
+	            doubloonActivity.setCommandEndDate(rs.getString(24));
+	            doubloonActivity.setLastShoreleaveDate(rs.getString(25));
+	            doubloonActivity.setLastExploreDate(rs.getString(26));
+	            doubloonActivity.setLastBattleDate(rs.getString(27));
+	            doubloonActivity.setLastSetSailDate(rs.getString(28));
+	            doubloonActivity.setTopFiveCommandStartDate(rs.getString(29));
+	            doubloonActivity.setTopFiveCommandEndDate(rs.getString(30));
+	            doubloonActivity.setLastPlunderDate(rs.getString(31));
+	            doubloonActivity.setLastGrogDate(rs.getString(32));
 	            pirate.setDoubloonActivity(doubloonActivity);
 	        }
 	    } catch (SQLException e ) {
@@ -746,6 +751,62 @@ public class PirateDao {
 	    }
 	}
 	
+	public void updateUseRumCommand(int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_USE_RUM);
+	    	
+	    	stmt.setInt(1, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void updateGetRumCommand(int pirateId) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_GET_RUM);
+	    	
+	    	stmt.setInt(1, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
 	public void updateLootDateCommand(int pirateId, int doubloons, String lootDate) {
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -755,6 +816,36 @@ public class PirateDao {
 	    	stmt = con.prepareStatement(UPDATE_LOOT_DTE);
 	    	
 	    	stmt.setString(1, lootDate);
+	    	stmt.setInt(2, doubloons);
+	    	stmt.setInt(3, pirateId);
+
+			// execute update SQL stetement
+	    	stmt.executeUpdate();
+	    	
+	    } catch (SQLException e ) {
+	        //JDBCTutorialUtilities.printSQLException(e);
+	    } finally {
+	        if (stmt != null) { 
+	        	try {
+					stmt.close();
+		    		SqliteDao.closeDb(con);
+	        	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	        }
+	    }
+	}
+	
+	public void updateLotDateCommand(int pirateId, int doubloons, String lotDate) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+	
+	    try {
+			con = SqliteDao.openDb();
+	    	stmt = con.prepareStatement(UPDATE_LOT_DTE);
+	    	
+	    	stmt.setString(1, lotDate);
 	    	stmt.setInt(2, doubloons);
 	    	stmt.setInt(3, pirateId);
 

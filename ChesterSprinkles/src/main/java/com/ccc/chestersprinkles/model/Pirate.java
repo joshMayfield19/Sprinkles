@@ -21,6 +21,8 @@ public class Pirate implements Comparable<Pirate> {
 	private SlackUser slackUser;
 	private DoubloonActivity doubloonActivity;
 	private String channelId;
+	private int rum;
+	private String lotDate;
 	
 	public Pirate () {
 		this.pirateName = "Pending";
@@ -119,6 +121,22 @@ public class Pirate implements Comparable<Pirate> {
 
 	public String getLootDate() {
 		return lootDate;
+	}
+
+	public int getRum() {
+		return rum;
+	}
+
+	public String getLotDate() {
+		return lotDate;
+	}
+
+	public void setLotDate(String lotDate) {
+		this.lotDate = lotDate;
+	}
+
+	public void setRum(int rum) {
+		this.rum = rum;
 	}
 
 	public void setLootDate(String lootDate) {
