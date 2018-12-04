@@ -734,6 +734,15 @@ public class SlackBot extends Bot {
 			reply(session, event, new Message(commandResponse));
 		}
 	}
+	
+	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!council)$")
+	public void council(WebSocketSession session, Event event) {
+		String commandResponse = piratePointsCommand.getCouncilCommandResponse(event);
+
+		if (commandResponse != null) {
+			reply(session, event, new Message(commandResponse));
+		}
+	}
 
 	@Controller(events = EventType.MESSAGE, pattern = "(?i)^(!whatArePiratePoints)$")
 	public void whatArePiratePoints(WebSocketSession session, Event event) {

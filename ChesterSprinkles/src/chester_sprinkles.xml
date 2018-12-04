@@ -5,7 +5,7 @@
     <raffleEndingTicket></raffleEndingTicket>
     <raffleExcludedTickets></raffleExcludedTickets>
     <currentChallenge>The Mostly-Accurate Pirate Sorting Machine</currentChallenge>
-    <currentChallengeDate>11/19/18</currentChallengeDate>
+    <currentChallengeDate>11/20/18</currentChallengeDate>
     <currentChallengeLink>https://drive.google.com/open?id=1jTMmGTXbYTSEVJhSlUmBQYjAYhG3kO1t</currentChallengeLink>
     <raffleWinners/>
     <presenters>
@@ -123,5 +123,9 @@
         <command>*Submitted by:* Robert Cole --- *Command:* !vote - Vote on pirates to receive bonus points because they've done something awesome for the RSI culture or the community.</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !woot aka !brag - Can only be used by the top pirate(s) to tease the other pirates</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !actLikeAPirate - Does a random pirate command (!walkThePLank, !gamble, !shanty, etc.)</command>
+        <command>*Submitted by:* Taylor Montgomery --- *Command:* !doubloonLeaderboard - shows the pirate doubloon leaderboard</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !friendlyWager - You bet someone that you'll get more pirate points within the next month. If you lose x number of dubloons goes to the winner and vice versa</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !designatedDriver You get to chose where the ship goes next, but you can't have any rum</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !zoidBerg !whyNotZordberg - Gives random Zordberg quotes. He may also try to eat your ship since he is a sea monster</command>
     </commands>
 </chester_sprinkles>

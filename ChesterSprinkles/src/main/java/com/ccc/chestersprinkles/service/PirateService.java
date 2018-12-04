@@ -101,7 +101,7 @@ public class PirateService {
 	}
 	
 	public void updateLotDateCommand(int pirateId, int newDoubloonCount, String lotDate) {
-		pirateDao.updateLootDateCommand(pirateId, newDoubloonCount, lotDate);
+		pirateDao.updateLotDateCommand(pirateId, newDoubloonCount, lotDate);
 	}
 	
 	public void updateUsePlankSniperCommand(int pirateId) {

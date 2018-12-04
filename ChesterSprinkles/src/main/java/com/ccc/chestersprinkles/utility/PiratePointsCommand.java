@@ -290,7 +290,19 @@ public class PiratePointsCommand extends Command {
 			return "*Here is the list of the current destinations*:\n(1) The Volcanic Haven --- 9500 points\n"
 					+ "(2) Winterberry Haven --- 14000 points\n" + "(3) The Neverending Peninsula --- 19000 points.\n\n"
 					+ "*Here is the list of upcoming Top Five pirates dates*:\n"
-					+ "(1) 9/28/18\n(2) 11/02/18\n(3) 12/07/18";
+					+ "(1) 11/02/18\n(2) 12/07/18\n(3) 1/07/19\n";
+		}
+
+		return null;
+	}
+	
+	public String getCouncilCommandResponse(Event event) {
+		if (validateInput(event)) {
+			return "The Council of the Cove consists of three posistions at the moment:\n\n" + 
+					"*Exarch of Technology (_Caleb Hall_)* - Key player in all things Sprinkles.\n" +
+					"*Commander of Strategy (_Vacant_)* - Key player in coming up with new Coding Challenges.\n" + 
+					"*Chief of Affairs (_Vacant_)* - Master of Ceremonies. Tracks events points and ensures pirates get their points.\n" +
+					"\nIf you are interested in joining the Council of the Cove, ping me directly!";
 		}
 
 		return null;
