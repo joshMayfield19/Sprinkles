@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chester_sprinkles>
-    <raffleDateTime>11/22/18</raffleDateTime>
+    <raffleDateTime>1/31/19</raffleDateTime>
     <raffleStartingTicket></raffleStartingTicket>
     <raffleEndingTicket></raffleEndingTicket>
     <raffleExcludedTickets></raffleExcludedTickets>
-    <currentChallenge>The Mostly-Accurate Pirate Sorting Machine</currentChallenge>
-    <currentChallengeDate>11/20/18</currentChallengeDate>
-    <currentChallengeLink>https://drive.google.com/open?id=1jTMmGTXbYTSEVJhSlUmBQYjAYhG3kO1t</currentChallengeLink>
+    <currentChallenge>The Splinter Saloon</currentChallenge>
+    <currentChallengeDate>1/28/19</currentChallengeDate>
+    <currentChallengeLink>https://drive.google.com/open?id=1PyZ6bbd35_gwkpfg5ZUuV1RpNLBxsCI2</currentChallengeLink>
     <raffleWinners/>
     <presenters>
         <presenter>Dave Arlington</presenter>
-        <presenter>Andre Gueret</presenter>
+        <presenter>Jaforrest Jackson</presenter>
+        <presenter>Patrick McClellan</presenter>
     </presenters>
     <allTimePresenters>
         <allTimePresenter>
@@ -108,7 +109,6 @@
     </ideas>
     <commands>
         <command>*Submitted by:* Ariel Burke --- *Command:* !lastShip The ship currently in last place sends out silly pirate insults to other ships with great bravado</command>
-        <command>*Submitted by:* Caleb Hall --- *Command:* !tayTayTime - post a random Taylor Swift music video or suggest a song/album</command>
         <command>*Submitted by:* Caleb Hall --- *Command:* !allIn Gamble all your doubloons</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !poolParty - Must buy this command with doubloons. For one day, anyone that walks the plank gets pirate points.</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !slipperShoes - Can purchase. Would temporarily increase someone's walkThePlank percentage</command>
@@ -127,5 +127,7 @@
         <command>*Submitted by:* Robert Cole --- *Command:* !friendlyWager - You bet someone that you'll get more pirate points within the next month. If you lose x number of dubloons goes to the winner and vice versa</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !designatedDriver You get to chose where the ship goes next, but you can't have any rum</command>
         <command>*Submitted by:* Robert Cole --- *Command:* !zoidBerg !whyNotZordberg - Gives random Zordberg quotes. He may also try to eat your ship since he is a sea monster</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* !swabTheDeck - Must purchase. Can make someone swab the deck for the day. The commands they can do are limited for that day because they are busy swabbing the deck</command>
+        <command>*Submitted by:* Robert Cole --- *Command:* Would be awesome if Sprinkles automatically sent some messages. Like when he's woken up in the morning, or telling us when the coding challenge presentation is about to begin.</command>
     </commands>
 </chester_sprinkles>
